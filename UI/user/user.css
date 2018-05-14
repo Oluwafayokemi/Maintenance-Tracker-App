@@ -1,0 +1,80 @@
+body {
+    background: white;
+    text-align: center;
+}
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  color:  #0066ff;
+}
+.allbody {
+    margin-top: 3em;
+}
+#signin {
+    margin-top: 5em;
+}
+form {
+    border: 1px solid rgba(48, 115, 148, 0.45);
+    display: inline-block;
+    text-align: justify;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: linear-gradient(to bottom right, #0066ff, #000);
+    width: 50%;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=email]  {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: none;
+    box-sizing: border-box;
+    background-color: #eee;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    /*margin: 8px 0;*/
+    border: none;
+    cursor: pointer;
+    width: inherit;
+    border-radius: 4px;
+    float: right;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.9;
+}
+
+.container {
+    padding: 16px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color:  #0066ff;
+}
+
+.reg-container {
+    background-color: white;
+    margin-top: 3em;
+    padding: 1em;
+    margin-bottom: 0;
+    text-align: center;
+}
+.menu {
+    padding: 1em;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    .form {
+      width: 100%
+    }
+}
