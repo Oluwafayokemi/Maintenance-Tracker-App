@@ -19,8 +19,9 @@ body {
     background-position: center;
     background-size: cover;
     height: 500px;
+    
 }
-.main #main {
+.main #main, .main a{
     color: white;
     font-weight: bold;
     text-decoration: none;
