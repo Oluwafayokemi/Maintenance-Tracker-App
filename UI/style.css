@@ -1,0 +1,74 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+.container {
+    margin: 0 auto;
+}
+.maintenance-box {
+    border: 2px solid gray;
+    height: 5em;
+    padding: 2em;
+    background-color: gray;
+    color: white;
+    text-align: center;
+}
+.main {
+    margin-top: 1em;
+    padding: 2em;
+    background-image: url(http://bpic.588ku.com/element_pic/00/16/09/1957df49a91af67.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+}
+.main #main {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    background-color: gray;
+}
+.user {
+    float: right;
+    color: white
+}
+.user a {
+    margin-left: 2em;
+    color: white;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+#myInput:focus {outline: 3px solid #ddd;}
+.dropbtn {
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    
+}
+
+.dropdown {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
