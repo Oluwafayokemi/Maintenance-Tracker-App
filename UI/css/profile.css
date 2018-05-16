@@ -1,5 +1,5 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Lato', sans-serif;
 }
 .container {
     margin: 0 auto;
@@ -18,7 +18,7 @@ body {
     background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/03/79/18/1157c27a0379826.jpg);
     background-position: center;
     background-size: cover;
-    height: 100%; 
+    height: auto; 
 }
 .main li{
     color: white;
@@ -28,18 +28,21 @@ body {
     padding: 5px;
     background-color: gray;
 }
-
+.nav {
+    margin-bottom: 2em;
+}
 .collapsible {
     background-color: #777;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 50%;
     border: none;
     text-align: left;
     outline: none;
     font-size: 15px;
     margin-bottom: 2em;
+    text-align: center
 }
 
 .active, .collapsible:hover {
@@ -51,6 +54,7 @@ body {
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    width: 50%;
 }
 
 /* Add padding to containers */
@@ -82,7 +86,7 @@ hr {
 }
 
 /* Set a style for the submit button */
-.registerbtn {
+.submitbtn {
     background-color: goldenrod;
     color: white;
     padding: 1em;
@@ -94,7 +98,7 @@ hr {
     opacity: 0.9;
 }
 
-.registerbtn:hover {
+.submitbtn:hover {
     opacity: 1;
 }
 
