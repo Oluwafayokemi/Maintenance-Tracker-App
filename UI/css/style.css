@@ -5,6 +5,9 @@ body {
 .container {
     margin: 0 auto;
 }
+.main a{
+    margin-right: 1em;
+}
 
 .maintenance-box {
     border: 2px solid gray;
@@ -39,7 +42,6 @@ body {
     color: white
 }
 .user a {
-    margin-left: 1em;
     color: white;
     text-transform: capitalize;
     font-weight: bold;
@@ -52,17 +54,22 @@ body {
     
 }
 .text {
-    margin-top: 3em;
+    margin: 3em auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: 50%;
+    line-height: 2.0;
+    text-align: justify;
+    background: goldenrod;
+    padding: 1em;
+
 
 }
-.text p {
+.text h2, .text h3 {
     border: 1px solid goldenrod;
     color: white;
-    
+    width: 80%
     
 }
 

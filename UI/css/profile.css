@@ -33,6 +33,9 @@ body {
 .nav {
     margin-bottom: 2em;
 }
+.nav a {
+    margin-right: 1em
+}
 .collapsible {
     background-color: gray;
     color: white;
