@@ -1,8 +1,10 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Lato', sans-serif;
 }
 .container {
-    margin: 0 auto;
+    margin-top: 3em;
+    padding: 2em;
+
 }
 .maintenance-box {
     border: 2px solid gray;
@@ -18,7 +20,7 @@ body {
     background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/03/79/18/1157c27a0379826.jpg);
     background-position: center;
     background-size: cover;
-    height: 100%; 
+    height: auto; 
 }
 .main li{
     color: white;
@@ -28,18 +30,23 @@ body {
     padding: 5px;
     background-color: gray;
 }
-
+.nav {
+    margin-bottom: 2em;
+}
+.nav a {
+    margin-right: 1em
+}
 .collapsible {
-    background-color: #777;
+    background-color: gray;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 70%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
-    margin-bottom: 2em;
+    font-size: 10px;
+    margin-bottom: 1em;
 }
 
 .active, .collapsible:hover {
@@ -51,15 +58,20 @@ body {
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    width: 67%;
 }
 
 /* Add padding to containers */
 .form {
     padding: 3em;
     background-color: white;
+}
+li {
     line-height: 3
 }
-
+li button{
+    float: right
+}
 /* Full-width input fields */
 input[type=text] {
     width: 100%;
@@ -82,7 +94,7 @@ hr {
 }
 
 /* Set a style for the submit button */
-.registerbtn {
+.submitbtn {
     background-color: goldenrod;
     color: white;
     padding: 1em;
@@ -94,7 +106,7 @@ hr {
     opacity: 0.9;
 }
 
-.registerbtn:hover {
+.submitbtn:hover {
     opacity: 1;
 }
 
@@ -104,6 +116,7 @@ select {
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
+    outline: none
 }
 textarea {
     width: 100%;
@@ -115,4 +128,5 @@ textarea {
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+    outline: none
 }

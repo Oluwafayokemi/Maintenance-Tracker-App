@@ -1,11 +1,12 @@
 body {
     background: white;
     text-align: center;
+    font-family: 'Lato', sans-serif;
 }
 h1 {
   text-transform: uppercase;
   text-align: center;
-  color:  #0066ff;
+  color:  gray;
 }
 .allbody {
     margin-top: 3em;
@@ -14,15 +15,17 @@ h1 {
     margin-top: 5em;
 }
 form {
-    border: 1px solid rgba(48, 115, 148, 0.45);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     display: inline-block;
     text-align: justify;
     margin: 0 auto;
     border-radius: 8px;
-    background: linear-gradient(to bottom right, #0066ff, #000);
+    background: linear-gradient(to bottom right, gray, grey);
     width: 50%;
 }
-
+label {
+    color: white;
+}
 /* Full-width inputs */
 input[type=text], input[type=password], input[type=email]  {
     width: 100%;
@@ -45,6 +48,7 @@ button {
     width: inherit;
     border-radius: 4px;
     float: right;
+    color: goldenrod
 }
 
 /* Add a hover effect for buttons */
@@ -59,7 +63,7 @@ button:hover {
 
 a {
     text-decoration: none;
-    color:  #0066ff;
+    color:  goldenrod;
 }
 
 .reg-container {

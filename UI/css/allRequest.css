@@ -1,6 +1,6 @@
 body {
     margin: 0 auto;
-    font-family: cursive, sans-serif;
+    font-family: 'Lato', sans-serif;
     display: flex;
     justify-content: center;
 }
@@ -8,23 +8,62 @@ body {
     margin-top: 3em;
     padding: 2em;
 }
+.maintenance-box {
+    border: 2px solid gray;
+    height: 5em;
+    padding: 2em;
+    background-color: gray;
+    color: white;
+    text-align: center;
+}
+.main {
+    margin-top: 1em;
+    padding: 2em;
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/03/79/18/1157c27a0379826.jpg);
+    background-position: center;
+    background-size: cover;
+    height: auto;
+    
+}
 #main a {
- color: white
+ color: white;
 }
-.AllRequest h1 {
+.main #main, .main a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    background-color: goldenrod;
+    margin-right: 2em;
+}
+.nav {
+    margin-bottom: 2em;
+}
+.user {
+    float: right;
+}
+.user a {
+    margin-right: 1em;
+    padding: 5px;
+    color: white;
+    background-color: goldenrod;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.allRequest h1 {
     color: gray;
-    font-family: sans-serif;
 }
-.AllRequest button {
+.allRequest button {
    cursor: pointer;
 }
 
 .collapsible {
-    background-color: #777;
+    background-color: gray;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 70%;
     border: none;
     text-align: left;
     outline: none;
@@ -40,4 +79,12 @@ body {
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    width: 67%;
+}
+li{
+    line-height: 2.5
+}
+
+li select {
+    float: right;
 }
