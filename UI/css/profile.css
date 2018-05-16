@@ -2,7 +2,9 @@ body {
     font-family: 'Lato', sans-serif;
 }
 .container {
-    margin: 0 auto;
+    margin-top: 3em;
+    padding: 2em;
+
 }
 .maintenance-box {
     border: 2px solid gray;
@@ -32,17 +34,15 @@ body {
     margin-bottom: 2em;
 }
 .collapsible {
-    background-color: #777;
+    background-color: gray;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 50%;
+    width: 70%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
-    margin-bottom: 2em;
-    text-align: center
+    font-size: 10px;
 }
 
 .active, .collapsible:hover {
@@ -54,16 +54,20 @@ body {
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    width: 50%;
+    width: 67%;
 }
 
 /* Add padding to containers */
 .form {
     padding: 3em;
     background-color: white;
+}
+li {
     line-height: 3
 }
-
+li button{
+    float: right
+}
 /* Full-width input fields */
 input[type=text] {
     width: 100%;
@@ -108,6 +112,7 @@ select {
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
+    outline: none
 }
 textarea {
     width: 100%;
@@ -119,4 +124,5 @@ textarea {
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+    outline: none
 }

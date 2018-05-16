@@ -36,7 +36,6 @@ body {
     padding: 5px;
     background-color: goldenrod;
     margin-right: 2em;
-
 }
 .nav {
     margin-bottom: 2em;
@@ -48,14 +47,14 @@ body {
     margin-right: 1em;
     padding: 5px;
     color: white;
-    background-color: gold;
+    background-color: goldenrod;
     text-transform: capitalize;
     font-weight: bold;
 }
-.AllRequest h1 {
+.allRequest h1 {
     color: gray;
 }
-.AllRequest button {
+.allRequest button {
    cursor: pointer;
 }
 
@@ -64,7 +63,7 @@ body {
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 50%;
+    width: 70%;
     border: none;
     text-align: left;
     outline: none;
@@ -80,5 +79,12 @@ body {
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    width: 46.3%;
+    width: 67%;
+}
+li{
+    line-height: 2.5
+}
+
+li select {
+    float: right;
 }

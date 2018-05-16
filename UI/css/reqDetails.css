@@ -10,13 +10,14 @@ body {
 }
 .custom-select {
     position: relative;
-    font-family: Arial;
+    cursor: pointer;
   }
   .custom-select select {
     display: none; /*hide original SELECT element:*/
   }
   .select-selected {
-    background-color: DodgerBlue;
+    background-color: gray;
+    outline: none;
   }
   /*style the arrow inside the select element:*/
   .select-selected:after {
@@ -46,7 +47,7 @@ body {
   /*style items (options):*/
   .select-items {
     position: absolute;
-    background-color: DodgerBlue;
+    background-color: gray;
     top: 100%;
     left: 0;
     right: 0;
@@ -62,7 +63,6 @@ body {
 
 #customers {
     margin: 2em auto;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
     background-color: #fff;
