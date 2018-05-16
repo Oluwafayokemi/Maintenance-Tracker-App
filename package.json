@@ -1,0 +1,30 @@
+{
+  "name": "maintenance-tracker-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oluwafayokemi/Maintenance-Tracker-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oluwafayokemi/Maintenance-Tracker-App/issues"
+  },
+  "homepage": "https://github.com/Oluwafayokemi/Maintenance-Tracker-App#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "express": "^4.16.3"
+  }
+}
