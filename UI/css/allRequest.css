@@ -16,7 +16,7 @@ body {
     color: white;
     text-align: center;
 }
-.main {
+/* .main {
     margin-top: 1em;
     padding: 2em;
     background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/03/79/18/1157c27a0379826.jpg);
@@ -24,7 +24,7 @@ body {
     background-size: cover;
     height: auto;
     
-}
+} */
 #main a {
  color: white;
 }

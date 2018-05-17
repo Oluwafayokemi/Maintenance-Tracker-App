@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+}
+.row {
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-top: 1em;
+}
+
+.col-1 {
+    width: 8.33%;
+    margin: 0 auto;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+    height: 200px;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+    margin: 0 auto;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(48, 21, 146);
+    position: afix;
+}
+img {
+    max-width: 100%;
+    width: 100px;
+    height: auto;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: auto;
+}
+.th,
+.td {
+    text-align: left;
+    padding: 8px;
+}
+
+.tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+.th {
+    background-color: #9933cc;
+    color: white;
+}
+
+
+ul li {
+    float: left;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover:not(.active) {
+    background-color: #1a9ccb;
+}
+
+ul li a.active {
+    background-color: #9933cc;
+}
+
+
+@media only screen and (max-width: 769px) {
+    .row {
+        -webkit-flex-direction: column;
+        display: flex;
+        flex-direction: column;
+    }
+    [class*="to-col-"] {
+        width: 100%;
+        margin: auto!important;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+
+    ul li.right,
+    ul li {
+        float: none;
+    }
+    .aside {
+        display: none;
+    }
+    .input {
+        width: 100%;
+    }
+    .panel {
+        margin-top: 1.2em;
+        width: 100%;
+    }
+    #nav-hide {
+        display: block;
+    }
+    #nav {
+        display: none;
+    }
+    .modal-section {
+        width: 80%;
+    }
+}

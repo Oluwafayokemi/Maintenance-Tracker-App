@@ -1,7 +1,4 @@
-body {
-  font-family: 'Lato', sans-serif;
-  margin: 0 auto
-}
+
 
 /*the container must be positioned relative:*/
 
@@ -64,7 +61,7 @@ body {
 #customers {
     margin: 2em auto;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
     background-color: #fff;
 }
 
