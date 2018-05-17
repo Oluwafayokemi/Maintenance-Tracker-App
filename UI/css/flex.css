@@ -67,9 +67,8 @@ body {
 
 .col-12 {
     width: 100%;
-    margin: 0 auto;
 }
-nav ul {
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -81,7 +80,7 @@ img {
     max-width: 100%;
     width: 100px;
     height: auto;
-    margin: 0;
+    margin-bottom: 2em;
 }
 
 table {
@@ -103,8 +102,30 @@ table {
     color: white;
 }
 
+.to-modal {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: rgba(64, 64, 64, 0.55);
+    height: 100%;
+    position: fixed;
+    top: 0em;
+    display: none;
+    overflow: auto;
+}
 
-nav ul li {
+.to-modal-section {
+    width: 50%;
+    height: auto;
+    height: 80px;
+    margin: auto;
+    margin-top: 1.8em;
+    border-radius: .5em;
+    background-color: #f2f2f2;
+    display: none;
+}
+
+ul li {
     float: left;
 }
 
@@ -124,7 +145,13 @@ ul li a.active {
     background-color: #9933cc;
 }
 
+li{
+    line-height: 2.5
+}
 
+li select {
+    float: right;
+}
 @media only screen and (max-width: 769px) {
     .row {
         -webkit-flex-direction: column;
