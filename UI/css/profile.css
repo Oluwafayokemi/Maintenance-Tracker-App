@@ -1,6 +1,4 @@
-
 .container {
-    margin-top: 3em;
     padding: 2em;
 
 }
@@ -109,3 +107,14 @@ textarea {
     resize: none;
     outline: none
 }
+ol {
+    list-style: none;
+}
+
+/* span {
+       font-size: 2em; 
+       text-decoration: none; 
+       color: red; 
+       display: block;
+       margin-right: .5em;
+} */

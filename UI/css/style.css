@@ -52,13 +52,12 @@
     width: 50%;
     line-height: 2.0;
     text-align: center;
-    background: goldenrod;
+    background: rgb(44, 68, 148);
     padding: 1em;
 
 
 }
 .text h2, .text h3 {
-    border: 1px solid goldenrod;
     color: white;
     width: 80%
 }

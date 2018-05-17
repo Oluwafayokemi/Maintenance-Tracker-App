@@ -1,11 +1,5 @@
-body {
-    margin: 0 auto;
-    font-family: 'Lato', sans-serif;
-    display: flex;
-    justify-content: center;
-}
 .container {
-    margin-top: 3em;
+    margin: 0 auto;
     padding: 2em;
 }
 .maintenance-box {
@@ -20,17 +14,7 @@ body {
 .nav {
     margin-bottom: 2em;
 }
-.user {
-    float: right;
-}
-.user a {
-    margin-right: 1em;
-    padding: 5px;
-    color: white;
-    background-color: goldenrod;
-    text-transform: capitalize;
-    font-weight: bold;
-}
+
 .allRequest h1 {
     color: gray;
 }
