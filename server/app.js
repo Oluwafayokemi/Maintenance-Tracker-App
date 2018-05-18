@@ -151,7 +151,7 @@ app.delete('/api/v1/users/requests/:id', (req, res) => {
     })
 });
 
-const port = parseInt(process.env.PORT, 10) || 8000;
+const port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);
 
 app.listen(port, () => {
