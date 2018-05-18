@@ -1,6 +1,21 @@
+/* eslint-disable class-methods-use-this */
 import db from '../db/db';
 
+/**
+ * @export
+ * @class request
+ */
+
 class Request {
+/**
+   * Get Multiple request record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Meals
+   */
+  /*get All Meals */
     getAll(req, res) {
         res.status(201).json({
             success: 'true',
@@ -8,7 +23,14 @@ class Request {
             requests: db.requests
         })
     }
-
+/**
+     * Get a single request record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof request
+     */
     getOne(req, res) {
         const id = parseInt(req.params.id, 10);
         let found = false;
@@ -30,6 +52,7 @@ class Request {
         });
     }
 
+  /* create meals */
     create(req, res) {
         const id = parseInt(req.params.id, 10);
         const { name, option, department, description } = req.body
@@ -48,6 +71,7 @@ class Request {
         });
     }
 
+  /* update meals */
     update(req, res) {
         const id = parseInt(req.params.id, 10);
         let requestFound;
@@ -88,6 +112,7 @@ class Request {
         }
     }
 
+  /* delete a request record */
     remove(req, res) {
         const id = parseInt(req.params.id, 10);
         db.requests.find((request, index) => {
