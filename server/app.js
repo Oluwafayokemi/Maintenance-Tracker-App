@@ -1,10 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import db from './db/db.js';
+import db from './db/db';
+import requestRouter from './routes/request';
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(requestRouter);
 
 app.get('/', (req, res) => {
     res.status(200).json(db.users)
@@ -61,14 +64,6 @@ app.get('/api/v1/users/profile/:id', (req, res) => {
         }
     })
 })
-
-app.get('/api/v1/users/requests', (req, res) => {
-    res.status(201).json({
-        success: 'true',
-        message: 'successfully retrieved all requests',
-        requests: db.requests
-    })
-});
 
 app.get('/api/v1/users/requests/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);

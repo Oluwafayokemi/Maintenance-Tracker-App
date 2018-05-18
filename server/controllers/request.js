@@ -1,8 +1,12 @@
-import db from './db/db';
+import db from '../db/db';
 
 class Request {
     getAll(req, res) {
-        
+        res.status(201).json({
+            success: 'true',
+            message: 'successfully retrieved all requests',
+            requests: db.requests
+        })
     }
 
     getOne(req, res) {
