@@ -10,7 +10,24 @@ class Request {
     }
 
     getOne(req, res) {
-
+        const id = parseInt(req.params.id, 10);
+        let found = true;
+        db.requests.find(request => {
+            found = true;
+            if (request.id === id) {
+                return res.status(201).json({
+                    success: 'true',
+                    message: 'request found',
+                    request: request
+                })
+            }
+            if (!found) {
+                res.status(404).json({
+                    success: 'false',
+                    message: 'request not found'
+                })
+            }
+        });
     }
 
     create(req, res) {

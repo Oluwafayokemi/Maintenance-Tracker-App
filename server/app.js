@@ -65,23 +65,6 @@ app.get('/api/v1/users/profile/:id', (req, res) => {
     })
 })
 
-app.get('/api/v1/users/requests/:id', (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    let found = true;
-    db.requests.find(request => {
-        if (request.id === id) {
-            return res.status(201).json({
-                success: 'true',
-                message: 'request found',
-                request: request
-            })
-        }
-    });
-    return res.status(404).json({
-        success: 'false',
-        message: 'request not found'
-    })
-});
 
 
 app.post('/api/v1/users/requests', (req, res) => {
