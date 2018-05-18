@@ -8,26 +8,47 @@
     <link rel="stylesheet" href="./css/reqDetails.css">
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="./css/flex.css">
+
     <title>Request Details</title>
 </head>
 
 <body>
 
     <div class="container">
-        <div class="maintenance-box">
-            <h1>Hr Maintenance Department</h1>
-        </div>
-        <div class="main">
-            <div class="nav">
-                <a href="index.html">Home</a>
-                <a id="main" href="allRequest.html">All Request</a>
-                <a href="reqDetails.html">Request Details</a>
-                <div class="user">
-                    <a href="profile.html">Profile</a>
-                    <a href="signin.html">sign in</a>
-                    <a href="signup.html">sign up</a>
-                </div>
+        <div class="row" id="header">
+            <div class="col-12 maintenance-box">
+                <img src="https://botw-pd.s3.amazonaws.com/chr_logo_option_4_bof_0.jpg" alt="logo">
             </div>
+        </div>
+        <div class="nav">
+            <div class="col-12">
+                <nav role="navigation">
+                    <label for="mainNavButton" onClick=Menu></label>
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="allRequest.html">All Request</a>
+                        </li>
+                        <li>
+                            <a href="reqDetails.html">Request Details</a>
+                        </li>
+                        <li>
+                            <a href="profile.html">Profile</a>
+                        </li>
+                        <li>
+                            <a href="signin.html">sign in</a>
+                        </li>
+                        <li>
+                            <a href="signup.html">sign up</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="table">
             <table id="customers">
                 <tr>
                     <th>Name</th>
@@ -87,6 +108,7 @@
             </table>
         </div>
     </div>
+
     <script src="./js/reqDetails.js"></script>
 </body>
 

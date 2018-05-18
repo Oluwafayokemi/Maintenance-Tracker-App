@@ -1,7 +1,4 @@
-body {
-    font-family: 'Lato', sans-serif;
 
-}
 .container {
     margin: 0 auto;
 }
@@ -17,7 +14,7 @@ body {
     color: white;
     text-align: center;
 }
-.main {
+/* .main {
     margin-top: 1em;
     padding: 2em;
     background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/03/79/18/1157c27a0379826.jpg);
@@ -25,7 +22,7 @@ body {
     background-size: cover;
     height: 500px;
     
-}
+} */
 #main {
     margin-right: 1em;
 }
@@ -37,7 +34,7 @@ body {
     padding: 5px;
     background-color: goldenrod;
 }
-.user {
+/* .user {
     float: right;
     color: white
 }
@@ -45,14 +42,8 @@ body {
     color: white;
     text-transform: capitalize;
     font-weight: bold;
-}
-#myInput:focus {outline: 3px solid #ddd;}
-.dropbtn {
-    cursor: pointer;
-    position: absolute;
-    z-index: 2;
-    
-}
+} */
+
 .text {
     margin: 3em auto;
     display: flex;
@@ -60,16 +51,21 @@ body {
     flex-direction: column;
     width: 50%;
     line-height: 2.0;
-    text-align: justify;
-    background: goldenrod;
+    text-align: center;
+    background: rgb(44, 68, 148);
     padding: 1em;
 
 
 }
 .text h2, .text h3 {
-    border: 1px solid goldenrod;
     color: white;
     width: 80%
-    
 }
 
+/* li{
+    line-height: 1.5
+}
+
+li select {
+    float: right;
+} */

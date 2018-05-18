@@ -1,8 +1,4 @@
-body {
-    font-family: 'Lato', sans-serif;
-}
 .container {
-    margin-top: 3em;
     padding: 2em;
 
 }
@@ -14,34 +10,16 @@ body {
     color: white;
     text-align: center;
 }
-.main {
-    margin-top: 1em;
-    padding: 2em;
-    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/03/79/18/1157c27a0379826.jpg);
-    background-position: center;
-    background-size: cover;
-    height: auto; 
-}
-.main li{
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    border: none;
-    padding: 5px;
-    background-color: gray;
-}
+
 .nav {
     margin-bottom: 2em;
 }
-.nav a {
-    margin-right: 1em
-}
+
 .collapsible {
     background-color: gray;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 70%;
     border: none;
     text-align: left;
     outline: none;
@@ -54,11 +32,10 @@ body {
 }
 
 .content {
-    padding: 0 18px;
+    /* padding: 0 18px; */
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    width: 67%;
 }
 
 /* Add padding to containers */
@@ -130,3 +107,14 @@ textarea {
     resize: none;
     outline: none
 }
+ol {
+    list-style: none;
+}
+
+/* span {
+       font-size: 2em; 
+       text-decoration: none; 
+       color: red; 
+       display: block;
+       margin-right: .5em;
+} */
