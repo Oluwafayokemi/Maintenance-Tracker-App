@@ -33,22 +33,21 @@ class Request {
      */
     getOne(req, res) {
         const id = parseInt(req.params.id, 10);
-        let found = false;
+        if ( id > db.requests.length ) {
+            res.status(404).json({
+                success: 'false',
+                message: 'request not found'
+            })
+        }
         db.requests.find(request => {
             if (request.id === id) {
-                found = true;
                 return res.status(201).json({
                     success: 'true',
                     message: 'request sucessfuly retrieved',
                     request: request
                 })
             }
-            if (!found) {
-                res.status(404).json({
-                    success: 'false',
-                    message: 'request not found'
-                })
-            }
+           
         });
     }
 

@@ -45,24 +45,7 @@ app.get('/', (req, res) => {
 // })
 
 // app.get('/api/v1/users/profile/:id', (req, res) => {
-//     const id = parseInt(req.params.id, 10);
-//     let found = true;
-//     db.users.find(user => {
-//         if (user.id === id) {
-//             found = true;
-//             return res.status(201).json({
-//                 success: 'true',
-//                 message: 'user found',
-//                 user: user
-//             })
-//         }
-//         if (!found) {
-//             res.status(404).json({
-//                 success: 'false',
-//                 message: 'user not found'
-//             })
-//         }
-//     })
+//    c
 // })
 
 const port = parseInt(process.env.PORT, 10) || 3000;
