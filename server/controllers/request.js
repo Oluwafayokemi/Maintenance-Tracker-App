@@ -31,7 +31,21 @@ class Request {
     }
 
     create(req, res) {
-
+        const id = parseInt(req.params.id, 10);
+        const { name, option, department, description } = req.body
+        db.requests.push({
+            id: db.requests.length + 1,
+            name,
+            option,
+            department,
+            description,
+            date: new Date()
+        })
+        res.status(201).json({
+            success: 'true',
+            message: 'successfully created new request',
+            newRequest: db.requests[db.requests.length - 1]
+        });
     }
 
     update(req, res) {

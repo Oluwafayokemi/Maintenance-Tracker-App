@@ -65,26 +65,6 @@ app.get('/api/v1/users/profile/:id', (req, res) => {
     })
 })
 
-
-
-app.post('/api/v1/users/requests', (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    const { name, option, department, description } = req.body
-    db.requests.push({
-        id: db.users.length + 1,
-        name,
-        option,
-        department,
-        description,
-        date: new Date()
-    })
-    res.status(201).json({
-        success: 'true',
-        message: 'successfully created new request',
-        newRequest: db.requests[db.requests.length - 1]
-    });
-
-})
 app.put('/api/v1/users/requests/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
     let requestFound;
