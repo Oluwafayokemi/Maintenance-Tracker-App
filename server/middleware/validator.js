@@ -20,7 +20,7 @@ class Validation {
       name: 'required|string',
       option: 'required|string',
       description: 'required|string',
-      department: 'required|integer',
+      department: 'required|string',
     //   userId: 'required|integer',
       date: { type: Date, default: Date.now },
     };

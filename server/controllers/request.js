@@ -11,13 +11,13 @@ class Request {
 
     getOne(req, res) {
         const id = parseInt(req.params.id, 10);
-        let found = true;
+        let found = false;
         db.requests.find(request => {
-            found = true;
             if (request.id === id) {
+                found = true;
                 return res.status(201).json({
                     success: 'true',
-                    message: 'request found',
+                    message: 'request sucessfuly retrieved',
                     request: request
                 })
             }
@@ -57,7 +57,14 @@ class Request {
                 requestFound = request;
                 requestIndex = index;
             }
+
         });
+        if (!requestFound) {
+            return res.status(404).send({
+                success: 'false',
+                message: 'request not found',
+            });
+        }
 
         const updatedRequest = {
             id: requestFound.id,
@@ -68,15 +75,34 @@ class Request {
         };
         db.requests.splice(requestIndex, 1, updatedRequest);
 
-        return res.status(201).send({
+        return res.status(200).json({
             success: 'true',
             message: 'request updated successfully',
             updatedRequest,
         });
+        if (!requestFound) {
+            res.status(404).json({
+                success: 'false',
+                message: 'request not found',
+            });
+        }
     }
 
     remove(req, res) {
-
+        const id = parseInt(req.params.id, 10);
+        db.requests.find((request, index) => {
+            if (request.id === id) {
+                db.requests.splice(index, 1);
+                return res.status(202).json({
+                    success: 'true',
+                    message: 'request sucesfully deleted',
+                });
+            }
+        });
+        return res.status(404).json({
+            success: 'false',
+            message: 'request not found'
+        })
     }
 }
 const request = new Request();

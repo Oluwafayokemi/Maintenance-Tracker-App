@@ -65,24 +65,6 @@ app.get('/api/v1/users/profile/:id', (req, res) => {
     })
 })
 
-
-app.delete('/api/v1/users/requests/:id', (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    db.requests.find((request, index) => {
-        if (request.id === id) {
-            db.requests.splice(index, 1);
-            return res.status(201).json({
-                success: 'true',
-                message: 'request sucesfully deleted',
-            });
-        }
-    });
-    return res.status(404).json({
-        success: 'false',
-        message: 'request not found'
-    })
-});
-
 const port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);
 
