@@ -41,25 +41,6 @@ app.post('/api/v1/register', (req, res) => {
     });
 })
 
-app.post('/api/v1/users/requests', (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    const { userId, name, option, department, description } = req.body
-    db.requests.push({
-        id: db.users.length + 1,
-        userId,
-        name,
-        option,
-        department,
-        description,
-        date: new Date()
-    })
-    res.status(201).json({
-        success: 'true',
-        message: 'successfully created new user',
-        newRequest: db.requests[db.requests.length - 1]
-    });
-
-})
 app.get('/api/v1/users/profile/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
     let found = true;
@@ -81,58 +62,95 @@ app.get('/api/v1/users/profile/:id', (req, res) => {
     })
 })
 
-app.get('/api/v1/users/requests/id', (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    let found = true;
-    db.requests.find(request => {
-        if (request.id === id) {
-            found = true;
-            
-            if (request.userId === id) {
-                return res.status(201).json({
-                    success: 'true',
-                    message: 'logged in user request found',
-                    request: request
-                })
-            }
-            if (!found) {
-                res.status(404).json({
-                    success: 'false',
-                    message: 'user not found'
-                })
-            }
-        }
-    })
-})
-
 app.get('/api/v1/users/requests', (req, res) => {
     res.status(201).json({
         success: 'true',
         message: 'successfully retrieved all requests',
-        requests: db.request
+        requests: db.requests
     })
-})
-app.put('/api/v1/users/requests', (req, res) => {
-    const id = parseInt(req.body.id, 10);
-    let found = false;
-    db.users.find(user => {
-        if (user.id === id) {
-            found = true;
+});
+
+app.get('/api/v1/users/requests/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    let found = true;
+    db.requests.find(request => {
+        if (request.id === id) {
             return res.status(201).json({
                 success: 'true',
-                message: 'user found',
-                user: user.request
+                message: 'request found',
+                request: request
             })
         }
-        if (!found) {
-            res.status(404).json({
-                success: 'false',
-                message: 'user not found'
-            })
-        }
+    });
+    return res.status(404).json({
+        success: 'false',
+        message: 'request not found'
     })
+});
+
+
+app.post('/api/v1/users/requests', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const { name, option, department, description } = req.body
+    db.requests.push({
+        id: db.users.length + 1,
+        name,
+        option,
+        department,
+        description,
+        date: new Date()
+    })
+    res.status(201).json({
+        success: 'true',
+        message: 'successfully created new request',
+        newRequest: db.requests[db.requests.length - 1]
+    });
 
 })
+app.put('/api/v1/users/requests/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    let requestFound;
+    let requestIndex;
+    db.requests.find((request, index) => {
+        if (request.id === id) {
+            requestFound = request;
+            requestIndex = index;
+        }
+    });
+
+    const updatedRequest = {
+        id: requestFound.id,
+        name: req.body.name || requestFound.name,
+        description: req.body.description || requestFound.description,
+        department: req.body.department || requestFound.department,
+        option: req.body.option || requestFound.option,
+    };
+    db.requests.splice(requestIndex, 1, updatedRequest);
+
+    return res.status(201).send({
+        success: 'true',
+        message: 'request added successfully',
+        updatedRequest,
+    });
+});
+
+app.delete('/api/v1/users/requests/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    db.requests.find((request, index) => {
+        if (request.id === id) {
+            db.requests.splice(index, 1);
+            return res.status(201).json({
+                success: 'true',
+                message: 'request sucesfully deleted',
+            });
+        }
+    });
+    return res.status(404).json({
+        success: 'false',
+        message: 'request not found'
+    })
+});
+
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 

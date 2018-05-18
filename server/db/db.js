@@ -76,7 +76,6 @@ const db = {
     requests: [
         {
             id: 1,
-            userId: 1,
             name: 'ezekiel',
             status: 'accepted',
             option: 'electricity',
@@ -85,7 +84,6 @@ const db = {
         },
         {
             id: 2,
-            userId: 3,
             name: 'Isaace',
             status: 'resolved',
             option: 'computer',
@@ -94,7 +92,6 @@ const db = {
         },
         {
             id: 3,
-            userId: 1,
             status: 'rejected',
             name: 'hope',
             option: 'furniture',
@@ -103,7 +100,6 @@ const db = {
         },
         {
             id: 4,
-            userId: 2,
             name: 'john',
             status: 'accepted',
             department: 'Crispy Rice',
@@ -113,7 +109,6 @@ const db = {
         },
         {
             id: 5,
-            userId: 2,
             status: [],
             name: 'sola',
             department: 'Crispy Rice',
@@ -123,7 +118,6 @@ const db = {
         },
         {
             id: 6,
-            userId: 3,
             status: [],
             name: 'funke',
             department: 'Crispy Rice',
