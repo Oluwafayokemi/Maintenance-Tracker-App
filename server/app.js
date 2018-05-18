@@ -65,32 +65,6 @@ app.get('/api/v1/users/profile/:id', (req, res) => {
     })
 })
 
-app.put('/api/v1/users/requests/:id', (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    let requestFound;
-    let requestIndex;
-    db.requests.find((request, index) => {
-        if (request.id === id) {
-            requestFound = request;
-            requestIndex = index;
-        }
-    });
-
-    const updatedRequest = {
-        id: requestFound.id,
-        name: req.body.name || requestFound.name,
-        description: req.body.description || requestFound.description,
-        department: req.body.department || requestFound.department,
-        option: req.body.option || requestFound.option,
-    };
-    db.requests.splice(requestIndex, 1, updatedRequest);
-
-    return res.status(201).send({
-        success: 'true',
-        message: 'request added successfully',
-        updatedRequest,
-    });
-});
 
 app.delete('/api/v1/users/requests/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
