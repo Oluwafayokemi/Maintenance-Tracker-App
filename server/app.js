@@ -9,8 +9,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(requestRouter);
 
+app.get('*', (req, res) => {
+  res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");
+
+})
+
+app.use((req, res, next) => {
+  const err = res.status(404).send({
+    error: '404: Sorry Page Not Found!'
+  });
+  next(err);
+});
+
+
 app.get('/', (req, res) => {
-  res.status(200).json(db.users);
+  res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");
 });
 
 // app.post('/api/v1/signin', (req, res) => {
