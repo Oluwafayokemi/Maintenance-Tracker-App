@@ -7,7 +7,7 @@ const validate = new Validator();
 
 router.get('/api/v1/users/requests', Request.getAll)
 .get('/api/v1/users/requests/:id', Request.getOne)
-.post('/api/v1/users/requests', Request.create)
+.post('/api/v1/users/requests', validate.validateRequest, Request.create)
 .put('/api/v1/users/requests/:id', Request.update)
 .delete('/api/v1/users/requests/:id', Request.remove);
 

@@ -1,6 +1,21 @@
+/* eslint-disable class-methods-use-this */
 import db from '../db/db';
 
+/**
+ * @export
+ * @class request
+ */
+
 class Request {
+/**
+   * Get Multiple request record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Meals
+   */
+  /*get All Meals */
     getAll(req, res) {
         res.status(201).json({
             success: 'true',
@@ -8,16 +23,23 @@ class Request {
             requests: db.requests
         })
     }
-
+/**
+     * Get a single request record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof request
+     */
     getOne(req, res) {
         const id = parseInt(req.params.id, 10);
-        let found = true;
+        let found = false;
         db.requests.find(request => {
-            found = true;
             if (request.id === id) {
+                found = true;
                 return res.status(201).json({
                     success: 'true',
-                    message: 'request found',
+                    message: 'request sucessfuly retrieved',
                     request: request
                 })
             }
@@ -30,6 +52,7 @@ class Request {
         });
     }
 
+  /* create meals */
     create(req, res) {
         const id = parseInt(req.params.id, 10);
         const { name, option, department, description } = req.body
@@ -48,6 +71,7 @@ class Request {
         });
     }
 
+  /* update meals */
     update(req, res) {
         const id = parseInt(req.params.id, 10);
         let requestFound;
@@ -57,7 +81,14 @@ class Request {
                 requestFound = request;
                 requestIndex = index;
             }
+
         });
+        if (!requestFound) {
+            return res.status(404).send({
+                success: 'false',
+                message: 'request not found',
+            });
+        }
 
         const updatedRequest = {
             id: requestFound.id,
@@ -68,15 +99,35 @@ class Request {
         };
         db.requests.splice(requestIndex, 1, updatedRequest);
 
-        return res.status(201).send({
+        return res.status(200).json({
             success: 'true',
             message: 'request updated successfully',
             updatedRequest,
         });
+        if (!requestFound) {
+            res.status(404).json({
+                success: 'false',
+                message: 'request not found',
+            });
+        }
     }
 
+  /* delete a request record */
     remove(req, res) {
-
+        const id = parseInt(req.params.id, 10);
+        db.requests.find((request, index) => {
+            if (request.id === id) {
+                db.requests.splice(index, 1);
+                return res.status(202).json({
+                    success: 'true',
+                    message: 'request sucesfully deleted',
+                });
+            }
+        });
+        return res.status(404).json({
+            success: 'false',
+            message: 'request not found'
+        })
     }
 }
 const request = new Request();
