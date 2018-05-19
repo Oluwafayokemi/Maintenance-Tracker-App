@@ -16,8 +16,6 @@
 }
 
 .collapsible {
-    background-color: gray;
-    color: white;
     cursor: pointer;
     padding: 18px;
     border: none;
@@ -25,10 +23,6 @@
     outline: none;
     font-size: 10px;
     margin-bottom: 1em;
-}
-
-.active, .collapsible:hover {
-    background-color: #555;
 }
 
 .content {
