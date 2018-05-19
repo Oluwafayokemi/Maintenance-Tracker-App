@@ -1,0 +1,120 @@
+.container {
+    padding: 2em;
+
+}
+.maintenance-box {
+    border: 2px solid gray;
+    height: 5em;
+    padding: 2em;
+    background-color: gray;
+    color: white;
+    text-align: center;
+}
+
+.nav {
+    margin-bottom: 2em;
+}
+
+.collapsible {
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 10px;
+    margin-bottom: 1em;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    /* padding: 0 18px; */
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+/* Add padding to containers */
+.form {
+    padding: 3em;
+    background-color: white;
+}
+li {
+    line-height: 3
+}
+li button{
+    float: right
+}
+/* Full-width input fields */
+input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.submitbtn {
+    background-color: goldenrod;
+    color: white;
+    padding: 1em;
+    margin-bottom:8px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    float: right;
+    opacity: 0.9;
+}
+
+.submitbtn:hover {
+    opacity: 1;
+}
+
+select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    outline: none
+}
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    outline: none
+}
+ol {
+    list-style: none;
+}
+
+/* span {
+       font-size: 2em; 
+       text-decoration: none; 
+       color: red; 
+       display: block;
+       margin-right: .5em;
+} */
