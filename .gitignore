@@ -1,5 +1,5 @@
-debug.log/
 node_modules/
+debug.log/
 .coveralls.yml/
 .vscode/
 nyc_output/
