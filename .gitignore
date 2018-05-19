@@ -1,1 +1,6 @@
 debug.log/
+node_modules/
+.coveralls.yml/
+.vscode/
+nyc_output/
+coverage/
