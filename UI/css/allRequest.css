@@ -41,8 +41,8 @@
 }
 
 .active, .collapse:hover {
-    background-color: white;
-    color: rgb(48, 21, 146);
+    background-color: gray;
+    color: #fff;
 }
 
 .content {
