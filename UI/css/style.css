@@ -7,12 +7,19 @@
 }
 
 .maintenance-box {
-    border: 2px solid gray;
-    height: 5em;
-    padding: 2em;
-    background-color: gray;
+    margin-top: 0;
+    border: none;
+    height: 4.78em;
+    padding-top: .5em ;
+    background-color: rgb(48, 21, 146);
     color: white;
     text-align: center;
+}
+.maintenance-box img {
+    width: 60px;
+}
+.maintenance-box a {
+    cursor: pointer;
 }
 /* .main {
     margin-top: 1em;
@@ -34,15 +41,6 @@
     padding: 5px;
     background-color: goldenrod;
 }
-/* .user {
-    float: right;
-    color: white
-}
-.user a {
-    color: white;
-    text-transform: capitalize;
-    font-weight: bold;
-} */
 
 .text {
     margin: 3em auto;
@@ -52,7 +50,7 @@
     width: 50%;
     line-height: 2.0;
     text-align: center;
-    background: rgb(44, 68, 148);
+    background: rgb(48, 21, 146);
     padding: 1em;
 
 
@@ -62,10 +60,3 @@
     width: 80%
 }
 
-/* li{
-    line-height: 1.5
-}
-
-li select {
-    float: right;
-} */
