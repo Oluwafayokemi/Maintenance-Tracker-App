@@ -22,30 +22,21 @@
     margin-bottom: 2em;
 }
 
-/* .collapsible {
-    cursor: pointer;
-    padding: 18px;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 10px;
-    margin-bottom: 1em;
-} */
 .collapse {
     background-color: goldenrod;
     color: white;
     cursor: pointer;
     padding: 18px;
     border: none;
-    text-align: left;
+    text-align: justify;
     outline: none;
     font-size: 10px;
     margin-bottom: 1em;
 
 }
 .collapse:hover {
-    background: #fff;
-    color: rgb(48, 21, 146);
+    background: gray;
+    color: white;
 }
 .content {
     /* padding: 0 18px; */
@@ -55,9 +46,9 @@
 }
 
 /* Add padding to containers */
-.form {
-    padding: 3em;
-    background-color: white;
+form {
+    padding: 0 3em;
+    background-color: gray;
 }
 li {
     line-height: 3
@@ -88,14 +79,14 @@ hr {
 
 /* Set a style for the submit button */
 .submitbtn {
-    background-color: goldenrod;
+    background: rgb(48, 21, 146);
     color: white;
     padding: 1em;
     margin-bottom:8px;
-    border: none;
+    border: 2px solid goldenrod;
     cursor: pointer;
     width: 20%;
-    float: right;
+    /* float: right; */
     opacity: 0.9;
 }
 
@@ -126,11 +117,3 @@ textarea {
 ol {
     list-style: none;
 }
-
-/* span {
-       font-size: 2em; 
-       text-decoration: none; 
-       color: red; 
-       display: block;
-       margin-right: .5em;
-} */
