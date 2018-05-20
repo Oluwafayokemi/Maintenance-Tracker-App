@@ -12,13 +12,16 @@ body {
     -webkit-flex-direction: row;
     display: flex;
     flex-direction: row;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+    /* -webkit-justify-content: space-between;
+    justify-content: space-between; */
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding-top: 1em;
+    /* padding-top: 1em; */
+    
 }
-
+.row > * {
+    flex: auto;
+}
 .col-1 {
     width: 8.33%;
     margin: 0 auto;
@@ -142,10 +145,10 @@ li select {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.45);
+    /* background-color: rgba(0, 0, 0, 0.45); */
     height: 100%;
     position: fixed;
-    top: 0em;
+    top: 0;
     display: none;
     overflow: auto;
 }
@@ -157,10 +160,17 @@ li select {
     margin: auto;
     margin-top: 1.8em;
     border-radius: .5em;
-    background-color: #f2f2f2;
+    background-color: #fff;
     display: none;
 }
-
+.modal-section span a{
+    font-size: 2em; 
+    text-decoration: none; 
+    color: red; 
+    display: block;
+    margin-right: .5em;
+    
+}
 .card-2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -182,6 +192,8 @@ li select {
     border: none;
     padding: 1em;
     background: white;
+    cursor: pointer;
+
 }
 
 @media only screen and (max-width: 769px) {
@@ -210,12 +222,6 @@ li select {
     .panel {
         margin-top: 1.2em;
         width: 100%;
-    }
-    #nav-hide {
-        display: block;
-    }
-    #nav {
-        display: none;
     }
     .modal-section {
         width: 80%;
