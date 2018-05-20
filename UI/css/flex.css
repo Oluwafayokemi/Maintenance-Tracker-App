@@ -160,17 +160,20 @@ li select {
     margin: auto;
     margin-top: 1.8em;
     border-radius: .5em;
-    background-color: #fff;
+    background-color: gray;
     display: none;
+    color: #fff;
 }
 .modal-section span a{
-    font-size: 2em; 
+    font-size: 3em; 
     text-decoration: none; 
-    color: red; 
-    display: block;
-    margin-right: .5em;
+    color: goldenrod; 
+    width: 45px;
+    margin-left: .5em;
+    padding: 1px;
     
 }
+
 .card-2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
