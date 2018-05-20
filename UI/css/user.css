@@ -3,65 +3,109 @@ body {
     text-align: center;
     font-family: 'Lato', sans-serif;
 }
-h1 {
-  text-transform: uppercase;
+.container {
+    margin: 0 auto;
+}
+
+.maintenance-box {
+    margin-top: 0;
+    border: none;
+    height: 4.78em;
+    padding-top: .5em ;
+    background-color: rgb(48, 21, 146);
+    color: white;
+    text-align: center;
+}
+.maintenance-box img {
+    width: 60px;
+}
+.maintenance-box a {
+    cursor: pointer;
+}
+
+.text {
+    margin: 5em auto;
+    text-align: center;
+    width: 50%;
+    line-height: 2.0;
+    text-align: center;
+    background: rgb(48, 21, 146);
+    padding: 1em;
+}
+.text h2, .text h3 {
+    color: white;
+    width: 100%
+}
+
+label {
+    margin-right: .3em;
+}
+.email, .psw {
+    margin-left: 1em;
+    color: white;
+    height: 4.75em;
+    text-align: justify;
+}
+h1, p {
   text-align: center;
-  color:  gray;
+  color:  rgb(48, 21, 146);
 }
 .allbody {
     margin-top: 3em;
 }
-#signin {
-    margin-top: 5em;
-    height: auto;
-}
-form {
+
+.form {
     border: 1px solid rgba(0, 0, 0, 0.1);
     display: inline-block;
     text-align: justify;
-    margin: 0 auto;
+    margin-bottom: 3em;
     border-radius: 8px;
-    background: linear-gradient(to bottom right, gray, grey);
     width: 50%;
+    line-height: 3
 }
-label {
-    color: white;
+.form label {
+    color: rgb(48, 21, 146);
+}
+.form input[type=text], .form input[type=password], .form input[type=email] {
+    padding: 1.5em;
 }
 /* Full-width inputs */
 input[type=text], input[type=password], input[type=email]  {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 5px;
+    margin: 0;
     display: block;
     border: none;
     box-sizing: border-box;
     background-color: #eee;
+    outline: none;
 }
 
 /* Set a style for all buttons */
 button {
-    background-color: white;
+    background-color: rgb(48, 21, 146);
     font-weight: bold;
-    padding: 14px 20px;
-    /*margin: 8px 0;*/
-    border: none;
+    padding: 5px 20px;
+    margin-top: 2.8em;
+    border: 2px solid goldenrod;
     cursor: pointer;
     width: inherit;
     border-radius: 4px;
-    float: right;
-    color: goldenrod
+    float: left;
+    margin-left: 2em;
+
+}
+button a {
+    color: white;
 }
 
 /* Add a hover effect for buttons */
 button:hover {
     opacity: 0.9;
 }
-
-.container {
-    padding: 16px;
-    margin: 0 auto;
+.form button {
+    float: right;
 }
-
 a {
     text-decoration: none;
     color:  goldenrod;
@@ -76,8 +120,4 @@ a {
 }
 .menu {
     padding: 1em;
-}
-.home hr {
-    width: 50px;
-    margin-top: 2em;
 }
