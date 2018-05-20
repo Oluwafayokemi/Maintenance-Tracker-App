@@ -13,7 +13,6 @@ h1 {
 }
 #signin {
     margin-top: 5em;
-    height: auto;
 }
 form {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -77,7 +76,9 @@ a {
 .menu {
     padding: 1em;
 }
-.home hr {
-    width: 50px;
-    margin-top: 2em;
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    .form {
+      width: 100%
+    }
 }
