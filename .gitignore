@@ -1,6 +1,6 @@
 debug.log/
 node_modules/
 .coveralls.yml/
-.vscode/
+/.vscode/
 nyc_output/
 coverage/
