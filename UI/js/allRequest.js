@@ -12,15 +12,3 @@ for (i = 0; i < coll.length; i++) {
         }
     });
 }
-
-
-// const show = (id) => {
-
-//     document.getElementById("col1").style.display = "none";
-//     document.getElementById("col2").style.display = "none";
-//     document.getElementById("col3").style.display = "none";
-//     document.getElementById("col4").style.display = "none";
-//     document.getElementById("col5").style.display = "none";
-
-//     document.getElementById(id).style.display = "block";
-// }

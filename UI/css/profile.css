@@ -1,21 +1,28 @@
-.container {
+.main{
     padding: 2em;
 
 }
 .maintenance-box {
-    border: 2px solid gray;
-    height: 5em;
-    padding: 2em;
-    background-color: gray;
+    margin-top: 0;
+    border: none;
+    height: 4.78em;
+    padding-top: .5em ;
+    background-color: rgb(48, 21, 146);
     color: white;
     text-align: center;
+}
+.maintenance-box img {
+    width: 60px;
+}
+.maintenance-box a {
+    cursor: pointer;
 }
 
 .nav {
     margin-bottom: 2em;
 }
 
-.collapsible {
+/* .collapsible {
     cursor: pointer;
     padding: 18px;
     border: none;
@@ -23,8 +30,23 @@
     outline: none;
     font-size: 10px;
     margin-bottom: 1em;
-}
+} */
+.collapse {
+    background-color: goldenrod;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 10px;
+    margin-bottom: 1em;
 
+}
+.collapse:hover {
+    background: #fff;
+    color: rgb(48, 21, 146);
+}
 .content {
     /* padding: 0 18px; */
     display: none;
