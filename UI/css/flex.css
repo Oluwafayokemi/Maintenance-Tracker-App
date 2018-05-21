@@ -198,6 +198,10 @@ li select {
     cursor: pointer;
 
 }
+.hide2 {
+    display: none;
+    color: white;
+}
 
 @media only screen and (max-width: 769px) {
     .row {
@@ -205,7 +209,7 @@ li select {
         display: flex;
         flex-direction: column;
     }
-    [class*="to-col-"] {
+    [class*="col-"] {
         width: 100%;
         margin: auto!important;
         -webkit-justify-content: center;
@@ -232,7 +236,15 @@ li select {
     .hide {
         display: block;
     }
-    nav ul {
+    nav .ul{
         display: none;
+    }
+   nav .rform {
+        display: block;
+        padding: 1em;
+        margin-top: 1em;
+    }
+    .hide2 {
+        display: block;
     }
 }
