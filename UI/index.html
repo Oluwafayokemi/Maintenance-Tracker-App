@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Maintenance-Tracker-App</title>
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"> -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" href="./css/user.css">
@@ -20,76 +19,72 @@
 				<img src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-5/256/maintenance-icon.png" alt="logo">
 			</a>
 		</div>
-		<div class="col-6 nav">
-			<nav role="navigation">
-				<!-- <div class="col-12">
-					<div class="hide collapsible">
-						<i class="fas fa-bars"></i>
-					</div>
-				</div> -->
-				<ul class="rform">
-					<form  action="">
-						<li class="hide2">Sign In</li>
-						<li>
-							<div class="email">
-								<label for="email">
-									<strong>Email</strong>
-								</label>
-								<input type="email" placeholder="Enter Email" name="email" required>
-							</div>
-						</li>
-						<li>
-							<div class="psw">
-								<label for="password">
-									<strong>Password</strong>
-								</label>
-								<input type="password" placeholder="Enter Password" name="password" required>
-							</div>
-						</li>
-						<button>
-							<a class="btn" href="admin.index.html">Login</a>
-						</button>
-					</form>
-
-				</ul>
-			</nav>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-6">
-			<div class="col-12">
-				<div class="col-8 text">
-					<h2 class="col-3 p">Welcome to the Maintenance Tracker Site!</h2>
-					<h3 class="col-2 p">Here you have the priviledge of reporting to us on any issue concerning the management of the company's equipment</h3>
-					<h3 class="col3 p">If you notice any damage, please do report early to prevent worse damages</h3>
-				</div>
+		<div class="col-6 flex-container">
+			<div class="nav">
+				<nav role="navigation">
+					<ul class="rform">
+						<form class="one" action="">
+							<li class="hide2">Sign In</li>
+							<li>
+								<div class="email">
+									<label for="email">
+										<strong>Email</strong>
+									</label>
+									<input type="email" placeholder="Enter Email" name="email" required>
+								</div>
+							</li>
+							<li>
+								<div class="psw">
+									<label for="password">
+										<strong>Password</strong>
+									</label>
+									<input type="password" placeholder="Enter Password" name="password" required>
+								</div>
+							</li>
+							<button>
+								<a class="btn" href="admin.index.html">Login</a>
+							</button>
+						</form>
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<div class="col-6 allbody">
-			<h1>Create a new account</h1>
-			<p>It's free and always will be.</p>
-			<form class="form menu">
-				<div class="container">
-					<label for="name">
-						<b>Name</b>
-					</label>
-					<input type="text" placeholder="Enter Name" name="name" required>
-
-					<label for="email">
-						<b>Email</b>
-					</label>
-					<input type="email" placeholder="Enter email" name="email" required>
-
-					<label for="password">
-						<b>Password</b>
-					</label>
-					<input type="password" placeholder="Enter Password" name="password" required>
-
-					<button type="submit">
-						<a href="user.index.html">Register</a>
-					</button>
+		<div class="row ">
+			<div class="col-6">
+				<div class="col-12">
+					<div class="col-8 text">
+						<h2 class="col-3 p">Welcome to the Maintenance Tracker Site!</h2>
+						<h3 class="col-2 p">Here you have the priviledge of reporting to us on any issue concerning the management of the company's equipment</h3>
+						<h3 class="col3 p">If you notice any damage, please do report early to prevent worse damages</h3>
+					</div>
 				</div>
-			</form>
+			</div>
+			<div class="col-6 allbody three">
+				<h1>Create a new account</h1>
+				<p>It's free and always will be.</p>
+				<form class="form menu">
+					<div class="container">
+						<label for="name">
+							<b>Name</b>
+						</label>
+						<input type="text" placeholder="Enter Name" name="name" required>
+
+						<label for="email">
+							<b>Email</b>
+						</label>
+						<input type="email" placeholder="Enter email" name="email" required>
+
+						<label for="password">
+							<b>Password</b>
+						</label>
+						<input type="password" placeholder="Enter Password" name="password" required>
+
+						<button type="submit">
+							<a href="user.index.html">Register</a>
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>
