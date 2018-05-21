@@ -159,19 +159,19 @@ li select {
     padding: 1em;
 }
 .modal {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     width: 100%;
     min-width: 200px;
     height: 100%;
     position: fixed;
-    top: 12em;
+    top: 0;
     display: none;
     overflow: auto;
-    float: right;
 }
 
-.modal-section {
+.modal-section {    
+    float: right;
     width: 60%;
     height: auto;
     height: auto;
@@ -181,6 +181,7 @@ li select {
     background-color: gray;
     display: none;
     color: #fff;
+    margin-right: 3em;
 }
 .modal-section span a{
     font-size: 3em; 
@@ -188,8 +189,7 @@ li select {
     color: goldenrod; 
     width: 45px;
     margin-left: .5em;
-    padding: 1px;
-    
+    padding: 1px;  
 }
 
 .card-2 {
@@ -229,7 +229,6 @@ li select {
     }
     [class*="col-"] {
         width: 100%;
-        /* min-width: 100%; */
         margin: auto!important;
         -webkit-justify-content: center;
         justify-content: center;
@@ -250,7 +249,7 @@ li select {
         width: 100%;
     }
     .modal-section {
-        width: 80%;
+        width: 50%;
     }
     .hide {
         display: block;
