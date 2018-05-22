@@ -1,23 +1,15 @@
-require('dotenv').config();
+import pg from 'pg';
 
-const { Pool, Client } = require('pg')
-const connectionString = process.env.Database_url_development
+const config = {
+  user: 'postgres',
+  database: 'maintenance-tracker',
+  password: '',
+  host: 'localhost',
+  port: 5432,
+  max: 10,
+  idleTimeoutMillis: 30000
+}
 
-const pool = new Pool({
-  connectionString: connectionString,
-})
+const db = new pg.Pool(config);
 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
-})
-
-const client = new Client({
-  connectionString: connectionString,
-})
-client.connect()
-
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  client.end()
-})
+export default db

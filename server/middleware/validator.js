@@ -17,10 +17,9 @@ class Validation {
      */
   validateRequest(req, res, next) {
     const requestRules = {
-      name: 'required|string',
+      status: 'required|string',
       option: 'required|string',
       description: 'required|string',
-      department: 'required|string',
     //   userId: 'required|integer',
       date: { type: Date, default: Date.now },
     };
@@ -29,18 +28,15 @@ class Validation {
     if (validate.passes()) return next();
 
     const error = {};
-    const name = validate.errors.first('name');
-    const department = validate.errors.first('department');
+    const status = validate.errors.first('status');
     const description = validate.errors.first('description');
     const option = validate.errors.first('option');
     // const userId = validate.errors.first('userId');
 
-    if (name) {
-      error.name = name;
+    if (status) {
+      error.status = status;
     }
-    if (department) {
-      error.department = department;
-    }
+
     if (description) {
       error.description = description;
     }
