@@ -1,7 +1,21 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import db from './db/db';
+import bcrypt from 'bcrypt-nodejs';
+import knex from 'knex';
 import requestRouter from './routes/request';
+
+
+const db = knex({
+  client: 'postgres',
+  connection: {
+    host: '127.0.0.1',
+    user: 'postgres',
+    password: '',
+    database: 'maintenance-tracker'
+  }
+})
+
+console.log(db.select('*').table('users'));
 
 const app = express();
 app.use(bodyParser.json());
@@ -22,9 +36,9 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/', (req, res) => {
-  res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");
-});
+// app.get('/', (req, res) => {
+//   res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");
+// });
 
 // app.post('/api/v1/signin', (req, res) => {
 //     if (req.body.email === db.users[0].email && req.body.password === db.users[0].password) {
@@ -43,6 +57,9 @@ app.get('/', (req, res) => {
 
 // app.post('/api/v1/register', (req, res) => {
 //     const { name, email, password } = req.body
+//     bcrypt.hash(password, null, null, function(err, hash) {
+//       console.log(hash)
+//     })
 //     db.users.push({
 //         id: db.users.length + 1,
 //         name,
@@ -53,15 +70,15 @@ app.get('/', (req, res) => {
 //     res.status(201).json({
 //         success: 'true',
 //         message: 'successfully created new user',
-//         newUser: db.users[db.users.length - 1]
+//         newUser: db.users[db.users.length-1]
 //     });
 // })
 
 // app.get('/api/v1/users/profile/:id', (req, res) => {
-//    c
+
 // })
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
 app.listen(port, () => {
