@@ -15,7 +15,7 @@ describe('Creating a new request', () => {
     let token;
     let requestId;
 
-    describe('/GET /api/v1/requests', () => {
+    describe('/GET /api/v1/requests/:id', () => {
         it('should return 200 response for getting all users requests', (done) => {
             request.get('/api/v1/requests')
                 .end((err, res) => {
