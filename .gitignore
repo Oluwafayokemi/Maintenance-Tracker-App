@@ -4,4 +4,3 @@ node_modules/
 /.vscode/
 nyc_output/
 coverage/
-.env/
