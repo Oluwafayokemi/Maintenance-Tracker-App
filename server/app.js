@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt-nodejs';
-import db from './db/db';
+import db from './db/index';
 import requestRouter from './routes/request';
 import userRouter from './routes/userAccount';
 

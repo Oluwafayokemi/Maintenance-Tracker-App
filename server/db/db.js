@@ -23,5 +23,3 @@ db.query(Query, (err, res) => {
 console.log(err, res)
 db.end()
 });
-
-export default db;

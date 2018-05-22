@@ -18,16 +18,25 @@ class Request {
     /*get All Requests */
 
     getAll(req, res) {
-        db.query('SELECT * FROM requests')
-        .then(requests =>res.status(200).json({
-            success: 'true',
-            message: 'all requests retrieved successfully',
-            requests: requests.rows
-        }))
-        .catch(error => res.status(400).json({
-            success: 'false',
-            message: 'could not retrieve users',
-        }))
+        db.on('error', (err, client) => {
+            console.error('Unexpected error on idle client', err)
+            process.exit(-1)
+        })
+        db.connect()
+            .then(client => {
+                client.query('SELECT * from requests')                   //call `done()` to release the client back to the db
+                .then(requests => res.status(200).json({
+                    success: 'true',
+                    message: 'all requests retrieved successfully',
+                    requests: requests.rows
+                }))
+                    .catch(error => res.status(400).json({
+                        success: 'false',
+                        message: 'could not retrieve requests',
+                    }))
+            });
+
+
     }
 }
 
