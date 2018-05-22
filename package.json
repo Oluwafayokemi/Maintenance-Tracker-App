@@ -8,7 +8,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start:dev": "./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
-    "start": "babel-node ./server/app.js"
+    "start": "babel-node ./server/db/db.js"
   },
   "repository": {
     "type": "git",

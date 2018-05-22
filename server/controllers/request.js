@@ -29,8 +29,6 @@ class Request {
             message: 'could not retrieve users',
         }))
     }
-
-
 }
 
 const request = new Request();
