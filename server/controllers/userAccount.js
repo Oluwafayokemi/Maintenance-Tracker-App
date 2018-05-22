@@ -16,21 +16,7 @@ class User {
        * @memberof Users
        */
     /*create a user */
-    create(req, res) {
-        const { firstName, lastName, email, department } = req.body
-        db('users').insert({
-            firstName,
-            lastName,
-            email,
-            department,
-            joined: new Date()
-        }).then(console.log)
-        res.status(201).json({
-            success: 'true',
-            message: 'successfully created new user',
-            newUser: db.users[db.users.length-1],
-        });
-    }
+   
 }
 
 const user = new User();

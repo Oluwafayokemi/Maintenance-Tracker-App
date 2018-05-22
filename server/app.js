@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(userRouter);
+app.use(requestRouter);
 
 app.get('*', (req, res) => {
   res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");

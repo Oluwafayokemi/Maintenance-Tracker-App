@@ -1,17 +1,15 @@
-import knex from 'knex';
+import pg from 'pg';
 
-const db = knex({
-    client: 'postgres',
-    connection: {
-      host: '127.0.0.1',
-      user: 'postgres',
-      password: '',
-      database: 'maintenance-tracker'
-    }
-  })
-  
-  db.select('*').from('users').then(data => {
-    console.log(data);
-  });
+const config = {
+  user: 'postgres',
+  database: 'maintenance-tracker',
+  password: '',
+  host: 'localhost',
+  port: 5432,
+  max: 10,
+  idleTimeoutMillis: 30000
+}
 
-  export default db;
+const db = new pg.Pool(config);
+
+export default db
