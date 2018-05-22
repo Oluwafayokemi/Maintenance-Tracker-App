@@ -16,7 +16,7 @@ describe('Creating a new request', () => {
     let requestId;
 
     describe('/GET /api/v1/requests/:id', () => {
-        it.only('should return 200 response for getting all users requests', (done) => {
+        it('should return 200 response for getting all users requests', (done) => {
             request.get('/api/v1/requests')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
