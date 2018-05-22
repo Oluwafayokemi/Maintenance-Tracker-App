@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import db from '../db/db';
+import db from '../db/index';
 
 /**
  * @export
@@ -7,15 +7,15 @@ import db from '../db/db';
  */
 
 class Request {
-/**
-   * Get Multiple request record
-   *
-   * @param {object} req - HTTP Request
-   * @param {object} res - HTTP Response
-   * @returns {object} Class instance
-   * @memberof Meals
-   */
-  /*get All Meals */
+    /**
+       * Get Multiple request record
+       *
+       * @param {object} req - HTTP Request
+       * @param {object} res - HTTP Response
+       * @returns {object} Class instance
+       * @memberof Meals
+       */
+    /*get All Meals */
     getAll(req, res) {
         res.status(201).json({
             success: 'true',
@@ -23,17 +23,17 @@ class Request {
             requests: db.requests
         })
     }
-/**
-     * Get a single request record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof request
-     */
+    /**
+         * Get a single request record
+         *
+         * @param {object} req - HTTP Request
+         * @param {object} res - HTTP Response
+         * @returns {object} Class instance
+         * @memberof request
+         */
     getOne(req, res) {
         const id = parseInt(req.params.id, 10);
-        if ( id > db.requests.length ) {
+        if (id > db.requests.length) {
             res.status(404).json({
                 success: 'false',
                 message: 'request not found'
@@ -47,30 +47,28 @@ class Request {
                     request: request
                 })
             }
-           
+
         });
     }
 
-  /* create meals */
+    /* create meals */
     create(req, res) {
-        const id = parseInt(req.params.id, 10);
-        const { name, option, department, description } = req.body
-        db.requests.push({
-            id: db.requests.length + 1,
-            name,
-            option,
-            department,
-            description,
-            date: new Date()
-        })
-        res.status(201).json({
-            success: 'true',
-            message: 'successfully created new request',
-            newRequest: db.requests[db.requests.length - 1]
-        });
+        const { option, status, description } = req.body
+        db('requests')
+            .returning('*')
+            .insert({
+                option,
+                status,
+                description,
+                date: new Date()
+            })
+            .then(request => {
+                res.json(request[0]);
+            })
+            .catch(err => res.status(400).json('unable to create request'))
     }
 
-  /* update meals */
+    /* update meals */
     update(req, res) {
         const id = parseInt(req.params.id, 10);
         let requestFound;
@@ -111,7 +109,7 @@ class Request {
         }
     }
 
-  /* delete a request record */
+    /* delete a request record */
     remove(req, res) {
         const id = parseInt(req.params.id, 10);
         db.requests.find((request, index) => {
