@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.25% </span>
+        <span class="strong">2.08% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>19/51</span>
+        <span class='fraction'>1/48</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>10/30</span>
+        <span class='fraction'>0/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.13% </span>
+        <span class="strong">2.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>18/46</span>
+        <span class='fraction'>1/43</span>
       </div>
     </div>
     <p class="quiet">
@@ -183,11 +183,7 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,7 +201,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,31 +209,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -346,39 +338,35 @@ class Validation {
      * @memberof Validation
      */
   validateRequest(req, res, next) {
-    const requestRules = {
-      name: 'required|string',
+    const requestRules = <span class="cstat-no" title="statement not covered" >{</span>
+      status: 'required|string',
       option: 'required|string',
       description: 'required|string',
-      department: 'required|string',
     //   userId: 'required|integer',
       date: { type: Date, default: Date.now },
     };
   
-    const validate = new Validator(req.body, requestRules);
-    if (validate.passes()) return next();
+    const validate = <span class="cstat-no" title="statement not covered" >new Validator(req.body, requestRules);</span>
+<span class="cstat-no" title="statement not covered" >    if (validate.passes()) <span class="cstat-no" title="statement not covered" >r</span>eturn next();</span>
 &nbsp;
-    const error = {};
-    const name = validate.errors.first('name');
-    const department = validate.errors.first('department');
-    const description = validate.errors.first('description');
-    const option = validate.errors.first('option');
+    const error = <span class="cstat-no" title="statement not covered" >{};</span>
+    const status = <span class="cstat-no" title="statement not covered" >validate.errors.first('status');</span>
+    const description = <span class="cstat-no" title="statement not covered" >validate.errors.first('description');</span>
+    const option = <span class="cstat-no" title="statement not covered" >validate.errors.first('option');</span>
     // const userId = validate.errors.first('userId');
 &nbsp;
-    if (name) {
-      error.name = name;
-    }
-    if (department) {
-      error.department = department;
-    }
-    if (description) {
-      error.description = description;
-    }
-    if (option) {
-      error.option = option;
+<span class="cstat-no" title="statement not covered" >    if (status) {</span>
+<span class="cstat-no" title="statement not covered" >      error.status = status;</span>
     }
 &nbsp;
-    return res.status(400).send({
+<span class="cstat-no" title="statement not covered" >    if (description) {</span>
+<span class="cstat-no" title="statement not covered" >      error.description = description;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (option) {</span>
+<span class="cstat-no" title="statement not covered" >      error.option = option;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return res.status(400).send({</span>
       message: 'a required field is missing',
       statusCode: 400,
       error,
@@ -475,7 +463,7 @@ export default Validation;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 18 2018 19:00:10 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 22 2018 16:20:16 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
