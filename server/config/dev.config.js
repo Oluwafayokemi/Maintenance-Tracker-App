@@ -12,4 +12,5 @@ const development = {
         max: 10,
         idleTimeoutMillis: 30000
 }
+
 export default development;
