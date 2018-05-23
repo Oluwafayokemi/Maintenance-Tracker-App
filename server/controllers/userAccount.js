@@ -32,7 +32,6 @@ class User {
         });
     }
 
-
 }
 
 const user = new User();
