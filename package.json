@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register ./server/tests/",
+    "test": "cross-env NODE_ENV=test npm run migrate:dev && nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register ./server/tests/",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start:dev": "./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",

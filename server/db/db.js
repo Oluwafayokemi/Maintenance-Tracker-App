@@ -1,13 +1,21 @@
 import pg from 'pg';
+import  dotenv from 'dotenv';
+
+dotenv.config();
 
 const config = {
-  user: 'postgres',
-  database: 'maintenance-tracker',
-  password: '',
-  host: 'localhost',
-  port: 5432,
-  max: 10,
-  idleTimeoutMillis: 30000
+        user: 'postgres',
+        password: '',
+        host: 'localhost',
+        port: 5432,
+        max: 10,
+        idleTimeoutMillis: 30000
+}
+const env = process.env.NODE_ENV || 'development';
+if(env === 'development') {
+    config.database =  process.env.development
+} else if (env === 'test') {
+    config.database = process.env.test
 }
 
 const db = new pg.Pool(config);
@@ -20,6 +28,6 @@ const insertLoginTable = ';INSERT INTO login(email, hash) VALUES(\'fayoaright@gm
 const insertRequestTable = ';INSERT INTO requests(option, description, status) VALUES(\'generator\', \'air condition blows hot air\', \'pending\')'
 const Query = `${creatUserTable} ${createLoginTable} ${createRequestTable} ${insertUserTable} ${insertLoginTable} ${insertRequestTable}`
 db.query(Query, (err, res) => {
-console.log(err, res)
-db.end()
+    console.log(err, res)
+    db.end()
 });
