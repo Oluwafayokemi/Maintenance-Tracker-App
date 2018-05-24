@@ -7,10 +7,10 @@ dotenv.config();
 
 let config;
 const env = process.env.NODE_ENV;
-if (env === 'test') {
-    config = test
-} else {
+if (env === 'development') {
     config = development
+} else {
+    config = test
 }
 
 const db = new pg.Pool(config);

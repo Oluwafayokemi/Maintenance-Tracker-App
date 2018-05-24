@@ -29,6 +29,8 @@ export default class testInit {
         this.defaultEmail = 'omotola@gmail.com';
         this.adminPsw = 'Excellemce';
         this.defaultPsw = 'Upright';
+        this.demoUserDepartment = faker.lorem.text();
+        this.demoUserRole = faker.lorem.text();
         this.demoUserRequests = [
             {
                 option: 'electricity',
