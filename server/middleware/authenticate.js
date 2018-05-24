@@ -8,13 +8,12 @@ const authenticate = (req, res, next) => {
     /* * *
        *check header or url parameters or post parameters for token
     //    ** */
-    let headerToken = req.headers.authorization.split(' ');
-    const header = headerToken[1];
-    const token = header || req.query.token || req.headers['x-access-token'] || req.body.token;
+    const token = req.headers['x-access-token'] || req.query.token || req.body.token;
     try {
         const token = jwt.verify(token, process.env.SECRET_KEY);
-        req.body.token = token;
-        done()
+        req.body.token = token; 
+        done();
+        console.log('@@@@@@@@@@@@@@@22', token);
     }
 
     catch (error) {
