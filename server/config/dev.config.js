@@ -1,16 +1,14 @@
-
-import  dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const development = {
-        user: 'postgres',
-        password: '',
-        host: 'localhost',
+        user: process.env.user,
+        host: process.env.host,
         database: process.env.db_development,
-        port: 5432,
-        max: 10,
-        idleTimeoutMillis: 30000
+        port: process.env.port,
+        max: process.env.test,
+        idleTimeoutMillis: process.env.idleTimeoutMillis
 }
 
 export default development;
