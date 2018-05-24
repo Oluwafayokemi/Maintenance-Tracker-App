@@ -33,6 +33,7 @@ const authenticate = (req, res, next) => {
                 client.query(Query)
                     .then(user => {
                         if(user) {
+                            req.token = decoded.email;
                            return next();
                         }
                         res.status(404).json({

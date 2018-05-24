@@ -108,7 +108,7 @@ class User {
     getAllRequest(req, res) {
       const Query = {
         join : 'select * FROM requests WHERE email = $1',
-        values: [req.body.email]
+        values: [req.token]
       }
       db.on('error', (err, client) => {
           console.error('Unexpected error on idle client', err)
