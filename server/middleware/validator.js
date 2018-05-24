@@ -101,7 +101,8 @@ class Validation {
     const validation = {
       firstName: 'required|string',
       lastName: 'required|string',
-      email: 'required|email',
+      email: 'required|string',
+      department: 'required|string',
       password: 'required|string',
     };
 
@@ -111,6 +112,7 @@ class Validation {
     let error = {}, firstName = validate.errors.first('firstName'),
       lastName = validate.errors.first('lastName'),
       email = validate.errors.first('email'),
+      department = validate.errors.first('department'),
       password = validate.errors.first('password');
 
     if(firstName) {
@@ -121,6 +123,9 @@ class Validation {
     }
     if(email) {
       error.email = email;
+    }
+    if(department) {
+      error.department = department;
     }
     if(password) {
       error.password = password;

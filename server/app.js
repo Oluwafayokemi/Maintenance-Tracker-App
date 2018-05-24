@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(requestRouter);
+app.use(userRouter);
 
 app.get('*', (req, res) => {
   res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");
