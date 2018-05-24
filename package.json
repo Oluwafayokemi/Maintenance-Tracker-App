@@ -9,7 +9,8 @@
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start:dev": "./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
     "start": "babel-node ./server/app.js",
-    "migrate:dev": "babel-node ./server/db/db.js"
+    "migrate:dev": "babel-node ./server/db/db.js",
+    "heroku-prebuild": " npm run migrate:dev --env production"
   },
   "repository": {
     "type": "git",
