@@ -10,7 +10,7 @@
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
     "start": "babel-node ./server/app.js",
     "migrate:dev": "babel-node ./server/db/db.js",
-    "heroku-prestart": "npm run migrate:dev --env production"
+    "heroku-postbuild": "npm run migrate:dev --env production"
   },
   "repository": {
     "type": "git",
