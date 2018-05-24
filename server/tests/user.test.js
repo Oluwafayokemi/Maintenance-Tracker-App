@@ -196,7 +196,6 @@ describe('Test user API', () => {
                     department: 'department',
                 })
                 .end((err, res) => {
-                    console.log(res.body)
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for fayo girt`);
