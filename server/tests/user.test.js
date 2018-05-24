@@ -6,7 +6,6 @@ import faker from 'faker';
 import jwtDecode from 'jwt-decode';
 import app from '../app';
 import testInit from './testInit';
-import  dotenv from 'dotenv';
 
 const request = supertest(app);
 const { expect } = chai;
@@ -16,7 +15,6 @@ describe('Test user API', () => {
     let adminId;
     let userId;
     let adminToken;
-console.log("Node Environment Variable", process.env.NODE_ENV);
 
     describe('creating a new admin or user', () => {
         let firstName = testVariables.firstName;

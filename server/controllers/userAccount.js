@@ -3,7 +3,7 @@ import db from '../db/index';
 import bcrypt from 'bcryptjs';
 import jwtDecode from 'jwt-decode';
 import dotenv from 'dotenv';
-import Util from '../middleware/auth.js'
+import auth from '../middleware/auth.js'
 dotenv.config()
 
 /**
@@ -85,7 +85,7 @@ class User {
                   });
                 }
     
-                const authToken = Util.token(user.rows[0]);
+                const authToken = auth.token(user.rows[0]);
                 return res.status(200).json({
                   status: 'success',
                   message: 'Sign in successfully',
