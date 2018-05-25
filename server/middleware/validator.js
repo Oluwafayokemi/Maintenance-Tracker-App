@@ -20,10 +20,10 @@ class Validation {
       status: 'required|string',
       option: 'required|string',
       description: 'required|string',
-    //   userId: 'required|integer',
+      email: 'required|email',
       date: { type: Date, default: Date.now },
     };
-  
+
     const validate = new Validator(req.body, requestRules);
     if (validate.passes()) return next();
 
@@ -31,7 +31,7 @@ class Validation {
     const status = validate.errors.first('status');
     const description = validate.errors.first('description');
     const option = validate.errors.first('option');
-    // const userId = validate.errors.first('userId');
+    const email = validate.errors.first('email');
 
     if (status) {
       error.status = status;
@@ -43,6 +43,9 @@ class Validation {
     if (option) {
       error.option = option;
     }
+    if (email) {
+      error.email = email;
+    }
 
     return res.status(400).send({
       message: 'a required field is missing',
@@ -51,7 +54,7 @@ class Validation {
     });
   }
 
-  
+
   /**
      * Validate Login record
      *
@@ -73,7 +76,7 @@ class Validation {
     let error = {}, email = validate.errors.first('email'),
       password = validate.errors.first('password');
 
-    if(!email && !password){
+    if (!email && !password) {
       error = 'The email and password fields are required';
     } else if (email) {
       error.email = email;
@@ -115,19 +118,19 @@ class Validation {
       department = validate.errors.first('department'),
       password = validate.errors.first('password');
 
-    if(firstName) {
+    if (firstName) {
       error.firstName = firstName;
     }
-    if(lastName) {
+    if (lastName) {
       error.lastName = lastName;
     }
-    if(email) {
+    if (email) {
       error.email = email;
     }
-    if(department) {
+    if (department) {
       error.department = department;
     }
-    if(password) {
+    if (password) {
       error.password = password;
     }
 

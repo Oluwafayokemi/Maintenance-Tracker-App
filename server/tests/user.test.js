@@ -1,19 +1,19 @@
 /* global describe, it */
-
+import dotenv from 'dotenv';
 import chai from 'chai';
 import supertest from 'supertest';
 import faker from 'faker';
 import jwtDecode from 'jwt-decode';
 import app from '../app';
 import testInit from './testInit';
+dotenv.config();
 
 const request = supertest(app);
 const { expect } = chai;
 const testVariables = new testInit();
 
 describe('Test user API', () => {
-    let adminId;
-    let userId;
+    let email;
     let adminToken;
 
     describe('creating a new admin or user', () => {
@@ -30,7 +30,6 @@ describe('Test user API', () => {
                     email: testVariables.demoUserEmail,
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role',
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -48,8 +47,6 @@ describe('Test user API', () => {
                     email: testVariables.demoUserEmail,
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
-
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -67,7 +64,6 @@ describe('Test user API', () => {
                     email: testVariables.demoUserEmail,
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -84,7 +80,6 @@ describe('Test user API', () => {
                     email: testVariables.demoUserEmail,
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -102,7 +97,6 @@ describe('Test user API', () => {
                     email: '',
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -120,7 +114,6 @@ describe('Test user API', () => {
                     email: '            ',
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -138,7 +131,6 @@ describe('Test user API', () => {
                     email: '',
                     password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -156,7 +148,6 @@ describe('Test user API', () => {
                     email: testVariables.demoUserEmail,
                     password: '',
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -174,7 +165,6 @@ describe('Test user API', () => {
                     email: testVariables.demoUserEmail,
                     password: '          ',
                     department: testVariables.demoUserDepartment,
-                    role: 'role'
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(400);
@@ -188,17 +178,16 @@ describe('Test user API', () => {
             request.post('/api/v1/auth/signup')
                 .set('Content-type', 'application/json')
                 .send({
-                    firstName: 'fayo',
-                    lastName: 'girt',
-                    email: 'first@gmail.com',
-                    password: 'password',
-                    role: 'role',
-                    department: 'department',
+                    firstName,
+                    lastName,
+                    email: testVariables.demoUserEmail,
+                    password: testVariables.demoUserRole,
+                    department: testVariables.demoUserDepartment,
                 })
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.an('object');
-                    expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for fayo girt`);
+                    expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
                     done();
                 });
         });
@@ -278,7 +267,21 @@ describe('Test user API', () => {
                     expect(res.body).to.haveOwnProperty('token');
                     expect(res.body).to.haveOwnProperty('message').to.equal('signin successful');
                     process.env.TOKEN = res.body.token;
-                    userId = jwtDecode(process.env.TOKEN).id;
+                    email = jwtDecode(process.env.TOKEN).email;
+                });
+            done();
+        });
+    });
+
+
+    describe('GET /requests', () => {
+        it('should return 401 when token is invalid', (done) => {
+            request.get('/api/v1/users/requests')
+                .end((err, res) => {
+                    expect(res.body).to.be.an('object');
+                    expect(res.status).to.equal(401);
+                    expect(res.body).to.haveOwnProperty('message').to.equal('Invalid token');
+                    process.env.TOKEN = res.body.token;
                 });
             done();
         });
