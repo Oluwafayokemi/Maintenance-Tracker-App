@@ -25,10 +25,10 @@ export default class testInit {
 
         this.demoUserEmail = faker.internet.email();
         this.demoUserPassword = faker.internet.password();
-        this.adminEmail = 'fayoaright@gmail.com';
-        this.defaultEmail = 'omotola@gmail.com';
-        this.adminPsw = 'Excellemce';
-        this.defaultPsw = 'Upright';
+        this.adminEmail = 'joy@gmail.com';
+        this.defaultEmail = 'joy@gmail.com';
+        this.adminPsw = 'joy';
+        this.defaultPsw = 'joy';
         this.demoUserDepartment = faker.lorem.text();
         this.demoUserRole = faker.lorem.text();
         this.demoUserRequests = [
