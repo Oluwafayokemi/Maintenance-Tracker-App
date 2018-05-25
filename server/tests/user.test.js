@@ -285,5 +285,15 @@ describe('Test user API', () => {
                 });
             done();
         });
+        it('should return 401 when token is invalid', (done) => {
+            request.get('/api/v1/users/requests/1')
+                .end((err, res) => {
+                    expect(res.body).to.be.an('object');
+                    expect(res.status).to.equal(401);
+                    expect(res.body).to.haveOwnProperty('message').to.equal('Invalid token');
+                    process.env.TOKEN = res.body.token;
+                });
+            done();
+        });
     });
 });
