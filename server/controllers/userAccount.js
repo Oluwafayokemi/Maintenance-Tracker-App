@@ -135,7 +135,7 @@ class User {
 
         const Query = {
             name: 'fetch-user',
-            text: 'SELECT * FROM requests WHERE email = $1 AND id = $2 ',
+            text: 'SELECT * FROM requests WHERE email = $1 AND Id = $2 ',
             values: [req.body.token.email, requestId],
         }
         db.on('error', (err, client) => {
