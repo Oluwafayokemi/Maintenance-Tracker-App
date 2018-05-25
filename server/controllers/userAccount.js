@@ -148,7 +148,7 @@ class User {
                     .then(request => res.status(200).json({
                         success: 'true',
                         message: 'one request retrieved successfully',
-                        requests: request.rows
+                        request: request.rows
                     }))
                     .catch(error => res.status(400).json({
                         success: 'false',
