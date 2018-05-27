@@ -19,7 +19,7 @@ describe('Creating a new request', () => {
             request
             .get('/api/v1/requests')
             .set('x-access-token', token)
-            console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222', token);
+            console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222', token)
             .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.an('object');
