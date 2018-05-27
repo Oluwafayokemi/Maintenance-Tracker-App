@@ -6,7 +6,6 @@ import faker from 'faker';
 import jwtDecode from 'jwt-decode';
 import app from '../app';
 import testInit from './testInit';
-dotenv.config();
 
 const request = supertest(app);
 const { expect } = chai;
@@ -181,7 +180,7 @@ describe('Test user API', () => {
                     firstName,
                     lastName,
                     email: testVariables.demoUserEmail,
-                    password: testVariables.demoUserRole,
+                    password: testVariables.demoUserPassword,
                     department: testVariables.demoUserDepartment,
                 })
                 .end((err, res) => {
@@ -266,31 +265,6 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.haveOwnProperty('token');
                     expect(res.body).to.haveOwnProperty('message').to.equal('signin successful');
-                    process.env.TOKEN = res.body.token;
-                    email = jwtDecode(process.env.TOKEN).email;
-                });
-            done();
-        });
-    });
-
-
-    describe('GET /requests', () => {
-        it('should return 401 when token is invalid', (done) => {
-            request.get('/api/v1/users/requests')
-                .end((err, res) => {
-                    expect(res.body).to.be.an('object');
-                    expect(res.status).to.equal(401);
-                    expect(res.body).to.haveOwnProperty('message').to.equal('Invalid token');
-                    process.env.TOKEN = res.body.token;
-                });
-            done();
-        });
-        it('should return 401 when token is invalid', (done) => {
-            request.get('/api/v1/users/requests/1')
-                .end((err, res) => {
-                    expect(res.body).to.be.an('object');
-                    expect(res.status).to.equal(401);
-                    expect(res.body).to.haveOwnProperty('message').to.equal('Invalid token');
                     process.env.TOKEN = res.body.token;
                 });
             done();

@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import db from '../db/index';
+import db from '../models/index';
 import bcrypt from 'bcryptjs';
 import jwtDecode from 'jwt-decode';
 import dotenv from 'dotenv';
@@ -90,7 +90,7 @@ class User {
                         return res.status(200).json({
                             status: 'success',
                             message: 'Sign in successfully',
-                            data: {
+                            token: {
                                 token: authToken,
                             },
                         });

@@ -1,5 +1,4 @@
 /* global describe, it */
-
 import chai from 'chai';
 import jwtDecode from 'jwt-decode';
 import supertest from 'supertest';
@@ -17,8 +16,11 @@ describe('Creating a new request', () => {
 
     describe('/GET /api/v1/requests', () => {
         it('should return 200 response for getting all users requests', (done) => {
-            request.get('/api/v1/requests')
-                .end((err, res) => {
+            request
+            .get('/api/v1/requests')
+            .set('x-access-token', token)
+            console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222', token);
+            .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('all requests retrieved successfully');

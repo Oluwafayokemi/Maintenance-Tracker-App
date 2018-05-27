@@ -17,7 +17,6 @@ class Validation {
      */
   validateRequest(req, res, next) {
     const requestRules = {
-      status: 'required|string',
       option: 'required|string',
       description: 'required|string',
       email: 'required|email',
@@ -28,14 +27,10 @@ class Validation {
     if (validate.passes()) return next();
 
     const error = {};
-    const status = validate.errors.first('status');
     const description = validate.errors.first('description');
     const option = validate.errors.first('option');
     const email = validate.errors.first('email');
 
-    if (status) {
-      error.status = status;
-    }
 
     if (description) {
       error.description = description;
@@ -107,6 +102,7 @@ class Validation {
       email: 'required|string',
       department: 'required|string',
       password: 'required|string',
+      isAdmin: 'required|boolean'
     };
 
     const validate = new Validator(req.body, validation);
@@ -116,7 +112,8 @@ class Validation {
       lastName = validate.errors.first('lastName'),
       email = validate.errors.first('email'),
       department = validate.errors.first('department'),
-      password = validate.errors.first('password');
+      password = validate.errors.first('password'),
+      isAdmin = validate.errors.first('isAdmin');
 
     if (firstName) {
       error.firstName = firstName;
@@ -133,6 +130,10 @@ class Validation {
     if (password) {
       error.password = password;
     }
+    if (isAdmin) {
+      error.isAdmin = isAdmin;
+    }
+
 
     return res.status(400).send({
       message: 'a required field is missing',

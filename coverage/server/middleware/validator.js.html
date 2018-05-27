@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.96% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>34/54</span>
+        <span class='fraction'>36/54</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">59.38% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.22% </span>
+        <span class="strong">67.35% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>30/49</span>
+        <span class='fraction'>33/49</span>
       </div>
     </div>
     <p class="quiet">
@@ -191,7 +191,8 @@
 <a name='L143'></a><a href='#L143'>143</a>
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
-<a name='L146'></a><a href='#L146'>146</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,16 +217,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -302,32 +298,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,7 +357,6 @@ class Validation {
      */
   validateRequest(req, res, next) {
     const requestRules = <span class="cstat-no" title="statement not covered" >{</span>
-      status: 'required|string',
       option: 'required|string',
       description: 'required|string',
       email: 'required|email',
@@ -366,14 +367,10 @@ class Validation {
 <span class="cstat-no" title="statement not covered" >    if (validate.passes()) <span class="cstat-no" title="statement not covered" >r</span>eturn next();</span>
 &nbsp;
     const error = <span class="cstat-no" title="statement not covered" >{};</span>
-    const status = <span class="cstat-no" title="statement not covered" >validate.errors.first('status');</span>
     const description = <span class="cstat-no" title="statement not covered" >validate.errors.first('description');</span>
     const option = <span class="cstat-no" title="statement not covered" >validate.errors.first('option');</span>
     const email = <span class="cstat-no" title="statement not covered" >validate.errors.first('email');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (status) {</span>
-<span class="cstat-no" title="statement not covered" >      error.status = status;</span>
-    }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (description) {</span>
 <span class="cstat-no" title="statement not covered" >      error.description = description;</span>
@@ -445,16 +442,18 @@ class Validation {
       email: 'required|string',
       department: 'required|string',
       password: 'required|string',
+      isAdmin: 'required|boolean'
     };
 &nbsp;
     const validate = new Validator(req.body, validation);
-    if (validate.passes()) return next();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (validate.passes()) <span class="cstat-no" title="statement not covered" >return next();</span>
 &nbsp;
     let error = {}, firstName = validate.errors.first('firstName'),
       lastName = validate.errors.first('lastName'),
       email = validate.errors.first('email'),
       department = validate.errors.first('department'),
-      password = validate.errors.first('password');
+      password = validate.errors.first('password'),
+      isAdmin = validate.errors.first('isAdmin');
 &nbsp;
     if (firstName) {
       error.firstName = firstName;
@@ -471,6 +470,10 @@ class Validation {
     if (password) {
       error.password = password;
     }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (isAdmin) {
+      error.isAdmin = isAdmin;
+    }
+&nbsp;
 &nbsp;
     return res.status(400).send({
       message: 'a required field is missing',
@@ -487,7 +490,7 @@ export default Validation;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 25 2018 06:23:15 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun May 27 2018 23:35:33 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

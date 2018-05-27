@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import db from '../db/index';
+import db from '../models/index';
 
 /**
  * @export
