@@ -16,7 +16,7 @@ app.get('*', (req, res) => {
 
 app.use((req, res, next) => {
   const err = res.status(404).send({
-    error: '404: Sorry Page Not Found!'
+    error: '404: Sorry Page Not Found!',
   });
   next(err);
 });
