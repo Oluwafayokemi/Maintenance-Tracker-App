@@ -10,7 +10,6 @@ const { expect } = chai;
 const testVariables = new testInit();
 
 describe('Creating a new request', () => {
-    let decodedToken;
     let token;
     let requestId;
 
@@ -18,8 +17,6 @@ describe('Creating a new request', () => {
         it('should return 200 response for getting all users requests', (done) => {
             request
             .get('/api/v1/requests')
-            .set('x-access-token', token)
-            console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222', token)
             .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.an('object');

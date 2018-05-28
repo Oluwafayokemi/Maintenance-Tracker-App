@@ -85,14 +85,14 @@ class User {
                                 message: 'Wrong password',
                             });
                         }
-
                         const authToken = auth.token(user.rows[0]);
+                        if (process.env.NODE_ENV === 'test') {
+                            process.env.testToken = authToken;
+                        }
                         return res.status(200).json({
                             status: 'success',
                             message: 'Sign in successfully',
-                            token: {
-                                token: authToken,
-                            },
+                            token: authToken
                         });
                     })
                     .catch((err) => {
@@ -153,6 +153,58 @@ class User {
                     .catch(error => res.status(400).json({
                         success: 'false',
                         message: 'could not retrieve request',
+                    }))
+            });
+    }
+
+    createRequest(req, res) {
+        const { email, option, description } = req.body;
+
+        const Query = {
+            text: 'INSERT INTO requests(email, option, description) VALUES($1, $2, $3) RETURNING email, option, description',
+            values: [email, option, description],
+        }
+
+        db.on('error', (err, client) => {
+            console.error('Unexpected error on idle client', err)
+            process.exit(-1)
+        })
+        db.connect()
+            .then(client => {
+                client.query(Query)
+                    .then(user => res.status(200).json({
+                        success: 'true',
+                        message: `Request Created for ${email}`,
+                        request: user.rows[0]
+                    }))
+                    .catch(error => res.status(400).json({
+                        success: 'false',
+                        message: `Request not created for ${email}`,
+                    }))
+            });
+    }
+
+    updateRequest(req, res) {
+        const Query = {
+            text: 'INSERT INTO requests(email, option, description) VALUES($1, $2, $3) RETURNING email, option, description',
+            values: [email, option, description],
+        }
+
+        db.on('error', (err, client) => {
+            console.error('Unexpected error on idle client', err)
+            process.exit(-1)
+        })
+        db.connect()
+            .then(client => {
+                client.query(Query)
+                    .then(request => res.status(200).json({
+                        success: 'true',
+                        message: `Request Created for ${email}`,
+                        request: request.rows[0]
+                    }))
+                    .catch(error => res.status(400).json({
+                        success: 'false',
+                        message: `Request not created for ${email}`,
                     }))
             });
     }

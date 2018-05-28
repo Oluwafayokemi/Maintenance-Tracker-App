@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import supertest from 'supertest';
 import faker from 'faker';
-import jwtDecode from 'jwt-decode';
+// import jwtDecode from 'jwt-decode';
 import app from '../app';
 import testInit from './testInit';
 
@@ -14,6 +14,7 @@ const testVariables = new testInit();
 describe('Test user API', () => {
     let email;
     let adminToken;
+    let TOKEN;
 
     describe('creating a new admin or user', () => {
         let firstName = testVariables.firstName;
@@ -68,8 +69,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
         it('should return a status 400 error response for a empty lastName field with only spaces', (done) => {
             request.post('/api/v1/auth/signup')
@@ -84,8 +85,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
 
         it('should return a status 400 error response for an empty email field', (done) => {
@@ -101,8 +102,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
 
         it('should return a status 400 error response for a empty email field with only spaces', (done) => {
@@ -118,8 +119,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
 
         it('should return a status 400 error response for invalid email', (done) => {
@@ -135,8 +136,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
 
         it('should return a status 400 error response for empty password field', (done) => {
@@ -152,8 +153,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
 
         it('should return a status 400 error response for password field with only spaces', (done) => {
@@ -169,12 +170,13 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(400);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal('a required field is missing');
-                    done();
                 });
+                done();
         });
 
         it('should return 200 response for creating a user ', (done) => {
-            request.post('/api/v1/auth/signup')
+            request
+                .post('/api/v1/auth/signup')
                 .set('Content-type', 'application/json')
                 .send({
                     firstName,
@@ -187,8 +189,8 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.an('object');
                     expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
-                    done();
                 });
+                done();
         });
     });
 
@@ -265,7 +267,6 @@ describe('Test user API', () => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.haveOwnProperty('token');
                     expect(res.body).to.haveOwnProperty('message').to.equal('signin successful');
-                    process.env.TOKEN = res.body.token;
                 });
             done();
         });

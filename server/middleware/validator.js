@@ -102,7 +102,6 @@ class Validation {
       email: 'required|string',
       department: 'required|string',
       password: 'required|string',
-      isAdmin: 'required|boolean'
     };
 
     const validate = new Validator(req.body, validation);
@@ -112,8 +111,7 @@ class Validation {
       lastName = validate.errors.first('lastName'),
       email = validate.errors.first('email'),
       department = validate.errors.first('department'),
-      password = validate.errors.first('password'),
-      isAdmin = validate.errors.first('isAdmin');
+      password = validate.errors.first('password')
 
     if (firstName) {
       error.firstName = firstName;
@@ -130,10 +128,6 @@ class Validation {
     if (password) {
       error.password = password;
     }
-    if (isAdmin) {
-      error.isAdmin = isAdmin;
-    }
-
 
     return res.status(400).send({
       message: 'a required field is missing',
