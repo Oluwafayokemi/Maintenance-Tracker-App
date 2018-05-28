@@ -7,7 +7,7 @@ import db from '../models/index';
  */
 
 class Request {
-    /**
+  /**
        * Get Multiple request record
        *
        * @param {object} req - HTTP Request
@@ -15,27 +15,24 @@ class Request {
        * @returns {object} Class instance
        * @memberof Requests
        */
-    /*get All Requests */
+  /* get All Requests */
 
-    getAll(req, res) {
-        db.on('error', (err, client) => {
-            console.error('Unexpected error on idle client', err)
-            process.exit(-1)
-        })
-        db.connect()
-            .then(client => {
-                client.query('SELECT * from requests')            
-                    .then(requests => res.status(200).json({
-                        success: 'true',
-                        message: 'all requests retrieved successfully',
-                        requests: requests.rows
-                    }))
-                    .catch(error => res.status(400).json({
-                        success: 'false',
-                        message: 'could not retrieve requests',
-                    }))
-            });
-    }
+  getAll(req, res) {
+    db.connect()
+      .then((client) => {
+        client.query('SELECT * from requests')
+          .then(requests => res.status(200).json({
+            success: 'true',
+            message: 'all requests retrieved successfully',
+            requests: requests.rows,
+          }))
+          .catch(error => res.status(400).json({
+            success: 'false',
+            message: 'could not retrieve requests',
+            error,
+          }));
+      });
+  }
 }
 
 const request = new Request();

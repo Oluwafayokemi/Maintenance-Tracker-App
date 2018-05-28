@@ -19,8 +19,6 @@ class Validation {
     const requestRules = {
       option: 'required|string',
       description: 'required|string',
-      email: 'required|email',
-      date: { type: Date, default: Date.now },
     };
 
     const validate = new Validator(req.body, requestRules);
@@ -29,8 +27,6 @@ class Validation {
     const error = {};
     const description = validate.errors.first('description');
     const option = validate.errors.first('option');
-    const email = validate.errors.first('email');
-
 
     if (description) {
       error.description = description;
@@ -38,11 +34,8 @@ class Validation {
     if (option) {
       error.option = option;
     }
-    if (email) {
-      error.email = email;
-    }
 
-    return res.status(400).send({
+    return res.status(400).json({
       message: 'a required field is missing',
       statusCode: 400,
       error,
@@ -82,7 +75,7 @@ class Validation {
     return res.status(400).json({
       message: 'a required field is missing',
       statusCode: 400,
-      error
+      error,
     });
   }
 
