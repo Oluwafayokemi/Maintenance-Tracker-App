@@ -128,6 +128,21 @@ describe('Request for users', () => {
                 });
             done();
         });
+        it('should return 201 response for creating a request', (done) => {
+            request
+                .post('/api/v1/users/requests')
+                .send({
+                    email: testVariables.demoUserEmail,
+                    option: testVariables.demoRequestsOption,
+                    description: testVariables.demoRequestDescrp
+                })
+                .end((err, res) => {
+                    expect(res.status).to.equal(201);
+                    expect(res.body).to.be.an('object');
+                    expect(res.body).to.haveOwnProperty('message').to.equal('Request Created for ${email}');
+                });
+            done();
+        });
     });
 
     describe('/GET /api/v1/users/requests/', () => {
