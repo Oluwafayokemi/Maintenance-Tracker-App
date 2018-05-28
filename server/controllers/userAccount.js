@@ -1,10 +1,8 @@
 /* eslint-disable class-methods-use-this */
-import db from '../models/index';
 import bcrypt from 'bcryptjs';
-import jwtDecode from 'jwt-decode';
 import dotenv from 'dotenv';
-import auth from '../middleware/auth.js';
-import { request } from 'http';
+import auth from '../middleware/auth';
+import db from '../models/index';
 
 dotenv.config();
 
@@ -170,29 +168,6 @@ class User {
           });
       });
   }
-
-
-  // updateRequest(req, res) {
-  //   const { email, option, description } = req.body;
-  //   const Query = {
-  //     text: 'INSERT INTO requests(email, option, description) VALUES($1, $2, $3) RETURNING email, option, description',
-  //     values: [email, option, description],
-  //   };
-
-  //   db.connect()
-  //     .then((client) => {
-  //       client.query(Query)
-  //         .then(requests => res.status(200).json({
-  //           success: 'true',
-  //           message: `Request Created for ${email}`,
-  //           request: requests.rows[0],
-  //         }))
-  //         .catch(error => res.status(400).json({
-  //           success: 'false',
-  //           message: `Request not created for ${email}`,
-  //         }));
-  //     });
-  // }
 }
 
 const user = new User();
