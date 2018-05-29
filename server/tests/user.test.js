@@ -253,8 +253,8 @@ describe('Test user API', () => {
     it('should return a status 400 error response for password field with only spaces', (done) => {
       request.post('/api/v1/auth/login')
         .send({
-          email: 'fayoaright@gmail.com',
-          password: 'test',
+          email: 'simple@gmail.com',
+          password: 'simle',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -267,8 +267,8 @@ describe('Test user API', () => {
     it('should return a status 200 success response for logging in a default user', (done) => {
       request.post('/api/v1/auth/login')
         .send({
-          email: 'fayoaright@gmail.com',
-          password: 'tester',
+          email: 'simple@gmail.com',
+          password: 'simple',
         })
         .end((err, res) => {
           expect(res.body).to.be.an('object');

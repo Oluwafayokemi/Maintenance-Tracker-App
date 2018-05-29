@@ -18,8 +18,8 @@ describe('Get request for an admin', () => {
     it('should return a status 200 success response for logging in a default user', (done) => {
       request.post('/api/v1/auth/login')
         .send({
-          email: 'fayoaright@gmail.com',
-          password: 'tester',
+          email: 'simple@gmail.com',
+          password: 'simple',
         })
         .end((err, res) => {
           expect(res.body).to.be.an('object');
