@@ -189,7 +189,6 @@ describe('Test user API', () => {
     });
   });
 
-
   describe('Test to sign a user and/or admin in/out', () => {
     it('should return a status 400 error response if email is empty', (done) => {
       request
@@ -250,16 +249,16 @@ describe('Test user API', () => {
           done();
         });
     });
-       
+
     it('should return a status 400 error response for password not matching', (done) => {
       request.post('/api/v1/auth/login')
         .send({
           email: 'fayoaright@gmail.com',
-          password: 'simi',
+          password: 'tesr',
         })
         .end((err, res) => {
-          // expect(res.status).to.equal(400);
-          // expect(res.body).to.be.an('object');
+          expect(res.status).to.equal(400);
+          expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal('Wrong password');
           done();
         });

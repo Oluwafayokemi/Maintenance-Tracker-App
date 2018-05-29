@@ -2,7 +2,6 @@ import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 
-
 dotenv.config();
 
 const db = new Pool({
@@ -17,8 +16,9 @@ const creatUserTable = ';DROP TABLE IF EXISTS users CASCADE; CREATE TABLE users(
 const createRequestTable = ';DROP TABLE IF EXISTS requests CASCADE; CREATE TABLE requests(id SERIAL PRIMARY KEY NOT NULL, email VARCHAR(100), option VARCHAR(100) NOT NULL,  description TEXT NOT NULL, status VARCHAR(100))';
 const insertUserTable = `;INSERT INTO users(firstName, lastName, isAdmin, email, password, department) VALUES('fayokemi', 'adeyina', TRUE, 'fayoaright@gmail.com', '${encryptedPassword}', 'Water Management')`;
 const insertUser2Table = `;INSERT INTO users(firstName, lastName, email, password, department) VALUES('fayokemi', 'adeyina', 'omotola@gmail.com', '${encryptedPassword}', 'Water Management')`;
-const insertRequestTable = ';INSERT INTO requests(option, email, description, status) VALUES( \'fayoaright@gmail.com\', \'generator\', \'air condition blows hot air\', \'pending\')';
-const Query = `${creatUserTable} ${createRequestTable} ${insertUserTable} ${insertUser2Table} ${insertRequestTable}`;
+const insertRequestTable = ';INSERT INTO requests(email, option, description, status) VALUES( \'fayoaright@gmail.com\', \'generator\', \'Generator goes off always\', \'pending\')';
+const insertRequest2Table = ';INSERT INTO requests(email, option, description, status) VALUES( \'omotola@gmail.com\', \'Air Condition\', \'air condition blows hot air\', \'resolved\')';
+const Query = `${creatUserTable} ${createRequestTable} ${insertUserTable} ${insertUser2Table} ${insertRequestTable} ${insertRequest2Table}`;
 db.query(Query, (err, res) => {
   console.log(err, res);
   db.end();

@@ -1,12 +1,13 @@
 import express from 'express';
 import Request from '../controllers/request';
-import Validator from '../middleware/validator';
 import authenticate from '../middleware/authenticate';
 import roleAuth from '../middleware/roleAuth';
 
 const router = express.Router();
-const validate = new Validator();
 
-router.get('/api/v1/requests', authenticate, roleAuth, Request.getAll);
+router.get('/api/v1/requests', authenticate, roleAuth, Request.getAll)
+  .put('/api/v1/requests/:id/approve', authenticate, roleAuth, Request.approve)
+  .put('/api/v1/requests/:id/dissaprove', authenticate, roleAuth, Request.dissaprove)
+  .put('/api/v1/requests/:id/resolve', authenticate, roleAuth, Request.resolve);
 
 module.exports = router;

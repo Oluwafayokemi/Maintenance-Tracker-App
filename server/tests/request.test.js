@@ -22,9 +22,9 @@ describe('Get request for an admin', () => {
           password: 'tester',
         })
         .end((err, res) => {
-          // expect(res.body).to.be.an('object');
-          // expect(res.status).to.equal(200);
-          // expect(res.body).to.haveOwnProperty('token');
+          expect(res.body).to.be.an('object');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('Sign in successful');
           decodedToken = res.body.token;
           done();

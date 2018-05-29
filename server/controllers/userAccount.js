@@ -49,7 +49,6 @@ class User {
       });
   }
 
-
   login(req, res) {
     const { email, password } = req.body;
     const Query = {
@@ -118,21 +117,31 @@ class User {
   }
 
   getOneRequest(req, res) {
-    const requestId = parseInt(req.params.id, 10);
+    const Id = parseInt(req.params.id, 10);
+    const { email } = req.body.token;
 
     const Query = {
       name: 'fetch-user',
       text: 'SELECT * FROM requests WHERE email = $1 AND Id = $2 ',
-      values: [req.body.token.email, requestId],
+      values: [email, Id],
     };
     db.connect()
       .then((client) => {
         client.query(Query)
-          .then(requests => res.status(200).json({
-            success: 'true',
-            message: 'Request retrieved successfully',
-            request: requests.rows,
-          }))
+          .then((requests) => {
+            if (requests.rows[0]) {
+              res.status(200).json({
+                success: 'true',
+                message: 'Request retrieved successfully',
+                request: requests.rows[0],
+              });
+            } else {
+              res.status(404).json({
+                status: 'fail',
+                message: 'request does not exist',
+              });
+            }
+          })
           .catch(error => res.status(400).json({
             success: 'false',
             message: 'could not retrieve request',
@@ -141,11 +150,12 @@ class User {
   }
 
   createRequest(req, res) {
+    const { email } = req.body.token;
     const { option, description } = req.body;
 
     const Query = {
-      text: 'INSERT INTO requests(option, description) VALUES($1, $2) RETURNING option, description',
-      values: [option, description],
+      text: 'INSERT INTO requests(option, description, email) VALUES($1, $2, $3) RETURNING option, description',
+      values: [option, description, email],
     };
 
     db.connect()
@@ -162,6 +172,41 @@ class User {
               message: 'Request not created',
               error,
             });
+          });
+      });
+  }
+
+  updateRequest(req, res) {
+    const Id = parseInt(req.params.id, 10);
+    const { email } = req.body.token;
+    const { option, description } = req.body;
+    const { status } = req.body;
+    const Query = {
+      text: 'UPDATE requests SET option = $1, description = $2, status = $3 WHERE email = $4 AND Id = $5',
+      values: [option, description, status, email, Id],
+    };
+    db.connect()
+      .then((client) => {
+        client.query(Query)
+          .then((request) => {
+            if (!request.rows ) {
+              res.status(404).json({
+                status: 'fail',
+                message: 'Request was not found',
+              });
+            }
+            return res.status(200).json({
+              status: 'success',
+              message: `Request ${option} updated successfully`,
+              request: request.rows[0],
+            })
+              .catch((error) => {
+                res.status(400).json({
+                  success: 'false',
+                  message: 'Request not created',
+                  error,
+                });
+              });
           });
       });
   }
