@@ -78,9 +78,6 @@ class User {
               });
             }
             const authToken = auth.token(user.rows[0]);
-            if (process.env.NODE_ENV === 'test') {
-              process.env.testToken = authToken;
-            }
             return res.status(200).json({
               status: 'success',
               message: 'Sign in successful',

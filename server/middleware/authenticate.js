@@ -5,10 +5,7 @@ dotenv.config();
 
 const authenticate = (req, res, next) => {
   try {
-    let token = req.headers['x-access-token'] || req.query.token || req.body.token;
-    if (process.env.NODE_ENV === 'test') {
-      token = process.env.testToken;
-    }
+    const token = req.headers['x-access-token'] || req.query.token || req.body.token;
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.body.token = decoded;
   } catch (error) {
@@ -17,7 +14,7 @@ const authenticate = (req, res, next) => {
       message: 'Invalid token',
     });
   }
-  next();
+  return next();
 };
 
 export default authenticate;
