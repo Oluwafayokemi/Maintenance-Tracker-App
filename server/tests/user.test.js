@@ -178,6 +178,7 @@ describe('Test user API', () => {
           email: 'simple@gmail.com',
           password: 'simple',
           department: testVariables.demoUserDepartment,
+          isAdmin: true,
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
