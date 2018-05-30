@@ -40,8 +40,7 @@ class User {
           .then((user) => {
             res.status(200).json({
               success: 'true',
-              message: `Account Created for ${firstName} ${lastName}`,
-              user,
+              message: `Account Created for ${firstName} ${lastName}`
             });
           })
           .catch((error) => {
