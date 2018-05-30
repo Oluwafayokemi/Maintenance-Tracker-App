@@ -50,6 +50,6 @@ For Requests
 - PUT '/api/v1/users/requests/<requestId>' Modify a request
 - GET '/api/v1/requests' Gets all request on the database
 - PUT '/api/v1/request/<requestId>/approve' onClick sets a request as approved
-- PUT '/api/v1/request/<requestId>/dissaprove' onClick sets a request to dissaproves
-- PUT 'api/v1/request/<requestId>/resolve' onClick sets a request to resolves
+- PUT '/api/v1/request/<requestId>/dissaprove' onClick sets a request to dissaproved
+- PUT 'api/v1/request/<requestId>/resolve' onClick sets a request to resolved
 
