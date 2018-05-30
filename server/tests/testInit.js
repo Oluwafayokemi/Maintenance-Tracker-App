@@ -36,7 +36,10 @@ export default class Test {
     this.demoRequestUserId = faker.random.uuid();
     this.demoRequestOption = faker.lorem.text();
     this.demoRequestDescrp = faker.lorem.paragraph();
-    this.demoRequestStatus = faker.lorem.text();
+    this.demoRequestApproved = 'approved';
+    this.demoRequestDisapproved = 'dissaproved';
+    this.demoRequestResolved = 'resolved';
+
 
     this.setToken = this.setToken.bind(this);
     this.getToken = this.getToken.bind(this);

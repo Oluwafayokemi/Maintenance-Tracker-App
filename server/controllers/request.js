@@ -20,50 +20,55 @@ class Request {
   getAll(req, res) {
     db.connect()
       .then((client) => {
-        client.query('SELECT * from requests')
-          .then(requests => res.status(200).json({
-            success: 'true',
-            message: 'all requests retrieved successfully',
-            requests: requests.rows,
-          }))
-          .catch(error => res.status(400).json({
-            success: 'false',
-            message: 'could not retrieve requests',
-            error,
-          }));
+        return client.query('SELECT * from requests')
+          .then((requests) => {
+            if (!requests.rows[0]) {
+              return res.status(404).json({
+                status: 'fail',
+                message: 'Request not found',
+              });
+            }
+            client.release();
+            res.status(200).json({
+              success: 'true',
+              message: 'all requests retrieved successfully',
+              requests: requests.rows,
+            });
+          })
+          .catch((error) => {
+            res.status(400).json({
+              success: 'false',
+              message: 'could not retrieve requests',
+              error,
+            });
+          });
       });
   }
-// When this route is called status  === pending
+  // When this route is called status  === pending
   approve(req, res) {
     const Id = parseInt(req.params.id, 10);
     const { email } = req.body.token;
-    const { status } = req.body;
     const Query = {
       text: 'UPDATE requests SET status = $1 WHERE email = $2 AND Id = $3',
-      values: ['pending', email, Id],
+      values: ['approved', email, Id],
     };
     db.connect()
       .then((client) => {
-        client.query(Query)
+        return client.query(Query)
           .then((request) => {
-            if (Id < db.length) {
-              res.status(404).json({
-                status: 'fail',
-                message: 'Request was not found',
-              });
-            }
-            return res.status(200).json({
+            client.release();
+            res.status(201).json({
               status: 'success',
-              message: `Request ${status} updated successfully`,
-              request: request.rows[0],
-            })
-              .catch((error) => {
-                res.status(400).json({
-                  success: 'false',
-                  message: 'Request not created',
-                  error,
-                });
-              });
+              message: 'Request has been approved',
+            });
+          })
+          .catch((error) => {
+            client.release();
+            res.status(400).json({
+              status: 'false',
+              message: 'Request not updated',
+              error,
+            });
           });
       });
   }
@@ -71,33 +76,27 @@ class Request {
   dissaprove(req, res) {
     const Id = parseInt(req.params.id, 10);
     const { email } = req.body.token;
-    const { status } = req.body;
     const Query = {
       text: 'UPDATE requests SET status = $1 WHERE email = $2 AND Id = $3',
-      values: ['dissaprove', email, Id],
+      values: ['dissapproved', email, Id],
     };
     db.connect()
       .then((client) => {
-        client.query(Query)
+        return client.query(Query)
           .then((request) => {
-            if (Id < db.length) {
-              res.status(404).json({
-                status: 'fail',
-                message: 'Request was not found',
-              });
-            }
-            return res.status(200).json({
+            client.release();
+            res.status(201).json({
               status: 'success',
-              message: `Request ${status} updated successfully`,
+              message: 'Request has been dissapproved',
               request: request.rows[0],
-            })
-              .catch((error) => {
-                res.status(400).json({
-                  success: 'false',
-                  message: 'Request not created',
-                  error,
-                });
-              });
+            });
+          })
+          .catch((error) => {
+            res.status(400).json({
+              status: 'false',
+              message: 'Request not updated',
+              error,
+            });
           });
       });
   }
@@ -105,33 +104,27 @@ class Request {
   resolve(req, res) {
     const Id = parseInt(req.params.id, 10);
     const { email } = req.body.token;
-    const { status } = req.body;
     const Query = {
       text: 'UPDATE requests SET status = $1 WHERE email = $2 AND Id = $3',
-      values: ['resolve', email, Id],
+      values: ['resolved', email, Id],
     };
     db.connect()
       .then((client) => {
-        client.query(Query)
+        return client.query(Query)
           .then((request) => {
-            if (Id < db.length) {
-              res.status(404).json({
-                status: 'fail',
-                message: 'Request was not found',
-              });
-            }
-            return res.status(200).json({
-              status: 'success',
-              message: `Request ${status} updated successfully`,
+            client.release();
+            res.status(201).json({
+              status: 'false',
+              message: 'Request has been resolved',
               request: request.rows[0],
-            })
-              .catch((error) => {
-                res.status(400).json({
-                  success: 'false',
-                  message: 'Request not created',
-                  error,
-                });
-              });
+            });
+          })
+          .catch((error) => {
+            res.status(400).json({
+              success: 'false',
+              message: 'Request not updated',
+              error,
+            });
           });
       });
   }

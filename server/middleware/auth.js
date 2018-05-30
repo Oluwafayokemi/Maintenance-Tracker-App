@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 const secret = process.env.SECRET_KEY;
 
-class jwts{
+class jwts {
   /**
    * @description Method to generate token
    *

@@ -271,8 +271,8 @@ describe('Test user API', () => {
           password: 'tester',
         })
         .end((err, res) => {
-          expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
+          expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('Sign in successful');
           done();
