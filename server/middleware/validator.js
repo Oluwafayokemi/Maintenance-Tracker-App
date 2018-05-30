@@ -17,25 +17,16 @@ class Validation {
      */
   validateRequest(req, res, next) {
     const requestRules = {
-      status: 'required|string',
       option: 'required|string',
       description: 'required|string',
-      email: 'required|email',
-      date: { type: Date, default: Date.now },
     };
 
     const validate = new Validator(req.body, requestRules);
     if (validate.passes()) return next();
 
     const error = {};
-    const status = validate.errors.first('status');
     const description = validate.errors.first('description');
     const option = validate.errors.first('option');
-    const email = validate.errors.first('email');
-
-    if (status) {
-      error.status = status;
-    }
 
     if (description) {
       error.description = description;
@@ -43,11 +34,8 @@ class Validation {
     if (option) {
       error.option = option;
     }
-    if (email) {
-      error.email = email;
-    }
 
-    return res.status(400).send({
+    return res.status(400).json({
       message: 'a required field is missing',
       statusCode: 400,
       error,
@@ -73,8 +61,9 @@ class Validation {
     const validate = new Validator(req.body, validateLogin);
     if (validate.passes()) return next();
 
-    let error = {}, email = validate.errors.first('email'),
-      password = validate.errors.first('password');
+    let error = {};
+    const email = validate.errors.first('email');
+    const password = validate.errors.first('password');
 
     if (!email && !password) {
       error = 'The email and password fields are required';
@@ -87,7 +76,7 @@ class Validation {
     return res.status(400).json({
       message: 'a required field is missing',
       statusCode: 400,
-      error
+      error,
     });
   }
 
@@ -112,11 +101,12 @@ class Validation {
     const validate = new Validator(req.body, validation);
     if (validate.passes()) return next();
 
-    let error = {}, firstName = validate.errors.first('firstName'),
-      lastName = validate.errors.first('lastName'),
-      email = validate.errors.first('email'),
-      department = validate.errors.first('department'),
-      password = validate.errors.first('password');
+    const error = {};
+    const firstName = validate.errors.first('firstName');
+    const lastName = validate.errors.first('lastName');
+    const email = validate.errors.first('email');
+    const department = validate.errors.first('department');
+    const password = validate.errors.first('password');
 
     if (firstName) {
       error.firstName = firstName;

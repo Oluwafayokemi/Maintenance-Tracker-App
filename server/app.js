@@ -1,7 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import bcrypt from 'bcrypt-nodejs';
-import db from './db/index';
 import requestRouter from './routes/request';
 import userRouter from './routes/userAccount';
 
@@ -13,13 +11,12 @@ app.use(requestRouter);
 app.use(userRouter);
 
 app.get('*', (req, res) => {
-  res.status(200).json("Welcome To maintenance Tracker App, Built by Fayokemi Adeyina");
-
-})
+  res.status(200).json('Welcome To maintenance Tracker App, Built by Fayokemi Adeyina');
+});
 
 app.use((req, res, next) => {
   const err = res.status(404).send({
-    error: '404: Sorry Page Not Found!'
+    error: '404: Sorry Page Not Found!',
   });
   next(err);
 });
