@@ -1,35 +1,33 @@
 /* global describe, it */
 import chai from 'chai';
-import { before } from 'mocha';
-import dotenv from 'dotenv';
 import supertest from 'supertest';
+import { beforeEach } from 'mocha';
+import auth from '../middleware/auth';
 import app from '../app';
 import Test from './testInit';
 
-dotenv.config();
 const request = supertest(app);
 const { expect } = chai;
 const testVariables = new Test();
+const user = {
+  id: 1,
+  firstname: 'fayokemi',
+  lastname: 'adeyina',
+  isadmin: true,
+  email: 'fayoaright@gmail.com',
+  password: '$2a$10$xyYyMLbzC55twFiAlPiaaOUtLl19iHFngx1.fK55Uc0QGLW5NTXF6',
+  department: 'Water Management',
+  joined: '2018-05-29T23:00:00.000Z',
+};
 
 let decodedToken;
 
 describe('User request endpoints', () => {
+
   describe('login user', () => {
-    before((done) => {
-      request
-        .post('/api/v1/auth/login')
-        .send({
-          email: 'fayoaright@gmail.com',
-          password: 'tester',
-        })
-        .end((err, res) => {
-          decodedToken = res.body.token;
-          // expect(res.body).to.be.an('object');
-          // expect(res.status).to.equal(200);
-          // expect(res.body).to.haveOwnProperty('token');
-          // expect(res.body).to.haveOwnProperty('message').to.equal('Sign in successful');
-          done();
-        });
+    beforeEach((done) => {
+      decodedToken = auth.token(user);
+      done();
     });
 
     describe('/POST /api/v1/users/requests', () => {
