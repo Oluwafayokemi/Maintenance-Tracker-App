@@ -3,18 +3,17 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 import path from 'path';
-import serveStatic from 'serve-static';
+// import serveStatic from 'serve-static';
 import requestRouter from './routes/request';
 import userRouter from './routes/userAccount';
 
 const app = express();
 app.use(compression());
 app.use(helmet());
-app.use(serveStatic(path.join(__dirname, 'client')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../client')));
 
 
 app.use(requestRouter);
