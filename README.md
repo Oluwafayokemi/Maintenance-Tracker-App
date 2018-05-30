@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/Oluwafayokemi/Maintenance-Tracker-App/badge.svg?branch=gh-pages)](https://coveralls.io/github/Oluwafayokemi/Maintenance-Tracker-App?branch=gh-pages)
+[![Coverage Status](https://coveralls.io/repos/github/Oluwafayokemi/Maintenance-Tracker-App/badge.svg?branch=sort-travis)](https://coveralls.io/github/Oluwafayokemi/Maintenance-Tracker-App?branch=sort-travis)
 [![Build Status](https://travis-ci.org/Oluwafayokemi/Maintenance-Tracker-App.svg?branch=develop)](https://travis-ci.org/Oluwafayokemi/Maintenance-Tracker-App)
 
 # Maintenance-Tracker-App
