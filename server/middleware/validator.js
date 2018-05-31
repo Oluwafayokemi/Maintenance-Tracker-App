@@ -36,7 +36,7 @@ class Validation {
     }
 
     return res.status(400).json({
-      message: 'a required field is missing',
+      message: 'one or more required field is/are missing',
       statusCode: 400,
       error,
     });
@@ -125,7 +125,7 @@ class Validation {
     }
 
     return res.status(400).send({
-      message: 'a required field is missing',
+      message: 'one or more required field is/are missing',
       statusCode: 400,
       error,
     });

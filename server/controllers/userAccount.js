@@ -76,7 +76,6 @@ class User {
               });
             }
             const authToken = auth.token(user.rows[0]);
-            client.release();
             return res.status(200).json({
               success: 'true',
               message: 'Sign in successful',
@@ -110,7 +109,6 @@ class User {
                 message: 'Request not found',
               });
             }
-            client.release();
             return res.status(200).json({
               success: 'true',
               message: 'all requests retrieved successfully',
@@ -131,7 +129,6 @@ class User {
   getOneRequest(req, res) {
     const Id = parseInt(req.params.id, 10);
     const { email } = req.body.token;
-
     const Query = {
       name: 'fetch-user',
       text: 'SELECT * FROM requests WHERE email = $1 AND Id = $2 ',
@@ -147,7 +144,6 @@ class User {
                 message: 'Request not found',
               });
             }
-            client.release();
             res.status(200).json({
               success: 'true',
               message: 'Request retrieved successfully',
@@ -159,6 +155,7 @@ class User {
             res.status(400).json({
               success: 'false',
               message: 'could not retrieve request',
+              error,
             });
           });
       });
@@ -176,7 +173,6 @@ class User {
       .then((client) => {
         return client.query(Query)
           .then((user) => {
-            client.release();
             res.status(201).json({
               success: 'true',
               message: 'Request created successfully',

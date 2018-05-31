@@ -43,10 +43,9 @@ class Request {
   // When this route is called status  === pending
   approve(req, res) {
     const Id = parseInt(req.params.id, 10);
-    const { email } = req.body.token;
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE email = $2 AND Id = $3',
-      values: ['approved', email, Id],
+      text: 'UPDATE requests SET status = $1 WHERE Id = $2',
+      values: ['approved', Id],
     };
     db.connect()
       .then((client) => {
@@ -71,10 +70,9 @@ class Request {
 
   disapprove(req, res) {
     const Id = parseInt(req.params.id, 10);
-    const { email } = req.body.token;
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE email = $2 AND Id = $3',
-      values: ['dissapproved', email, Id],
+      text: 'UPDATE requests SET status = $1 WHERE Id = $3',
+      values: ['dissapproved', Id],
     };
     db.connect()
       .then((client) => {
@@ -99,10 +97,9 @@ class Request {
 
   resolve(req, res) {
     const Id = parseInt(req.params.id, 10);
-    const { email } = req.body.token;
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE email = $2 AND Id = $3',
-      values: ['resolved', email, Id],
+      text: 'UPDATE requests SET status = $1 WHERE Id = $3',
+      values: ['resolved', Id],
     };
     db.connect()
       .then((client) => {
