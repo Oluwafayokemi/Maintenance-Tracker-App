@@ -8,15 +8,11 @@ import db from '../models/index';
 
 class Request {
   /**
-       * Get Multiple request record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Requests
-       */
-  /* get All Requests */
-
+  * @param {object} request - HTTP Request
+  * @param {object} response - HTTP Response
+  * @returns {object} Class instance
+  * @description Admin request page.
+  */
   getAll(req, res) {
     db.connect()
       .then((client) => {
@@ -24,7 +20,7 @@ class Request {
           .then((requests) => {
             if (!requests.rows[0]) {
               return res.status(404).json({
-                status: 'fail',
+                success: 'false',
                 message: 'Request not found',
               });
             }
@@ -58,14 +54,14 @@ class Request {
           .then((request) => {
             client.release();
             res.status(201).json({
-              status: 'success',
+              success: 'true',
               message: 'Request has been approved',
             });
           })
           .catch((error) => {
             client.release();
             res.status(400).json({
-              status: 'false',
+              success: 'false',
               message: 'Request not updated',
               error,
             });
@@ -73,7 +69,7 @@ class Request {
       });
   }
 
-  dissaprove(req, res) {
+  disapprove(req, res) {
     const Id = parseInt(req.params.id, 10);
     const { email } = req.body.token;
     const Query = {
@@ -86,14 +82,14 @@ class Request {
           .then((request) => {
             client.release();
             res.status(201).json({
-              status: 'success',
+              success: 'true',
               message: 'Request has been dissapproved',
               request: request.rows[0],
             });
           })
           .catch((error) => {
             res.status(400).json({
-              status: 'false',
+              success: 'false',
               message: 'Request not updated',
               error,
             });
@@ -114,7 +110,7 @@ class Request {
           .then((request) => {
             client.release();
             res.status(201).json({
-              status: 'false',
+              success: 'true',
               message: 'Request has been resolved',
               request: request.rows[0],
             });

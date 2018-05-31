@@ -3,7 +3,7 @@ import db from '../models/index';
 import auth from '../middleware/auth';
 
 const getToken = (req, res) => {
-  const { email, password } = req.body;
+  const { email, id, password, firstName, lastName, department } = req.body;
   const Query = {
     // give the query a unique name
     name: 'fetch-user',
@@ -15,7 +15,7 @@ const getToken = (req, res) => {
       .then((user) => {
         if (!user.rows[0]) {
           res.status(404).json({
-            status: 'fail',
+            success: 'false',
             message: 'User not found',
           });
         }
@@ -24,25 +24,33 @@ const getToken = (req, res) => {
           .compareSync(password.trim(), user.rows[0].password);
         if (!checkPassword) {
           return res.status(400).json({
-            status: 'fail',
+            success: 'false',
             message: 'Wrong password',
           });
         }
         const authToken = auth.token(user.rows[0]);
         client.release();
         return res.status(200).json({
-          status: 'success',
+          success: 'true',
           message: 'Sign up successful',
           token: authToken,
+          newUser: {
+            id: user.rows[0].id,
+            firstName,
+            lastName,
+            email,
+            department,
+          },
         });
       })
       .catch((err) => {
         client.release();
         return res.status(500).json({
-          status: 'error',
+          success: 'false',
           message: 'oops!something went wrong!',
           err,
         });
       }));
 };
+
 export default getToken;

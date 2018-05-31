@@ -13,14 +13,11 @@ dotenv.config();
 
 class User {
   /**
-       * Get Multiple user record
-       *
-       * @param {object} req - HTTP User
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
-  /* create users */
+ * @param {object} request - HTTP User
+ * @param {object} response - HTTP Response
+ * @returns {object} Class instance
+ * @description create User Account.
+ */
   create(req, res, next) {
     const salt = bcrypt.genSaltSync(Math.floor(Math.random() * 5));
 
@@ -65,7 +62,7 @@ class User {
           .then((user) => {
             if (!user.rows[0]) {
               res.status(404).json({
-                status: 'fail',
+                success: 'false',
                 message: 'User not found',
               });
             }
@@ -74,14 +71,14 @@ class User {
               .compareSync(password.trim(), user.rows[0].password);
             if (!checkPassword) {
               return res.status(400).json({
-                status: 'fail',
+                success: 'false',
                 message: 'Wrong password',
               });
             }
             const authToken = auth.token(user.rows[0]);
             client.release();
             return res.status(200).json({
-              status: 'success',
+              success: 'true',
               message: 'Sign in successful',
               token: authToken,
             });
@@ -89,7 +86,7 @@ class User {
           .catch((err) => {
             client.release();
             return res.status(500).json({
-              status: 'error',
+              success: 'false',
               message: 'oops!something went wrong!',
               err,
             });
@@ -109,7 +106,7 @@ class User {
           .then((requests) => {
             if (!requests.rows) {
               return res.status(404).json({
-                status: 'fail',
+                success: 'false',
                 message: 'Request not found',
               });
             }
@@ -146,7 +143,7 @@ class User {
           .then((request) => {
             if (!request.rows[0]) {
               res.status(404).json({
-                status: 'fail',
+                success: 'false',
                 message: 'Request not found',
               });
             }
@@ -211,7 +208,7 @@ class User {
           .then((request) => {
             client.release();
             res.status(201).json({
-              status: 'success',
+              success: 'true',
               message: 'Request updated successfully',
               request: request.rows[0],
             });

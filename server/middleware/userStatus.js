@@ -11,7 +11,6 @@ const validateRequest = (req, res, next) => {
     .then((client) => {
       return client.query(Query)
         .then((request) => {
-          console.log(request);
           if (request.rows[0].status !== 'pending') {
             return res.status(403).json({
               status: 'fail',
