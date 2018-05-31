@@ -21,7 +21,7 @@ class User {
        * @memberof Users
        */
   /* create users */
-  create(req, res) {
+  create(req, res, next) {
     const salt = bcrypt.genSaltSync(Math.floor(Math.random() * 5));
 
     const {
@@ -37,14 +37,13 @@ class User {
     db.connect()
       .then((client) => {
         return client.query(Query)
-          .then((user) => {
-            res.status(200).json({
-              success: 'true',
-              message: `Account Created for ${firstName} ${lastName}`
-            });
+          .then(() => {
+            client.release();
+            return next();
           })
           .catch((error) => {
-            res.status(400).json({
+            client.release();
+            return res.status(400).json({
               success: 'false',
               message: `could not create for ${firstName} ${lastName} because email already exist`,
             });
