@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 import path from 'path';
+import cors from 'cors';
 // import serveStatic from 'serve-static';
 import requestRouter from './routes/request';
 import userRouter from './routes/userAccount';
@@ -10,6 +11,7 @@ import userRouter from './routes/userAccount';
 const app = express();
 app.use(compression());
 app.use(helmet());
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
