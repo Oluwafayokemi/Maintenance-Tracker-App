@@ -14,10 +14,15 @@ const isRequest = (req, res, next) => {
     text: 'SELECT * FROM requests WHERE Id = $1',
     values: [Id],
   };
+  db.on('error', (err, client) => {
+    res.json('Unexpected error on idle client', err);
+    process.exit(-1);
+  });
   db.connect()
     .then(client => client.query(Query)
-      .then((requests) => {
-        if (!requests.rows[0]) {
+      .then((request) => {
+        if (!request.rows[0]) {
+          client.release();
           return res.status(404).json({
             success: 'false',
             message: 'Request not found',
@@ -27,7 +32,8 @@ const isRequest = (req, res, next) => {
         return next();
       })
       .catch((error) => {
-        res.status(400).json({
+        client.release();
+        return res.status(400).json({
           success: 'false',
           message: 'could not retrieve requests',
         });

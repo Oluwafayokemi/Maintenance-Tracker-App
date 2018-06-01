@@ -36,7 +36,7 @@ class Validation {
     }
 
     return res.status(400).json({
-      message: 'one or more required field is/are missing',
+      message: 'Access Denied',
       statusCode: 400,
       error,
     });
@@ -74,7 +74,7 @@ class Validation {
     }
 
     return res.status(400).json({
-      message: 'one or more required field is/are missing',
+      message: 'Access Denied',
       statusCode: 400,
       error,
     });
@@ -125,7 +125,7 @@ class Validation {
     }
 
     return res.status(400).send({
-      message: 'one or more required field is/are missing',
+      message: 'Access Denied',
       statusCode: 400,
       error,
     });

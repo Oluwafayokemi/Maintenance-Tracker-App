@@ -31,6 +31,10 @@ class User {
       values: [firstName, lastName, email, department, encryptedPassword],
     };
 
+    db.on('error', (err, client) => {
+      res.json('Unexpected error on idle client', err);
+      process.exit(-1);
+    });
     db.connect()
       .then((client) => {
         return client.query(Query)
@@ -56,11 +60,18 @@ class User {
       text: 'SELECT * FROM users WHERE email = $1',
       values: [email],
     };
+
+    db.on('error', (err, client) => {
+      res.json('Unexpected error on idle client', err)
+      process.exit(-1);
+    });
+
     db.connect()
       .then((client) => {
         return client.query(Query)
           .then((user) => {
             if (!user.rows[0]) {
+              client.release();
               res.status(404).json({
                 success: 'false',
                 message: 'User not found',
@@ -70,12 +81,14 @@ class User {
             const checkPassword = bcrypt
               .compareSync(password.trim(), user.rows[0].password);
             if (!checkPassword) {
+              client.release();
               return res.status(400).json({
                 success: 'false',
                 message: 'Wrong password',
               });
             }
             const authToken = auth.token(user.rows[0]);
+            client.release();
             return res.status(200).json({
               success: 'true',
               message: 'Sign in successful',
@@ -99,16 +112,23 @@ class User {
       text: 'SELECT * FROM requests WHERE email = $1',
       values: [req.body.token.email],
     };
+    db.on('error', (err, client) => {
+      res.json('Unexpected error on idle client', err)
+      process.exit(-1);
+    });
+
     db.connect()
       .then((client) => {
         return client.query(Query)
           .then((requests) => {
             if (!requests.rows) {
+              client.release();
               return res.status(404).json({
                 success: 'false',
                 message: 'Request not found',
               });
             }
+            client.release();
             return res.status(200).json({
               success: 'true',
               message: 'all requests retrieved successfully',
@@ -117,10 +137,9 @@ class User {
           })
           .catch((error) => {
             client.release();
-            res.status(400).json({
+          return res.status(400).json({
               success: 'false',
               message: 'could not retrieve requests',
-              error,
             });
           });
       });
@@ -134,17 +153,25 @@ class User {
       text: 'SELECT * FROM requests WHERE email = $1 AND Id = $2 ',
       values: [email, Id],
     };
+
+    db.on('error', (err, client) => {
+      res.json('Unexpected error on idle client', err);
+      process.exit(-1);
+    });
+
     db.connect()
       .then((client) => {
         return client.query(Query)
           .then((request) => {
             if (!request.rows[0]) {
-              res.status(404).json({
+              client.release();
+            return res.status(404).json({
                 success: 'false',
                 message: 'Request not found',
               });
             }
-            res.status(200).json({
+            client.release();
+            return res.status(200).json({
               success: 'true',
               message: 'Request retrieved successfully',
               request: request.rows[0],
@@ -152,10 +179,9 @@ class User {
           })
           .catch((error) => {
             client.release();
-            res.status(400).json({
+            return res.status(400).json({
               success: 'false',
-              message: 'could not retrieve request',
-              error,
+              message: 'could not retrieve request'
             });
           });
       });
@@ -169,10 +195,16 @@ class User {
       values: [option, description, email, 'pending'],
     };
 
+    db.on('error', (err, client) => {
+      res.json('Unexpected error on idle client', err)
+      process.exit(-1);
+    });
+
     db.connect()
       .then((client) => {
         return client.query(Query)
           .then((user) => {
+            client.release();
             res.status(201).json({
               success: 'true',
               message: 'Request created successfully',
@@ -181,7 +213,7 @@ class User {
           })
           .catch((error) => {
             client.release();
-            res.status(400).json({
+           return res.status(400).json({
               success: 'false',
               message: 'Request not created',
               error,
@@ -198,19 +230,26 @@ class User {
       text: 'UPDATE requests SET option = $1, description = $2 WHERE email = $3 AND Id = $4',
       values: [option, description, email, Id],
     };
+
+    db.on('error', (err, client) => {
+      res.json('Unexpected error on idle client', err);
+      process.exit(-1);
+    });
+
     db.connect()
       .then((client) => {
         return client.query(Query)
           .then((request) => {
             client.release();
-            res.status(201).json({
+            return res.status(201).json({
               success: 'true',
               message: 'Request updated successfully',
               request: request.rows[0],
             });
           })
           .catch((error) => {
-            res.status(400).json({
+            client.release();
+            return res.status(400).json({
               success: 'false',
               message: 'Request not updated',
               error,
