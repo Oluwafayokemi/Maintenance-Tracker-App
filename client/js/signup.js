@@ -29,9 +29,16 @@ signupForm.onsubmit = (e) => {
   });
 
   fetch(request)
-    .then(response => response.json()).then((user) => {
+    .then(response => response.json())
+    .then((user) => {
       localStorage.setItem('token', user.token);
-      localStorage.setItem('email', user.email);
+      localStorage.setItem('email', newUser.email);
+      if (user.token.isadmin) {
+        window.location.href = 'user.index.html';
+      }
+      else {
+        window.location.href = 'admin.index.html';
+      }
     })
     .catch(err => alert('somehting went wrong', err));
 };

@@ -7,8 +7,9 @@ import isRequest from '../middleware/isRequest';
 const router = express.Router();
 
 router.get('/api/v1/requests', authenticate, roleAuth, Request.getAll)
-  .put('/api/v1/requests/:id/approve', authenticate, isRequest, roleAuth, Request.approve)
-  .put('/api/v1/requests/:id/disapprove', authenticate, roleAuth, isRequest, Request.disapprove)
-  .put('/api/v1/requests/:id/resolve', authenticate, roleAuth, isRequest, Request.resolve);
+  .get('/api/v1/requests/:id', authenticate, roleAuth, Request.getOne)
+  .put('/api/v1/requests/:id/approve', authenticate, roleAuth, isRequest.isResolved, Request.approve)
+  .put('/api/v1/requests/:id/disapprove', authenticate, roleAuth, isRequest.isResolved, Request.disapprove)
+  .put('/api/v1/requests/:id/resolve', authenticate, roleAuth, isRequest.resolveCheck, Request.resolve);
 
-module.exports = router;
+export default router;

@@ -3,7 +3,7 @@ import db from '../models/index';
 import auth from '../middleware/auth';
 
 const getToken = (req, res) => {
-  const { email, password, firstName, lastName, department } = req.body;
+  const { email, password, firstName, lastName, department, isadmin } = req.body;
   const Query = {
     // give the query a unique name
     name: 'fetch-user',
@@ -37,11 +37,11 @@ const getToken = (req, res) => {
           message: 'Sign up successful',
           token: authToken,
           newUser: {
-            id: user.rows[0].id,
-            firstName,
-            lastName,
-            email,
-            department,
+            firstName: user.rows[0].firstname,
+            lastName: user.rows[0].lastname,
+            email: user.rows[0].email,
+            department: user.rows[0].department,
+            isAdmin: user.rows[0].isadmin,
           },
         });
       })

@@ -13,11 +13,6 @@ class Request {
   * @description Admin request page.
   */
   getAll(req, res) {
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
-
     db.connect()
       .then(client => client.query('SELECT * from requests')
         .then((requests) => {
@@ -44,96 +39,146 @@ class Request {
           });
         }));
   }
-  // When this route is called status  === pending
-  approve(req, res) {
-    const Id = parseInt(req.params.id, 10);
+
+  getOne(req, res) {
+    const requestid = parseInt(req.params.id, 10);
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE Id = $2',
-      values: ['approved', Id],
+      name: 'fetch-user',
+      text: 'SELECT * FROM requests WHERE requestid = $1',
+      values: [requestid],
     };
 
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
+    db.connect()
+      .then(client => client.query(Query)
+        .then((requests) => {
+          if (!requests.rows[0]) {
+            client.release();
+            return res.status(404).json({
+              success: 'false',
+              message: 'Request not found',
+            });
+          }
+          client.release();
+          return res.status(200).json({
+            success: 'true',
+            message: 'all requests retrieved successfully',
+            requests: requests.rows[0],
+          });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            success: 'false',
+            message: 'could not retrieve requests',
+            error,
+          });
+        }));
+  }
+
+  // When this route is called status  === pending
+  approve(req, res) {
+    const requestid = parseInt(req.params.id, 10);
+    const Query = {
+      text: 'UPDATE requests SET status = $1 WHERE requestid= $2 RETURNING userid, equipment, description, status',
+      values: ['approved', requestid],
+    };
+
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          if (!request.rows[0]) {
+            client.release();
+            return res.status(404).json({
+              success: 'false',
+              message: 'Request not found',
+            });
+          // } else if (request.rows[0].status === 'resolved') {
+          //   client.release();
+          //   return res.status(400).json({
+          //     success: 'false',
+          //     message: 'Resolved request can not be approved',
+          //   });
+          }
           client.release();
-          res.status(201).json({
+          return res.status(201).json({
             success: 'true',
             message: 'Request has been approved',
+            updatedRequest: request.rows[0],
           });
         })
         .catch((error) => {
           client.release();
           res.status(400).json({
             success: 'false',
-            message: 'Request not updated',
+            message: 'invalid request',
             error,
           });
         }));
   }
 
   disapprove(req, res) {
-    const Id = parseInt(req.params.id, 10);
+    const requestid = parseInt(req.params.id, 10);
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE Id = $2',
-      values: ['disapproved', Id],
+      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING equipment, description, status',
+      values: ['disapproved', requestid],
     };
-
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
 
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          if (!request.rows[0]) {
+            client.release();
+            return res.status(404).json({
+              success: 'false',
+              message: 'Request not found',
+            });
+          }
           client.release();
-          res.status(201).json({
+          return res.status(201).json({
             success: 'true',
             message: 'Request has been dissapproved',
-            request: request.rows[0],
+            updatedRequest: request.rows[0],
           });
         })
         .catch((error) => {
           client.release();
-          res.status(400).json({
+          return res.status(400).json({
             success: 'false',
-            message: 'Request not updated',
+            message: 'invalid request',
             error,
           });
         }));
   }
 
   resolve(req, res) {
-    const Id = parseInt(req.params.id, 10);
+    const requestid = parseInt(req.params.id, 10);
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE Id = $2',
-      values: ['resolved', Id],
+      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING userid, equipment, description, status',
+      values: ['resolved', requestid],
     };
-
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
 
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          if (!request.rows[0]) {
+            client.release();
+            return res.status(404).json({
+              success: 'false',
+              message: 'Request not found',
+            });
+          }
           client.release();
-          res.status(201).json({
+          return res.status(201).json({
             success: 'true',
             message: 'Request has been resolved',
-            request: request.rows[0],
+            updatedRequest: request.rows[0],
           });
         })
         .catch((error) => {
           client.release();
-          res.status(400).json({
+          return res.status(400).json({
             success: 'false',
-            message: 'Request not updated',
+            message: 'invalid request',
             error,
           });
         }));

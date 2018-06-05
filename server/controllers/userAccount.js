@@ -10,7 +10,6 @@ dotenv.config();
  * @export
  * @class user
  */
-
 class User {
   /**
  * @param {object} request - HTTP User
@@ -27,29 +26,24 @@ class User {
     const encryptedPassword = bcrypt.hashSync(password, salt);
 
     const Query = {
-      text: 'INSERT INTO users (firstName, lastName, email,  department, password) VALUES($1, $2, $3, $4, $5)',
+      text: 'INSERT INTO users (firstName, lastName, email,  department, password) VALUES($1, $2, $3, $4, $5) RETURNING firstName, lastName, isAdmin, email, department',
       values: [firstName, lastName, email, department, encryptedPassword],
     };
 
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then(() => {
-            client.release();
-            return next();
-          })
-          .catch((error) => {
-            client.release();
-            return res.status(400).json({
-              success: 'false',
-              message: `could not create for ${firstName} ${lastName} because email already exist`,
-            });
+      .then(client => client.query(Query)
+        .then((user) => {
+          client.release();
+          return next();
+        })
+        .catch((err) => {
+          client.release();
+          return res.status(500).json({
+            success: 'false',
+            message: 'oops!something went wrong!',
+            err,
           });
-      });
+        }));
   }
 
   login(req, res) {
@@ -61,201 +55,175 @@ class User {
       values: [email],
     };
 
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err)
-      process.exit(-1);
-    });
-
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((user) => {
-            if (!user.rows[0]) {
-              client.release();
-              res.status(404).json({
-                success: 'false',
-                message: 'User not found',
-              });
-            }
-
-            const checkPassword = bcrypt
-              .compareSync(password.trim(), user.rows[0].password);
-            if (!checkPassword) {
-              client.release();
-              return res.status(400).json({
-                success: 'false',
-                message: 'Wrong password',
-              });
-            }
-            const authToken = auth.token(user.rows[0]);
+      .then(client => client.query(Query)
+        .then((user) => {
+          if (!user.rows[0]) {
             client.release();
-            return res.status(200).json({
-              success: 'true',
-              message: 'Sign in successful',
-              token: authToken,
-            });
-          })
-          .catch((err) => {
-            client.release();
-            return res.status(500).json({
+            return res.status(404).json({
               success: 'false',
-              message: 'oops!something went wrong!',
-              err,
+              message: 'User not found',
             });
+          }
+
+          const userPassword = bcrypt
+            .compareSync(password.trim(), user.rows[0].password);
+          if (!userPassword) {
+            client.release();
+            return res.status(400).json({
+              success: 'false',
+              message: 'Wrong password',
+            });
+          }
+          const authToken = auth.token(user.rows[0]);
+          client.release();
+          return res.status(200).json({
+            success: 'true',
+            message: 'Sign in successful',
+            token: authToken,
+            user: {
+              firstName: user.rows[0].firstname,
+              lastName: user.rows[0].lastname,
+              email: user.rows[0].email,
+              department: user.rows[0].department,
+              isAdmin: user.rows[0].isadmin,
+            },
           });
-      });
+        })
+        .catch((err) => {
+          client.release();
+          return res.status(500).json({
+            success: 'false',
+            message: 'oops!something went wrong!',
+            err,
+          });
+        }));
   }
 
   getAllRequest(req, res) {
     const Query = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE email = $1',
-      values: [req.body.token.email],
+      text: 'SELECT * FROM requests WHERE userid = $1',
+      values: [req.body.token.userid],
     };
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err)
-      process.exit(-1);
-    });
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((requests) => {
-            if (!requests.rows) {
-              client.release();
-              return res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query(Query)
+        .then((requests) => {
+          if (!requests.rows) {
             client.release();
-            return res.status(200).json({
-              success: 'true',
-              message: 'all requests retrieved successfully',
-              requests: requests.rows,
-            });
-          })
-          .catch((error) => {
-            client.release();
-          return res.status(400).json({
+            return res.status(404).json({
               success: 'false',
-              message: 'could not retrieve requests',
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(200).json({
+            success: 'true',
+            message: 'all requests retrieved successfully',
+            requests: requests.rows,
           });
-      });
+        })
+        .catch(() => {
+          client.release();
+          return res.status(400).json({
+            success: 'false',
+            message: 'could not retrieve requests',
+          });
+        }));
   }
 
   getOneRequest(req, res) {
-    const Id = parseInt(req.params.id, 10);
-    const { email } = req.body.token;
+    const requestid = parseInt(req.params.id, 10);
+    const { userid } = req.body.token;
     const Query = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE email = $1 AND Id = $2 ',
-      values: [email, Id],
+      text: 'SELECT * FROM requests WHERE requestid = $1 AND userid = $2 ',
+      values: [requestid, userid],
     };
 
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
-
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            if (!request.rows[0]) {
-              client.release();
+      .then(client => client.query(Query)
+        .then((request) => {
+          if (!request.rows[0]) {
+            client.release();
             return res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
-            client.release();
-            return res.status(200).json({
-              success: 'true',
-              message: 'Request retrieved successfully',
-              request: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            return res.status(400).json({
               success: 'false',
-              message: 'could not retrieve request'
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(200).json({
+            success: 'true',
+            message: 'Request retrieved successfully',
+            request: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            success: 'false',
+            message: 'could not retrieve request',
+            error,
+          });
+        }));
   }
 
   createRequest(req, res) {
-    const { email } = req.body.token;
-    const { option, description } = req.body;
+    const { userid } = req.body.token;
+    const { equipment, description } = req.body;
     const Query = {
-      text: 'INSERT INTO requests(option, description, email, status) VALUES($1, $2, $3, $4) RETURNING option, description, status',
-      values: [option, description, email, 'pending'],
+      text: 'INSERT INTO requests(equipment, description, userid, status) VALUES($1, $2, $3, $4) RETURNING equipment, description, status',
+      values: [equipment, description, userid, 'pending'],
     };
 
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err)
-      process.exit(-1);
-    });
-
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((user) => {
-            client.release();
-            res.status(201).json({
-              success: 'true',
-              message: 'Request created successfully',
-              request: user.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-           return res.status(400).json({
-              success: 'false',
-              message: 'Request not created',
-              error,
-            });
+      .then(client => client.query(Query)
+        .then((request) => {
+          client.release();
+          return res.status(201).json({
+            success: 'true',
+            message: 'Request created successfully',
+            request: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            success: 'false',
+            message: 'Request not created',
+            error,
+          });
+        }));
   }
 
   updateRequest(req, res) {
-    const Id = parseInt(req.params.id, 10);
-    const { email } = req.body.token;
-    const { option, description } = req.body;
+    const requestid = parseInt(req.params.id, 10);
+    const { userid } = req.body.token;
+    const { equipment, description } = req.body;
     const Query = {
-      text: 'UPDATE requests SET option = $1, description = $2 WHERE email = $3 AND Id = $4',
-      values: [option, description, email, Id],
+      text: 'UPDATE requests SET equipment = $1, description = $2 WHERE userid = $3 AND requestid = $4 RETURNING equipment, description, status',
+      values: [equipment, description, userid, requestid],
     };
 
-    db.on('error', (err, client) => {
-      res.json('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
-
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            client.release();
-            return res.status(201).json({
-              success: 'true',
-              message: 'Request updated successfully',
-              request: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            return res.status(400).json({
-              success: 'false',
-              message: 'Request not updated',
-              error,
-            });
+      .then(client => client.query(Query)
+        .then((request) => {
+          client.release();
+          return res.status(201).json({
+            success: 'true',
+            message: `Request on ${equipment} updated successfully`,
+            request: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            success: 'false',
+            message: 'Request not updated',
+            error,
+          });
+        }));
   }
 }
 

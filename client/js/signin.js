@@ -1,34 +1,36 @@
-const loginForm = document.getElementById('sign-in'); // get the form id//
-const apiURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
+const loginForm = document.getElementById('signin-form'); // get the form id//
+const signinURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
+
 loginForm.onsubmit = (e) => {
   e.preventDefault();
 
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const user = {
+  const email = document.getElementById('signin').value;
+  const password = document.getElementById('psw').value;
+  const existingUser = {
     email,
     password,
   };
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
 
-  headers.set('Content-Type', 'application/json');
-
-  const request = new Request(`${apiURL}/api/v1/auth/login`, {
+  const request = new Request(`${signinURL}/api/v1/auth/login`, {
     method: 'POST',
-    headers: new Headers({
+    headers: {
       'Content-Type': 'application/json',
-    }),
-    body: JSON.stringify(user),
+    },
+    body: JSON.stringify(existingUser),
   });
 
   fetch(request)
     .then(response => response.json())
-    .then((newUser) => {
-      localStorage.setItem('token', newUser.token);
-      localStorage.setItem('email', newUser.email);
+    .then((user) => {
+      localStorage.setItem('token', user.token);
+      localStorage.setItem('email', existingUser.email);
 
-      window.location.href = 'admin.index.html';
+      if (user.isadmin) {
+        window.location.href = 'user.index.html';
+      }
+      else {
+        window.location.href = 'admin.index.html';
+      }
     })
-    .catch(err => alert(err))
+    .catch(err => alert('somehting went wrong', err));
 };

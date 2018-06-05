@@ -17,7 +17,7 @@ class Validation {
      */
   validateRequest(req, res, next) {
     const requestRules = {
-      option: 'required|string',
+      equipment: 'required|string',
       description: 'required|string',
     };
 
@@ -26,17 +26,17 @@ class Validation {
 
     const error = {};
     const description = validate.errors.first('description');
-    const option = validate.errors.first('option');
+    const equipment = validate.errors.first('equipment');
 
     if (description) {
       error.description = description;
     }
-    if (option) {
-      error.option = option;
+    if (equipment) {
+      error.equipment = equipment;
     }
 
     return res.status(400).json({
-      message: 'Access Denied',
+      message: 'Invalid Input',
       statusCode: 400,
       error,
     });
@@ -74,7 +74,7 @@ class Validation {
     }
 
     return res.status(400).json({
-      message: 'Access Denied',
+      message: 'Invalid Input',
       statusCode: 400,
       error,
     });
@@ -125,7 +125,7 @@ class Validation {
     }
 
     return res.status(400).send({
-      message: 'Access Denied',
+      message: 'Invalid Input',
       statusCode: 400,
       error,
     });
