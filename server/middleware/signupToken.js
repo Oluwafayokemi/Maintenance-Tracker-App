@@ -3,7 +3,7 @@ import db from '../models/index';
 import auth from '../middleware/auth';
 
 const getToken = (req, res) => {
-  const { email, password, firstName, lastName, department, isadmin } = req.body;
+  const { email, password } = req.body;
   const Query = {
     // give the query a unique name
     name: 'fetch-user',

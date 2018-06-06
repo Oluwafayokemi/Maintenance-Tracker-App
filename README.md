@@ -44,12 +44,12 @@ API Routes Endpoints
 For Requests
 - POST '/api/v1/auth/signup' Sign up as a new user
 - POST '/api/v1/auth/login' Login as an existing user
-- POST '/api/v1/users/requests' Fetch all the requests of a logged in user
-- GET '/api/v1/users/requests/<requestId>'  Fetch a request that belongs to a logged in user
 - POST '/api/v1/users/requests' Create a request
-- PUT '/api/v1/users/requests/<requestId>' Modify a request
+- GET '/api/v1/users/requests' Fetch all the requests of a logged in user
+- GET '/api/v1/users/requests/:requestId'  Fetch a request that belongs to a logged in user
+- PUT '/api/v1/users/requests/:requestId' Modify a request
 - GET '/api/v1/requests' Gets all request on the database
-- PUT '/api/v1/request/<requestId>/approve' onClick sets a request as approved
-- PUT '/api/v1/request/<requestId>/dissaprove' onClick sets a request to dissaproved
-- PUT 'api/v1/request/<requestId>/resolve' onClick sets a request to resolved
+- PUT '/api/v1/request/:requestId/approve' onClick sets a request as approved
+- PUT '/api/v1/request/:requestId/disapprove' onClick sets a request to dissaproved
+- PUT 'api/v1/request/:requestId/resolve' onClick sets a request to resolved
 
