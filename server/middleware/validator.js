@@ -17,7 +17,7 @@ class Validation {
      */
   validateRequest(req, res, next) {
     const requestRules = {
-      option: 'required|string',
+      equipment: 'required|string',
       description: 'required|string',
     };
 
@@ -26,17 +26,17 @@ class Validation {
 
     const error = {};
     const description = validate.errors.first('description');
-    const option = validate.errors.first('option');
+    const equipment = validate.errors.first('equipment');
 
     if (description) {
       error.description = description;
     }
-    if (option) {
-      error.option = option;
+    if (equipment) {
+      error.equipment = equipment;
     }
 
     return res.status(400).json({
-      message: 'a required field is missing',
+      message: 'Invalid Input',
       statusCode: 400,
       error,
     });
@@ -55,7 +55,7 @@ class Validation {
   validateLogin(req, res, next) {
     const validateLogin = {
       email: 'required|email',
-      password: 'required|string'
+      password: 'required|string|min:5|max:10',
     };
 
     const validate = new Validator(req.body, validateLogin);
@@ -74,7 +74,7 @@ class Validation {
     }
 
     return res.status(400).json({
-      message: 'a required field is missing',
+      message: 'Invalid Input',
       statusCode: 400,
       error,
     });
@@ -93,9 +93,9 @@ class Validation {
     const validation = {
       firstName: 'required|string',
       lastName: 'required|string',
-      email: 'required|string',
+      email: 'required|email',
       department: 'required|string',
-      password: 'required|string',
+      password: 'required|string|min:5|max:10',
     };
 
     const validate = new Validator(req.body, validation);
@@ -125,7 +125,7 @@ class Validation {
     }
 
     return res.status(400).send({
-      message: 'a required field is missing',
+      message: 'Invalid Input',
       statusCode: 400,
       error,
     });

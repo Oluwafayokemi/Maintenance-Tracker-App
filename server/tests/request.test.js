@@ -38,6 +38,21 @@ describe('Get request for an admin', () => {
           });
       });
     });
+    describe('/GET /api/v1/requests/:id', () => {
+      it('should return 200 response for getting all users requests', (done) => {
+        request
+          .get('/api/v1/requests/1')
+          .set('x-access-token', decodedToken)
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.haveOwnProperty('message').to.equal('all requests retrieved successfully');
+            // expect(res.body.equipment).to.equal('generator');
+            // expect(res.body.description).to.equal('Generator goes off always');
+            done();
+          });
+      });
+    });
 
     describe('/PUT /api/v1/requests', () => {
       it('should return 200 response for approved update', (done) => {
@@ -52,9 +67,9 @@ describe('Get request for an admin', () => {
           });
       });
 
-      it('should return 200 response for dissaproved update', (done) => {
+      it('should return 200 response for disapproved update', (done) => {
         request
-          .put('/api/v1/requests/1/dissaprove')
+          .put('/api/v1/requests/1/disapprove')
           .set('x-access-token', decodedToken)
           .end((err, res) => {
             expect(res.status).to.equal(201);
@@ -66,7 +81,7 @@ describe('Get request for an admin', () => {
 
       it('should return 200 response for resolved update', (done) => {
         request
-          .put('/api/v1/requests/1/resolve')
+          .put('/api/v1/requests/2/resolve')
           .set('x-access-token', decodedToken)
           .end((err, res) => {
             expect(res.status).to.equal(201);

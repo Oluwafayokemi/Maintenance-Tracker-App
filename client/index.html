@@ -23,14 +23,14 @@
 			<div class="nav">
 				<nav role="navigation">
 					<ul class="rform">
-						<form class="one" action="">
+						<form id="signin-form" class="one" action="">
 							<li class="hide2">Sign In</li>
 							<li>
 								<div class="email">
 									<label for="email">
 										<strong>Email</strong>
 									</label>
-									<input type="email" placeholder="Enter Email" name="email" required>
+									<input type="email" id="signin" placeholder="Enter Email" name="email" required>
 								</div>
 							</li>
 							<li>
@@ -38,11 +38,11 @@
 									<label for="password">
 										<strong>Password</strong>
 									</label>
-									<input type="password" placeholder="Enter Password" name="password" required>
+									<input type="password" id="psw" placeholder="Enter Password" name="password" required>
 								</div>
 							</li>
-							<button>
-								<a class="btn" href="admin.index.html">Login</a>
+							<button type="submit">
+								Login
 							</button>
 						</form>
 					</ul>
@@ -62,31 +62,44 @@
 			<div class="col-6 allbody three">
 				<h1>Create a new account</h1>
 				<p>It's free and always will be.</p>
-				<form class="form menu">
+				<form class="form menu" id="signup-form">
 					<div class="container">
-						<label for="name">
-							<b>Name</b>
+						<label for="firstName">
+							<b>First Name</b>
 						</label>
-						<input type="text" placeholder="Enter Name" name="name" required>
+						<input type="text" id="firstName" placeholder="Enter First Name" name="firstName" required>
+
+						<label for="lastName">
+							<b>Last Name</b>
+						</label>
+						<input type="text" id="lastName" placeholder="Enter Last Name" name="lastName" required>
+
+						<label for="department">
+							<b>Department</b>
+						</label>
+						<input type="text" id="department" placeholder="Department" name="department" required>
 
 						<label for="email">
 							<b>Email</b>
 						</label>
-						<input type="email" placeholder="Enter email" name="email" required>
+						<input type="email" id="email" placeholder="Enter email" name="email" required>
 
 						<label for="password">
 							<b>Password</b>
 						</label>
-						<input type="password" placeholder="Enter Password" name="password" required>
+						<input type="password" id="password" placeholder="Enter Password" name="password" required>
 
 						<button type="submit">
-							<a href="user.index.html">Register</a>
+							Register
 						</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script src="./js/signup.js"></script>
+	<script src="./js/signin.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/zl-fetch"></script> -->
 </body>
 
 </html>
