@@ -5,11 +5,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Maintenance-Tracker-App</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+	<link rel="stylesheet" href="./css/logs.css">
 	<link rel="stylesheet" href="./css/flex.css">
+	<title>Users Profile</title>
 </head>
 
 <body>
@@ -25,13 +24,9 @@
 					<div class="hide collapsible">
 						<i class="fas fa-bars"></i>
 					</div>
-
 					<ul class="ul">
 						<li>
 							<a href="user.index.html">Home</a>
-						</li>
-						<li>
-							<a href="logs.html">Logs</a>
 						</li>
 						<li>
 							<a href="index.html">Sign In</a>
@@ -44,31 +39,120 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-12">
-			<div class="slider">
-				<ul id="slides">
-					<li class="slide showing">Furniture Maintenance</li>
-					<li class="slide">Computers</li>
-					<li class="slide">Electrical Appliances</li>
-					<li class="slide">Generators</li>
-					<li class="slide">Machineries and Equipment</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<div class="col-8 text">
-				<h2 class="col-3">Welcome to the Maintenance Tracker Site!</h2>
-				<h3 class="col-2">Here you have the priviledge of reporting to us on any issue concerning the management of the company's equipment</h3>
-				<h3 class="col3">If you notice any damage, please do report early to prevent worse damages</h3>
-			</div>
-		</div>
-	</div>
-	</div>
+	<div class="main col-12">
+		<div class="modal" id="modal">
+			<div class="modal-section" id="setup1">
+				<span>
+					<a href="#" onclick="toggleModal('setup1')">&times;</a>
+				</span>
+				<div class="padding col-12">
+					<table>
+						<tr>
+							<th>Id</th>
+							<th>Date</th>
+							<th>Equipment</th>
+							<th>Description</th>
+							<th>status</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>15/5/2017</td>
+							<td>Air condition</td>
+							<td>Air condition failing to start</td>
+							<td class="status"> pending</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>15/5/2017</td>
+							<td>Air condition</td>
+							<td>Air condition failing to start</td>
+							<td class="status"> pending</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>15/5/2017</td>
+							<td>Air condition</td>
+							<td>Air condition failing to start</td>
+							<td class="status"> pending</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>15/5/2017</td>
+							<td>Air condition</td>
+							<td>Air condition failing to start</td>
+							<td class="status"> pending</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>15/5/2017</td>
+							<td>Air condition</td>
+							<td>Air condition failing to start</td>
+							<td class="status"> pending</td>
+						</tr>
 
-	<script type="text/javascript" src="./js/script.js"></script>
+					</table>
+
+				</div>
+			</div>
+			<div class="modal-section" id="setup2">
+				<span>
+					<a href="#" onclick="toggleModal('setup2')">&times;</a>
+				</span>
+				<form action="/action_page.php">
+					<div class="form">
+						<h1>Make Your Request</h1>
+						<p>Please fill in this form to make a request.</p>
+						<hr>
+
+						<label for="name">
+							<strong>Name</strong>
+						</label>
+						<input type="text" placeholder="Name" name="name" required>
+
+						<label for="department">
+							<strong>Department</strong>
+						</label>
+						<input type="text" placeholder="Department" name="department" required>
+
+						<label for="option">
+							<strong>Option</strong>
+						</label>
+						<select id="equipment" name="option">
+							<option value="air">Air condition</option>
+							<option value="fur">Furniture</option>
+							<option value="gen">Generator</option>
+							<option value="ele">Electricity</option>
+							<option value="pai">Paintings</option>
+							<option value="com">computers</option>
+							<option value="pri">Printers</option>
+							<option value="ups">UPS</option>
+							<option value="cam">Camera</option>
+							<option value="oth">Others</option>
+						</select>
+
+
+						<label for="textarea">
+							<strong>Description</strong>
+						</label>
+						<textarea name="textarea" placeholder="Please give a brief description of your report"></textarea>
+
+						<hr>
+						<div class="btn">
+							<button type="submit" class="submitbtn">Submit</button>
+						</div>
+				</form>
+				</div>
+			</div>
+		</div>
+		<button class="collapse collapsible" onclick="toggleModal('setup1')">
+			<h3>Logs of Previous Request</h3>
+		</button>
+		<button class="collapse collapsible" onclick="toggleModal('setup2')">
+			<h3>Make a New Request</h3>
+		</button>
+	</div>
+	<script src="./js/profile.js"></script>
+	<script src="./js/script.js"></script>
 </body>
 
 </html>
