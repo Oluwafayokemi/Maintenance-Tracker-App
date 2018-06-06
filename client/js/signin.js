@@ -27,10 +27,15 @@ loginForm.onsubmit = (e) => {
 
       if (data.user.isAdmin === false) {
         window.location.href = 'user.index.html';
-      }
-      else {
+      } else if (data.user.isAdmin === true) {
         window.location.href = 'admin.index.html';
+      } else {
+        let error = Object.assign({}, {
+          status: response.status,
+          message: response.message,
+        });
+        return Promise.reject(error);
       }
     })
-    .catch(err => alert('somehting went wrong', err));
+    .catch(err => alert(err));
 };
