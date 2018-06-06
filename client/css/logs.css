@@ -50,23 +50,14 @@ form {
     padding: 0 3em;
     background-color: gray;
 }
-.padding table{
-    background: #f1f1f1;
-    color: rgb(48, 21, 146);
-    padding: 1em 2em;
-    margin: 0 auto;
+.padding table {
+    color: white;
 }
+
 li {
     line-height: 1
 }
-table{
-    background: #f1f1f1;
-    border: 2px solid goldenrod;
-    padding: 8px;
-    color: rgb(48, 21, 146);
-    width: 100%;
-    text-align: center;
-}
+
 /* Full-width input fields */
 input[type=text] {
     width: 100%;
@@ -125,4 +116,14 @@ textarea {
 }
 ol {
     list-style: none;
+}
+.right {
+    float: right;
+    color: rgb(48, 21, 146);
+}
+div .right {
+    background: #fff;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: .9px 1em;
 }

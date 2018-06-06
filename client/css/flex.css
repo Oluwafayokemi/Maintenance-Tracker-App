@@ -106,17 +106,16 @@ img {
 table {
     border-collapse: collapse;
     width: 100%;
-    text-align: left;
-    line-height: 3;
 }
-.th,
-.td {
-    /* text-align: left; */
-    padding: 2em;
+th,
+td {
+    text-align: left;
+    padding: 1em;
 }
 
-.tr:nth-child(even) {
-    background-color: #f2f2f2
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    color: rgb(48, 21, 146);
 }
 
 .th {
@@ -252,8 +251,17 @@ li select {
         margin-top: 1.2em;
         width: 100%;
     }
-    .modal-section {
-        width: 50%;
+    .modal-section{
+        margin-top: 7em;
+        width: 100%;
+        top:0;
+        bottom: 0;
+        padding-left: 3em;
+        padding-right: 4em;
+        min-width: 25%
+    }
+    .show {
+        display: block;
     }
     .hide {
         display: block;
@@ -273,4 +281,13 @@ li select {
     .flex-container {
         order: 1
     }
+    table {
+        width: auto;
+    }
+    th,
+    td {
+        text-align: left;
+        padding: 3px;
+    }
+
 }
