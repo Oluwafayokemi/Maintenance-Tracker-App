@@ -71,6 +71,7 @@ class User {
           if (!userPassword) {
             client.release();
             return res.status(400).json({
+              status: 400,
               success: 'false',
               message: 'Wrong password',
             });
@@ -90,12 +91,13 @@ class User {
             },
           });
         })
-        .catch((err) => {
+        .catch((error) => {
           client.release();
           return res.status(500).json({
+            status: 500,
             success: 'false',
             message: 'oops!something went wrong!',
-            err,
+            error,
           });
         }));
   }
@@ -113,6 +115,7 @@ class User {
           if (!requests.rows) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
@@ -127,6 +130,7 @@ class User {
         .catch(() => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'could not retrieve requests',
           });
@@ -148,12 +152,14 @@ class User {
           if (!request.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
           client.release();
           return res.status(200).json({
+            status: 200,
             success: 'true',
             message: 'Request retrieved successfully',
             request: request.rows[0],
@@ -162,6 +168,7 @@ class User {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'could not retrieve request',
             error,
@@ -182,6 +189,7 @@ class User {
         .then((request) => {
           client.release();
           return res.status(201).json({
+            status: 201,
             success: 'true',
             message: 'Request created successfully',
             request: request.rows[0],
@@ -190,6 +198,7 @@ class User {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'Request not created',
             error,
@@ -211,6 +220,7 @@ class User {
         .then((request) => {
           client.release();
           return res.status(201).json({
+            status: 201,
             success: 'true',
             message: `Request on ${equipment} updated successfully`,
             request: request.rows[0],
@@ -219,6 +229,7 @@ class User {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'Request not updated',
             error,

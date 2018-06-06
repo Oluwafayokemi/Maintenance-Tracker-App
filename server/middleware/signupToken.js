@@ -45,12 +45,12 @@ const getToken = (req, res) => {
           },
         });
       })
-      .catch((err) => {
+      .catch((error) => {
         client.release();
         return res.status(500).json({
           success: 'false',
           message: 'oops!something went wrong!',
-          err,
+          error,
         });
       }));
 };

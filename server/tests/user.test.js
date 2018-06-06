@@ -198,7 +198,10 @@ describe('Test user API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('message').to.equal('sign up was successfully created');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Zion');
+          expect(res.body).to.haveOwnProperty('lastName').to.equal('minao');
+          expect(res.body).to.haveOwnProperty('email').to.equal('zion@gmail.com');
+          expect(res.body).to.haveOwnProperty('department').to.equal('mechanical');
           done();
         });
     });
@@ -308,6 +311,10 @@ describe('Test user API', () => {
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('success').to.equal('true');
           expect(res.body).to.haveOwnProperty('message').to.equal('Sign in successful');
+          expect(res.body).to.haveOwnProperty('firsName').to.equal('omotola');
+          expect(res.body).to.haveOwnProperty('lastName').to.equal('adeyina');
+          expect(res.body).to.haveOwnProperty('email').to.equal('omotola@gmail.com');
+          expect(res.body).to.haveOwnProperty('department').to.equal('Water Management');
           done();
         });
     });
