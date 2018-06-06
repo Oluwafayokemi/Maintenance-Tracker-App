@@ -105,12 +105,14 @@ img {
 
 table {
     border-collapse: collapse;
-    width: auto;
+    width: 100%;
+    text-align: left;
+    line-height: 3;
 }
 .th,
 .td {
-    text-align: left;
-    padding: 8px;
+    /* text-align: left; */
+    padding: 2em;
 }
 
 .tr:nth-child(even) {
@@ -159,13 +161,14 @@ li select {
     padding: 1em;
 }
 .modal {
-    margin: 0 auto;
+    margin: 6em auto;
     padding: 0;
     width: 100%;
     min-width: 200px;
-    height: 100%;
+    height: auto;
     position: fixed;
     top: 0;
+    bottom: 0;
     display: none;
     overflow: auto;
 }
@@ -178,10 +181,11 @@ li select {
     margin: auto;
     margin-top: 1.8em;
     border-radius: .5em;
-    background-color: gray;
+    background-color: rgb(48, 21, 146);
     display: none;
     color: #fff;
     margin-right: 3em;
+
 }
 .modal-section span a{
     font-size: 3em; 

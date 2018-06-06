@@ -21,11 +21,11 @@ loginForm.onsubmit = (e) => {
 
   fetch(request)
     .then(response => response.json())
-    .then((user) => {
-      localStorage.setItem('token', user.token);
-      localStorage.setItem('email', existingUser.email);
+    .then((data) => {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('email', data.user.email);
 
-      if (user.isadmin) {
+      if (data.user.isAdmin === false) {
         window.location.href = 'user.index.html';
       }
       else {
