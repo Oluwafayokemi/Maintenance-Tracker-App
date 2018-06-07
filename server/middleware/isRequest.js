@@ -19,26 +19,28 @@ class IsRequest {
     };
 
     db.connect()
-      .then(client => client.query(Query)
-        .then((request) => {
-          if (request.rows[0].status === 'resolved') {
+      .then((client) => {
+        client.query(Query)
+          .then((request) => {
+            if (request.rows[0].status === 'resolved') {
+              client.release();
+              return res.status(400).json({
+                success: 'false',
+                message: 'Request has already been resolved, it can not be approved',
+              });
+            }
+            client.release();
+            return next();
+          })
+          .catch((error) => {
             client.release();
             return res.status(400).json({
               success: 'false',
-              message: 'Request has already been resolved, it can not be approved',
+              message: 'Resoved request can not be edited',
+              err: error,
             });
-          }
-          client.release();
-          return next();
-        })
-        .catch((error) => {
-          client.release();
-          return res.status(400).json({
-            success: 'false',
-            message: 'Resoved request can not be edited',
-            err: error,
           });
-        }));
+      });
   }
 
   resolveCheck(req, res, next) {
@@ -51,26 +53,28 @@ class IsRequest {
     };
 
     db.connect()
-      .then(client => client.query(Query)
-        .then((request) => {
-          if (request.rows[0].status === 'disapproved' || request.rows[0].status === 'pending') {
+      .then((client) => {
+        client.query(Query)
+          .then((request) => {
+            if (request.rows[0].status === 'disapproved' || request.rows[0].status === 'pending') {
+              client.release();
+              res.status(400).json({
+                success: 'false',
+                message: 'Only approved request can be resolved',
+              });
+            }
             client.release();
-            return res.status(400).json({
+            return next();
+          })
+          .catch((error) => {
+            client.release();
+            res.status(400).json({
               success: 'false',
-              message: 'Only approved request can be resolved',
+              message: 'could not retrieve requests',
+              err: error,
             });
-          }
-          client.release();
-          return next();
-        })
-        .catch((error) => {
-          client.release();
-          return res.status(400).json({
-            success: 'false',
-            message: 'could not retrieve requests',
-            err: error,
           });
-        }));
+      });
   }
 }
 const isRequest = new IsRequest();

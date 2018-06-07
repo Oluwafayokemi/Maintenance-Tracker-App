@@ -32,10 +32,10 @@ signupForm.onsubmit = (e) => {
     .then(response => response.json())
     .then((data) => {
       localStorage.setItem('token', data.token);
-      localStorage.setItem('email', data.user.email);
-      if (data.user.isAdmin === false) {
+      localStorage.setItem('email', data.newUser.email);
+      if (data.newUser.isAdmin === false) {
         window.location.href = 'user.index.html';
-      } else if (data.user.isAdmin === true) {
+      } else if (data.newUser.isAdmin === true) {
         window.location.href = 'admin.index.html';
       } else {
         let error = Object.assign({}, {

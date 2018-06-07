@@ -14,7 +14,7 @@ const validateRequest = (req, res, next) => {
         .then((request) => {
           if (request.rows[0].status !== 'pending') {
             client.release();
-            return res.status(403).json({
+            res.status(403).json({
               status: 'fail',
               message: 'bad request.Request can not be accessed!',
             });
@@ -24,7 +24,7 @@ const validateRequest = (req, res, next) => {
         })
         .catch((error) => {
           client.release();
-          res.status(400).json({
+          res.status(401).json({
             status: 'false',
             message: 'could not retrieve request',
             error,

@@ -10,11 +10,11 @@ const request = supertest(app);
 const { expect } = chai;
 const testVariables = new Test();
 const user = {
-  id: 1,
-  firstname: 'fayokemi',
+  id: 2,
+  firstname: 'motola',
   lastname: 'adeyina',
   isadmin: true,
-  email: 'fayoaright@gmail.com',
+  email: 'omotola@gmail.com',
   password: '$2a$10$xyYyMLbzC55twFiAlPiaaOUtLl19iHFngx1.fK55Uc0QGLW5NTXF6',
   department: 'Water Management',
   joined: '2018-05-29T23:00:00.000Z',
@@ -35,7 +35,7 @@ describe('User request endpoints', () => {
           .post('/api/v1/users/requests')
           .set('x-access-token', 'busywuh2uy32hewy32.979ir7493ri4fii')
           .send({
-            option: 'saiolr',
+            equipment: 'saiolr',
             description: 'password',
           })
           .end((err, res) => {
@@ -48,11 +48,11 @@ describe('User request endpoints', () => {
           });
       });
 
-      it('should return 400 response for an empty option field', (done) => {
+      it('should return 400 response for an empty equipment field', (done) => {
         request
           .post('/api/v1/users/requests')
           .send({
-            option: '',
+            equipment: '',
             description: 'password',
           })
           .end((err, res) => {
@@ -67,7 +67,7 @@ describe('User request endpoints', () => {
         request
           .post('/api/v1/users/requests')
           .send({
-            option: 'option',
+            equipment: 'equipment',
             description: '',
           })
           .end((err, res) => {
@@ -78,11 +78,11 @@ describe('User request endpoints', () => {
           });
       });
 
-      it('should return 400 response if option is not a string', (done) => {
+      it('should return 400 response if equipment is not a string', (done) => {
         request
           .post('/api/v1/users/requests')
           .send({
-            option: 8,
+            equipment: 8,
             description: testVariables.demoRequestDescrp,
           })
           .end((err, res) => {
@@ -98,7 +98,7 @@ describe('User request endpoints', () => {
           .post('/api/v1/users/requests')
           .send({
             email: testVariables.demoUserEmail,
-            option: testVariables.demoRequestsOption,
+            equipment: testVariables.demoRequestsOption,
             description: 7,
           })
           .end((err, res) => {
@@ -113,7 +113,7 @@ describe('User request endpoints', () => {
           .post('/api/v1/users/requests')
           .set('x-access-token', decodedToken)
           .send({
-            option: 'option',
+            equipment: 'equipment',
             description: 'desccription',
           })
           .end((err, res) => {
@@ -168,7 +168,7 @@ describe('User request endpoints', () => {
         request
           .put('/api/v1/users/requests/3')
           .send({
-            option: 'option',
+            equipment: 'equipment',
             description: 'desccription',
           })
           .end((err, res) => {
@@ -184,7 +184,7 @@ describe('User request endpoints', () => {
           .put('/api/v1/users/requests/200')
           .set('x-access-token', decodedToken)
           .send({
-            option: 'option',
+            equipment: 'equipment',
             description: 'description',
           })
           .end((err, res) => {
@@ -202,7 +202,7 @@ describe('User request endpoints', () => {
           .put('/api/v1/users/requests/3')
           .set('x-access-token', decodedToken)
           .send({
-            option: 'option',
+            equipment: 'equipment',
             description: 'description',
           })
           .end((err, res) => {

@@ -48,7 +48,8 @@
 /* Add padding to containers */
 form {
     padding: 0 3em;
-    background-color: gray;
+    background-color:  rgb(48, 21, 146);
+
 }
 .padding table {
     color: white;
@@ -126,4 +127,5 @@ div .right {
     margin-top: 1em;
     margin-right: 1em;
     padding: .9px 1em;
+    font-weight: bold;
 }

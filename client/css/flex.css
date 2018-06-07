@@ -107,6 +107,7 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
+
 th,
 td {
     text-align: left;
@@ -289,5 +290,8 @@ li select {
         text-align: left;
         padding: 3px;
     }
-
+    div .right {
+        text-align: center;
+        margin-bottom: 4px;
+    }
 }
