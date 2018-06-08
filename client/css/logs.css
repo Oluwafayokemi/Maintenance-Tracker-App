@@ -101,7 +101,8 @@ select {
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
-    outline: none
+    outline: none;
+    color: rgb(48, 21, 146);
 }
 textarea {
     width: 100%;
@@ -113,7 +114,7 @@ textarea {
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
-    outline: none
+    outline: none;
 }
 ol {
     list-style: none;
@@ -128,4 +129,57 @@ div .right {
     margin-right: 1em;
     padding: .9px 1em;
     font-weight: bold;
+}
+td i{
+ color: white;
+ cursor: pointer;
+ width: 2em;
+}
+td button {
+  background: rgb(48, 21, 146);
+  border: 1px solid goldenrod;
+  margin-right: 1em;
+}
+label textarea {
+    margin-top: 5em;
+}
+/* -----------------------------------modal section for edit request-------------------- */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: goldenrod;
+    margin: 1em 2em; /* 15% from the top and centered */
+    padding: 20px;
+    float: left;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: rgb(48, 21, 146);
+    float: right;
+    font-size: 3em;
+    /* font-weight: bold; */
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(48, 21, 146);
+    text-decoration: none;
+    cursor: pointer;
 }

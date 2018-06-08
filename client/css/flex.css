@@ -114,7 +114,7 @@ td {
     padding: 1em;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even), td button i:nth-child(even) {
     background-color: #f2f2f2;
     color: rgb(48, 21, 146);
 }
@@ -171,6 +171,8 @@ li select {
     bottom: 0;
     display: none;
     overflow: auto;
+    z-index: 1; /* Sit on top */
+
 }
 
 .modal-section {    

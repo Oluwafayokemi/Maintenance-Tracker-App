@@ -146,6 +146,7 @@ class User {
   getOneRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const { userid } = req.body.token;
+
     const Query = {
       name: 'fetch-user',
       text: 'SELECT * FROM requests WHERE requestid = $1 AND userid = $2 ',
@@ -185,11 +186,11 @@ class User {
   }
 
   createRequest(req, res) {
-    const { userid } = req.body.token;
-    const { firstName, lastName, department, equipment, description } = req.body;
+    const { userid, firstname, lastname, email, department } = req.body.token;
+    const { equipment, description } = req.body;
     const Query = {
-      text: 'INSERT INTO requests(firstName, lastName,department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING requestId, firstName, lastName, department, equipment, description, status',
-      values: [firstName, lastName, department, equipment, description, userid, 'pending'],
+      text: 'INSERT INTO requests(firstName, lastName, email, department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestId, firstName, lastName, email, department, equipment, description, status, date',
+      values: [firstname, lastname, email, department, equipment, description, userid, 'pending'],
     };
 
     db.connect()
@@ -218,11 +219,11 @@ class User {
 
   updateRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    const { userid } = req.body.token;
+    const { userid, firstname, lastname, email, department } = req.body.token;
     const { equipment, description } = req.body;
     const Query = {
-      text: 'UPDATE requests SET equipment = $1, description = $2 WHERE userid = $3 AND requestid = $4 RETURNING equipment, description, status',
-      values: [equipment, description, userid, requestid],
+      text: 'UPDATE requests SET firstName = $1, lastName = $2, email = $3, department =$4, equipment = $5, description = $6 WHERE userid = $7 AND requestid = $8 RETURNING firstName, lastName, email, department, equipment, description, status',
+      values: [firstname, lastname, email, department, equipment, description, userid, requestid],
     };
 
     db.connect()
