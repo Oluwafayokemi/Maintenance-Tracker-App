@@ -4,20 +4,13 @@ const requestURL = 'https://calm-fortress-33069.herokuapp.com'; // production ur
 requestForm.onsubmit = (e) => {
   e.preventDefault();
 
-  const firstName = document.querySelector('#firstName').value;
-  const lastName = document.querySelector('#lastName').value;
-  const department = document.querySelector('#department').value;
   const equipment = document.querySelector('#equip').value;
   const description = document.querySelector('#descrip').value;
 
-  const createRequest= {
-    firstName,
-    lastName,
-    department,
+  const createRequest = {
     equipment,
     description,
   };
-console.log(createRequest)
   const request = new Request(`${requestURL}/api/v1/users/requests`, {
     method: 'POST',
     headers: {

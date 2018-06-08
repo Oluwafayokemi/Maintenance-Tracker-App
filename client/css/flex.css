@@ -103,23 +103,23 @@ img {
     margin-bottom: 2em;
 }
 
-table {
+table.getTable {
     border-collapse: collapse;
     width: 100%;
 }
 
-th,
-td {
+table.getTable th,
+table.getTable td {
     text-align: left;
     padding: 1em;
 }
 
-tr:nth-child(even), td button i:nth-child(even) {
+table.getTable tr:nth-child(even) {
     background-color: #f2f2f2;
     color: rgb(48, 21, 146);
 }
 
-.th {
+table.getTable .th {
     background-color: rgb(48, 21, 146);
     color: white;
 }
@@ -284,11 +284,11 @@ li select {
     .flex-container {
         order: 1
     }
-    table {
+    table.getTable {
         width: auto;
     }
-    th,
-    td {
+    table.getTable th,
+    table.getTable td {
         text-align: left;
         padding: 3px;
     }
