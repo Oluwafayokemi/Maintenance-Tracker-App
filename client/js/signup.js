@@ -33,6 +33,7 @@ signupForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.setItem('token', data.token);
       localStorage.setItem('email', data.newUser.email);
+      localStorage.setItem('firstName', data.newUser.firstName);
       if (data.newUser.isAdmin === false) {
         window.location.href = 'user.index.html';
       } else if (data.newUser.isAdmin === true) {
