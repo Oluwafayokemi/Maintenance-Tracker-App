@@ -42,7 +42,6 @@ class Validation {
     });
   }
 
-
   /**
      * Validate Login record
      *

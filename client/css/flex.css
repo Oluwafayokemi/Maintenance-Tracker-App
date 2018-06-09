@@ -103,23 +103,23 @@ img {
     margin-bottom: 2em;
 }
 
-table.getTable {
+table {
     border-collapse: collapse;
     width: 100%;
 }
 
-table.getTable th,
-table.getTable td {
+table th,
+table td {
     text-align: left;
     padding: 1em;
 }
 
-table.getTable tr:nth-child(even) {
+table tr:nth-child(even) {
     background-color: #f2f2f2;
     color: rgb(48, 21, 146);
 }
 
-table.getTable .th {
+table .th {
     background-color: rgb(48, 21, 146);
     color: white;
 }
@@ -284,11 +284,11 @@ li select {
     .flex-container {
         order: 1
     }
-    table.getTable {
+    table {
         width: auto;
     }
-    table.getTable th,
-    table.getTable td {
+    table th,
+    table td {
         text-align: left;
         padding: 3px;
     }

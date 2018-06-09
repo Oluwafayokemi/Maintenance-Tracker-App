@@ -24,14 +24,14 @@ requestForm.onsubmit = (e) => {
     .then(response => response.json())
     .then((data) => {
       localStorage.getItem('token', `${localStorage.token}`);
-        if ( data.status === 201) {
-            alert(data.message)
-        } 
-        let error = Object.assign({}, {
-          status: data.status,
-          message: data.message,
-        });
-        return Promise.reject(error);
+      if (data.status === 201) {
+        alert(data.message);
+      }
+      const error = Object.assign({}, {
+        status: data.status,
+        message: data.message,
+      });
+      return Promise.reject(error);
     })
     .catch(err => alert(err));
 };

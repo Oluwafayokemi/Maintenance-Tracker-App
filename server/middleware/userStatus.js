@@ -9,28 +9,28 @@ const validateRequest = (req, res, next) => {
   };
 
   db.connect()
-    .then((client) => {
-      return client.query(Query)
-        .then((request) => {
-          if (request.rows[0].status !== 'pending') {
-            client.release();
-            res.status(403).json({
-              status: 'fail',
-              message: 'bad request.Request can not be accessed!',
-            });
-          }
+    .then(client => client.query(Query)
+      .then((request) => {
+        if (request.rows[0].status !== 'pending') {
           client.release();
-          return next();
-        })
-        .catch((error) => {
-          client.release();
-          res.status(401).json({
-            status: 'false',
-            message: 'could not retrieve request',
-            error,
+          return res.status(403).json({
+            status: 403,
+            success: 'false',
+            message: 'bad request.Request can not be accessed!',
           });
+        }
+        client.release();
+        return next();
+      })
+      .catch((error) => {
+        client.release();
+        return res.status(401).json({
+          status: 401,
+          success: 'false',
+          message: 'could not retrieve request',
+          error,
         });
-    });
+      }));
 };
 
 export default validateRequest;

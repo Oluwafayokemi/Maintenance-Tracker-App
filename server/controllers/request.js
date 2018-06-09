@@ -14,32 +14,33 @@ class Request {
   */
   getAll(req, res) {
     db.connect()
-      .then((client) => {
-        return client.query('SELECT * from requests')
-          .then((requests) => {
-            if (!requests.rows[0]) {
-              client.release();
-              res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query('SELECT * from requests')
+        .then((requests) => {
+          if (!requests.rows[0]) {
             client.release();
-            res.status(200).json({
-              success: 'true',
-              message: 'all requests retrieved successfully',
-              requests: requests.rows,
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'could not retrieve requests',
-              error,
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(200).json({
+            status: 200,
+            success: 'true',
+            message: 'all requests retrieved successfully',
+            requests: requests.rows,
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'could not retrieve requests',
+            error,
+          });
+        }));
   }
 
   getOne(req, res) {
@@ -51,32 +52,32 @@ class Request {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((requests) => {
-            if (!requests.rows[0]) {
-              client.release();
-              res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query(Query)
+        .then((requests) => {
+          if (!requests.rows[0]) {
             client.release();
-            res.status(200).json({
-              success: 'true',
-              message: 'all requests retrieved successfully',
-              requests: requests.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'could not retrieve requests',
-              error,
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(200).json({
+            success: 'true',
+            message: 'all requests retrieved successfully',
+            requests: requests.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'could not retrieve requests',
+            error,
+          });
+        }));
   }
 
   // When this route is called status  === pending
@@ -88,38 +89,33 @@ class Request {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            if (!request.rows[0]) {
-              client.release();
-              res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-              // } else if (request.rows[0].status === 'resolved') {
-              //   client.release();
-              //   return res.status(400).json({
-              //     success: 'false',
-              //     message: 'Resolved request can not be approved',
-              //   });
-            }
+      .then(client => client.query(Query)
+        .then((request) => {
+          if (!request.rows[0]) {
             client.release();
-            return res.status(201).json({
-              success: 'true',
-              message: 'Request has been approved',
-              updatedRequest: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'invalid request',
-              error,
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(201).json({
+            status: 201,
+            success: 'true',
+            message: 'Request has been approved',
+            updatedRequest: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'invalid request',
+            error,
+          });
+        }));
   }
 
   disapprove(req, res) {
@@ -130,32 +126,33 @@ class Request {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            if (!request.rows[0]) {
-              client.release();
-              return res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query(Query)
+        .then((request) => {
+          if (!request.rows[0]) {
             client.release();
-            return res.status(201).json({
-              success: 'true',
-              message: 'Request has been dissapproved',
-              updatedRequest: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            return res.status(400).json({
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'invalid request',
-              error,
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(201).json({
+            status: 201,
+            success: 'true',
+            message: 'Request has been dissapproved',
+            updatedRequest: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 200,
+            success: 'false',
+            message: 'invalid request',
+            error,
+          });
+        }));
   }
 
   resolve(req, res) {
@@ -166,32 +163,33 @@ class Request {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            if (!request.rows[0]) {
-              client.release();
-              res.status(404).json({
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query(Query)
+        .then((request) => {
+          if (!request.rows[0]) {
             client.release();
-            res.status(201).json({
-              success: 'true',
-              message: 'Request has been resolved',
-              updatedRequest: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'invalid request',
-              error,
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(201).json({
+            status: 201,
+            success: 'true',
+            message: 'Request has been resolved',
+            updatedRequest: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'invalid request',
+            error,
+          });
+        }));
   }
 }
 

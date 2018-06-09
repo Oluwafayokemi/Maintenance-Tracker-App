@@ -31,21 +31,20 @@ class User {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((user) => {
-            client.release();
-            next();
-          })
-          .catch((err) => {
-            client.release();
-            res.status(400).json({
-              success: 'false',
-              message: 'oops!something went wrong!',
-              err,
-            });
+      .then(client => client.query(Query)
+        .then(() => {
+          client.release();
+          return next();
+        })
+        .catch((err) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'email already exists',
+            err,
           });
-      });
+        }));
   }
 
   login(req, res) {
@@ -58,52 +57,52 @@ class User {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((user) => {
-            if (!user.rows[0]) {
-              client.release();
-              res.status(404).json({
-                success: 'false',
-                message: 'User not found',
-              });
-            }
-
-            const userPassword = bcrypt
-              .compareSync(password.trim(), user.rows[0].password);
-            if (!userPassword) {
-              client.release();
-              res.status(400).json({
-                status: 400,
-                success: 'false',
-                message: 'Wrong password',
-              });
-            }
-            const authToken = auth.token(user.rows[0]);
+      .then(client => client.query(Query)
+        .then((user) => {
+          if (!user.rows[0]) {
             client.release();
-            res.status(200).json({
-              success: 'true',
-              message: 'Sign in successful',
-              token: authToken,
-              user: {
-                firstName: user.rows[0].firstname,
-                lastName: user.rows[0].lastname,
-                email: user.rows[0].email,
-                department: user.rows[0].department,
-                isAdmin: user.rows[0].isadmin,
-              },
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(500).json({
-              status: 500,
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'oops!something went wrong!',
-              error,
+              message: 'User not found',
             });
+          }
+
+          const userPassword = bcrypt
+            .compareSync(password.trim(), user.rows[0].password);
+          if (!userPassword) {
+            client.release();
+            return res.status(400).json({
+              status: 400,
+              success: 'false',
+              message: 'Wrong password',
+            });
+          }
+          const authToken = auth.token(user.rows[0]);
+          client.release();
+          return res.status(200).json({
+            status: 200,
+            success: 'true',
+            message: 'Sign in successful',
+            token: authToken,
+            user: {
+              firstName: user.rows[0].firstname,
+              lastName: user.rows[0].lastname,
+              email: user.rows[0].email,
+              department: user.rows[0].department,
+              isAdmin: user.rows[0].isadmin,
+            },
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(403).json({
+            status: 403,
+            success: 'false',
+            message: 'invalid action',
+            error,
+          });
+        }));
   }
 
   getAllRequest(req, res) {
@@ -114,33 +113,32 @@ class User {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((requests) => {
-            if (!requests.rows) {
-              client.release();
-              res.status(404).json({
-                status: 404,
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query(Query)
+        .then((requests) => {
+          if (!requests.rows) {
             client.release();
-            res.status(200).json({
-              success: 'true',
-              message: 'all requests retrieved successfully',
-              requests: requests.rows,
-            });
-          })
-          .catch(() => {
-            client.release();
-            res.status(400).json({
-              status: 400,
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'could not retrieve requests',
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(200).json({
+            status: 200,
+            success: 'true',
+            message: 'all requests retrieved successfully',
+            requests: requests.rows,
           });
-      });
+        })
+        .catch(() => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'could not retrieve requests',
+          });
+        }));
   }
 
   getOneRequest(req, res) {
@@ -154,39 +152,39 @@ class User {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            if (!request.rows[0]) {
-              client.release();
-              res.status(404).json({
-                status: 404,
-                success: 'false',
-                message: 'Request not found',
-              });
-            }
+      .then(client => client.query(Query)
+        .then((request) => {
+          if (!request.rows[0]) {
             client.release();
-            res.status(200).json({
-              status: 200,
-              success: 'true',
-              message: 'Request retrieved successfully',
-              request: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
-              status: 400,
+            return res.status(404).json({
+              status: 404,
               success: 'false',
-              message: 'could not retrieve request',
-              error,
+              message: 'Request not found',
             });
+          }
+          client.release();
+          return res.status(200).json({
+            status: 200,
+            success: 'true',
+            message: 'Request retrieved successfully',
+            request: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'could not retrieve request',
+            error,
+          });
+        }));
   }
 
   createRequest(req, res) {
-    const { userid, firstname, lastname, email, department } = req.body.token;
+    const {
+      userid, firstname, lastname, email, department,
+    } = req.body.token;
     const { equipment, description } = req.body;
     const Query = {
       text: 'INSERT INTO requests(firstName, lastName, email, department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestId, firstName, lastName, email, department, equipment, description, status, date',
@@ -194,32 +192,32 @@ class User {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            client.release();
-            res.status(201).json({
-              status: 201,
-              success: 'true',
-              message: 'Request created successfully',
-              request: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
-              status: 400,
-              success: 'false',
-              message: 'Request not created',
-              error,
-            });
+      .then(client => client.query(Query)
+        .then((request) => {
+          client.release();
+          return res.status(201).json({
+            status: 201,
+            success: 'true',
+            message: 'Request created successfully',
+            request: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'Request not created',
+            error,
+          });
+        }));
   }
 
   updateRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    const { userid, firstname, lastname, email, department } = req.body.token;
+    const {
+      userid, firstname, lastname, email, department,
+    } = req.body.token;
     const { equipment, description } = req.body;
     const Query = {
       text: 'UPDATE requests SET firstName = $1, lastName = $2, email = $3, department =$4, equipment = $5, description = $6 WHERE userid = $7 AND requestid = $8 RETURNING firstName, lastName, email, department, equipment, description, status',
@@ -227,27 +225,25 @@ class User {
     };
 
     db.connect()
-      .then((client) => {
-        return client.query(Query)
-          .then((request) => {
-            client.release();
-            res.status(201).json({
-              status: 201,
-              success: 'true',
-              message: `Request on ${equipment} updated successfully`,
-              request: request.rows[0],
-            });
-          })
-          .catch((error) => {
-            client.release();
-            res.status(400).json({
-              status: 400,
-              success: 'false',
-              message: 'Request not updated',
-              error,
-            });
+      .then(client => client.query(Query)
+        .then((request) => {
+          client.release();
+          return res.status(201).json({
+            status: 201,
+            success: 'true',
+            message: `Request on ${equipment} updated successfully`,
+            request: request.rows[0],
           });
-      });
+        })
+        .catch((error) => {
+          client.release();
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'Request not updated',
+            error,
+          });
+        }));
   }
 }
 
