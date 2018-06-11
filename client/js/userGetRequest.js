@@ -2,8 +2,8 @@
  * JS file to handle users get request.
  */
 const getRequestUrl = 'https://calm-fortress-33069.herokuapp.com';
-let updateEquip = document.getElementById("editEquip");
-let updateDesc = document.getElementById("editDescrip");
+const updateEquip = document.getElementById('editEquip');
+const updateDesc = document.getElementById('editDescrip');
 
 document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
@@ -23,11 +23,10 @@ const updateRequest = (id) => {
   getOneRequest(id);
 };
 const getOneRequest = (requestId) => {
-  const requestObject = userRequestArr.find(request => request.requestid === parseInt(requestId, 10));
-  updateEquip.value= requestObject.equipment;
+  const requestObject = userRequestArr.find(currRequest => currRequest.requestid === parseInt(requestId, 10));
+  updateEquip.value = requestObject.equipment;
   updateDesc.value = requestObject.description;
-
-}
+};
 const getRequestObject = (response) => {
   const tableBody = document.querySelector('#reqBody');
   const arr = ['requestid', 'date', 'equipment', 'description', 'status', 'edit'];
@@ -51,7 +50,7 @@ const getRequestObject = (response) => {
         button.setAttribute('class', 'updateBtn');
         button.addEventListener('click', () => {
           updateRequest(response.requests[i].requestid);
-            toggleModal('modal-content');
+          toggleModal('modal-content');
         });
         const editText = document.createTextNode('Edit');
         if (response.requests[i].status !== 'pending') {

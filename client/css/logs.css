@@ -103,6 +103,10 @@ hr {
     padding: .5em 1em;
     cursor: pointer;
 }
+.updateBtn:disabled {
+    background: rgba(48, 21, 146, 0.2);
+    cursor: no-drop;
+}
 select {
     width: 100%;
     padding: 16px 20px;
