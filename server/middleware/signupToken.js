@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import db from '../models/index';
-import auth from '../middleware/auth';
+import auth from './auth';
 
 const getToken = (req, res) => {
   const { email, password } = req.body;
@@ -15,7 +15,8 @@ const getToken = (req, res) => {
       .then((user) => {
         if (!user.rows[0]) {
           client.release();
-          res.status(404).json({
+          return res.status(404).json({
+            status: 404,
             success: 'false',
             message: 'User not found',
           });
@@ -25,7 +26,8 @@ const getToken = (req, res) => {
           .compareSync(password.trim(), user.rows[0].password);
         if (!checkPassword) {
           client.release();
-          return res.status(400).json({
+          return res.status(401).json({
+            status: 401,
             success: 'false',
             message: 'Wrong password',
           });
@@ -33,6 +35,7 @@ const getToken = (req, res) => {
         const authToken = auth.token(user.rows[0]);
         client.release();
         return res.status(200).json({
+          status: 200,
           success: 'true',
           message: 'Sign up successful',
           token: authToken,
@@ -47,9 +50,10 @@ const getToken = (req, res) => {
       })
       .catch((error) => {
         client.release();
-        return res.status(500).json({
+        return res.status(403).json({
+          status: 403,
           success: 'false',
-          message: 'oops!something went wrong!',
+          message: 'invalid action',
           error,
         });
       }));

@@ -32,15 +32,16 @@ class User {
 
     db.connect()
       .then(client => client.query(Query)
-        .then((user) => {
+        .then(() => {
           client.release();
           return next();
         })
         .catch((err) => {
           client.release();
-          return res.status(500).json({
+          return res.status(400).json({
+            status: 400,
             success: 'false',
-            message: 'oops!something went wrong!',
+            message: 'email already exists',
             err,
           });
         }));
@@ -61,6 +62,7 @@ class User {
           if (!user.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'User not found',
             });
@@ -79,6 +81,7 @@ class User {
           const authToken = auth.token(user.rows[0]);
           client.release();
           return res.status(200).json({
+            status: 200,
             success: 'true',
             message: 'Sign in successful',
             token: authToken,
@@ -93,10 +96,10 @@ class User {
         })
         .catch((error) => {
           client.release();
-          return res.status(500).json({
-            status: 500,
+          return res.status(403).json({
+            status: 403,
             success: 'false',
-            message: 'oops!something went wrong!',
+            message: 'invalid action',
             error,
           });
         }));
@@ -122,6 +125,7 @@ class User {
           }
           client.release();
           return res.status(200).json({
+            status: 200,
             success: 'true',
             message: 'all requests retrieved successfully',
             requests: requests.rows,
@@ -140,6 +144,7 @@ class User {
   getOneRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const { userid } = req.body.token;
+
     const Query = {
       name: 'fetch-user',
       text: 'SELECT * FROM requests WHERE requestid = $1 AND userid = $2 ',
@@ -177,11 +182,13 @@ class User {
   }
 
   createRequest(req, res) {
-    const { userid } = req.body.token;
+    const {
+      userid, firstname, lastname, email, department,
+    } = req.body.token;
     const { equipment, description } = req.body;
     const Query = {
-      text: 'INSERT INTO requests(equipment, description, userid, status) VALUES($1, $2, $3, $4) RETURNING equipment, description, status',
-      values: [equipment, description, userid, 'pending'],
+      text: 'INSERT INTO requests(firstName, lastName, email, department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestId, firstName, lastName, email, department, equipment, description, status, date',
+      values: [firstname, lastname, email, department, equipment, description, userid, 'pending'],
     };
 
     db.connect()
@@ -208,11 +215,13 @@ class User {
 
   updateRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    const { userid } = req.body.token;
+    const {
+      userid, firstname, lastname, email, department,
+    } = req.body.token;
     const { equipment, description } = req.body;
     const Query = {
-      text: 'UPDATE requests SET equipment = $1, description = $2 WHERE userid = $3 AND requestid = $4 RETURNING equipment, description, status',
-      values: [equipment, description, userid, requestid],
+      text: 'UPDATE requests SET firstName = $1, lastName = $2, email = $3, department =$4, equipment = $5, description = $6 WHERE userid = $7 AND requestid = $8 RETURNING firstName, lastName, email, department, equipment, description, status',
+      values: [firstname, lastname, email, department, equipment, description, userid, requestid],
     };
 
     db.connect()

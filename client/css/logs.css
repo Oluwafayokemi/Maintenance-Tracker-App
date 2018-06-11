@@ -48,7 +48,8 @@
 /* Add padding to containers */
 form {
     padding: 0 3em;
-    background-color: gray;
+    background-color:  rgb(48, 21, 146);
+
 }
 .padding table {
     color: white;
@@ -57,7 +58,9 @@ form {
 li {
     line-height: 1
 }
-
+btn.disable {
+    background: rgba(48, 21, 146, 0.2);
+}
 /* Full-width input fields */
 input[type=text] {
     width: 100%;
@@ -94,13 +97,22 @@ hr {
     opacity: 1;
 }
 
+.updateBtn {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: .5em 1em;
+    cursor: pointer;
+}
 select {
     width: 100%;
     padding: 16px 20px;
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
-    outline: none
+    outline: none;
+    color: rgb(48, 21, 146);
+    cursor: pointer;
+
 }
 textarea {
     width: 100%;
@@ -112,7 +124,8 @@ textarea {
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
-    outline: none
+    outline: none;
+    cursor: pointer;
 }
 ol {
     list-style: none;
@@ -126,4 +139,54 @@ div .right {
     margin-top: 1em;
     margin-right: 1em;
     padding: .9px 1em;
+    font-weight: bold;
+}
+td i{
+ color: white;
+ cursor: pointer;
+ width: 2em;
+}
+td button {
+  background: rgb(48, 21, 146);
+  border: 1px solid goldenrod;
+  margin-right: 1em;
+}
+label textarea {
+    margin-top: 5em;
+}
+/* -----------------------------------modal section for edit request-------------------- */
+
+
+
+/* Modal Content/Box */
+.modal-content {
+    background-color:rgb(48, 21, 146);
+    margin: 0 auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: goldenrod;
+    float: right;
+    font-size: 3em;
+    /* font-weight: bold; */
+}
+
+.close:hover,
+.close:focus {
+    color: goldenrod;
+    text-decoration: none;
+    cursor: pointer;
+}
+ 
+
+
+
+table.table {
+    background: rgb(48, 21, 146);
+    color: white;
+
 }

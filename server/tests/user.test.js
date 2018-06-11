@@ -198,7 +198,7 @@ describe('Test user API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('message').to.equal('Zion');
+          expect(res.body).to.haveOwnProperty('message').to.equal('sign up was successful');
           expect(res.body).to.haveOwnProperty('lastName').to.equal('minao');
           expect(res.body).to.haveOwnProperty('email').to.equal('zion@gmail.com');
           expect(res.body).to.haveOwnProperty('department').to.equal('mechanical');
@@ -278,6 +278,19 @@ describe('Test user API', () => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal('Invalid Input');
+          done();
+        });
+    });
+    it('should return a status 400 error response for password not matching', (done) => {
+      request.post('/api/v1/auth/login')
+        .send({
+          email: 'fayoaright@gmail.com',
+          password: 'tesr',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Wrong Password');
           done();
         });
     });

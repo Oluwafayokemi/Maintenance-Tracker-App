@@ -29,113 +29,83 @@
 							<a href="user.index.html">Home</a>
 						</li>
 						<li>
+							<a href="newRequest.html">New Request</a>
+						</li>
+						<li>
 							<a href="index.html">Sign In</a>
 						</li>
 						<li>
 							<a href="index.html">Log Out</a>
 						</li>
-						<div class="right">
-							<p>Welcome Omotola</p>
-						</div>	
+						<div id="name" class="right">
+						</div>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</div>
+	<!-- get all request -->
+	<div class="padding col-12">
+		<table id="tableItem" class="col-12 table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Date</th>
+					<th>Equipment</th>
+					<th>Description</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody id="reqBody">
+				<tr>
+					<td id="id"></td>
+					<td id="date"></td>
+					<td id="equipment"></td>
+					<td id="description"></td>
+					<td id="status"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div class="main col-12">
-		<div class="modal" id="modal">
-			<div class="modal-section" id="setup1">
-				<span>
-					<a href="#" onclick="toggleModal('setup1')">&times;</a>
-				</span>
-				<div class="padding col-12">
-					<table class="col-12">
-						<tr>
-							<th>Id</th>
-							<th>Date</th>
-							<th>Equipment</th>
-							<th>Description</th>
-							<th>Status</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>15/5/2017</td>
-							<td>Air condition</td>
-							<td>Air condition failing to start</td>
-							<td class="status"> pending</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>15/5/2017</td>
-							<td>Air condition</td>
-							<td>Air condition failing to start</td>
-							<td class="status"> pending</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>15/5/2017</td>
-							<td>Air condition</td>
-							<td>Air condition failing to start</td>
-							<td class="status"> pending</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>15/5/2017</td>
-							<td>Air condition</td>
-							<td>Air condition failing to start</td>
-							<td class="status"> pending</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>15/5/2017</td>
-							<td>Air condition</td>
-							<td>Air condition failing to start</td>
-							<td class="status"> pending</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div class="modal-section" id="setup2">
-				<span>
-					<a href="#" onclick="toggleModal('setup2')">&times;</a>
-				</span>
-				<form action="/action_page.php">
-					<div class="form">
-						<h1>Make Your Request</h1>
-						<p>Please fill in this form to make a request.</p>
+
+		<div type="submit" id="myBtn">
+			
+		</div>
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form id="update-form">
+					<div class="editForm">
+						<h1>Form field to Edit Your Request</h1>
+						<p>Kindly chceck to make sure all fields are filled out appropriately</p>
 						<hr>
 
-						<label for="name">
-							<strong>Name</strong>
+						<label for="equipment">
+							<strong>Equipment</strong>
 						</label>
-						<input type="text" placeholder="Name" name="name" required>
-
-						<label for="department">
-							<strong>Department</strong>
-						</label>
-						<input type="text" placeholder="Department" name="department" required>
-
-						<label for="option">
-							<strong>Option</strong>
-						</label>
-						<select id="equipment" name="option">
-							<option value="air">Air condition</option>
-							<option value="fur">Furniture</option>
-							<option value="gen">Generator</option>
-							<option value="ele">Electricity</option>
-							<option value="pai">Paintings</option>
-							<option value="com">computers</option>
-							<option value="pri">Printers</option>
-							<option value="ups">UPS</option>
-							<option value="cam">Camera</option>
-							<option value="oth">Others</option>
+						<select id="editEquip" name="equipment">
+							<option value="Air condition">Air condition</option>
+							<option value="Furniture">Furniture</option>
+							<option value="Generator">Generator</option>
+							<option value="Electricity">Electricity</option>
+							<option value="Paintings">Paintings</option>
+							<option value="computers">computers</option>
+							<option value="Printers">Printers</option>
+							<option value="UPS">UPS</option>
+							<option value="Camera">Camera</option>
+							<option value="Others">Others</option>
 						</select>
 
 
-						<label for="textarea">
+						<label for="description">
 							<strong>Description</strong>
 						</label>
-						<textarea name="textarea" placeholder="Please give a brief description of your report"></textarea>
+						<textarea name="description" id="editDescrip" placeholder="Please give a brief description of your report" required></textarea>
 
 						<hr>
 						<div class="btn">
@@ -144,16 +114,18 @@
 				</form>
 				</div>
 			</div>
+
 		</div>
-		<button class="collapse collapsible" onclick="toggleModal('setup1')">
-			<h3>Logs of Previous Request</h3>
-		</button>
-		<button class="collapse collapsible" onclick="toggleModal('setup2')">
-			<h3>Make a New Request</h3>
-		</button>
 	</div>
-	<script src="./js/profile.js"></script>
+
+
 	<script src="./js/script.js"></script>
+	<script src="./js/profile.js"></script>
+	<script src="./js/userGetRequest.js"></script>
+	<script src="./js/editUsersRequest.js"></script>
+	<script>
+		getAllRequest();
+	</script>
 </body>
 
 </html>

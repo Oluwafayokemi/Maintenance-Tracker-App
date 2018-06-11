@@ -13,12 +13,27 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-// const slides = document.querySelectorAll('#slides .slide');
-// let currentSlide = 0;
-// const slideInterval = setInterval(nextSlide, 4000);
+const modal = document.getElementById('myModal');
 
-// function nextSlide() {
-//   slides[currentSlide].className = 'slide';
-//   currentSlide = (currentSlide + 1) % slides.length;
-//   slides[currentSlide].className = 'slide showing';
-// }
+// Get the button that opens the modal
+const btn = document.getElementById('myBtn');
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName('close')[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+  modal.style.display = 'block';
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = 'none';
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};

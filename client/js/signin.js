@@ -24,6 +24,7 @@ loginForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.setItem('token', data.token);
       localStorage.setItem('email', data.user.email);
+      localStorage.setItem('firstName', data.user.firstName)
 
       if (data.user.isAdmin === false) {
         window.location.href = 'user.index.html';

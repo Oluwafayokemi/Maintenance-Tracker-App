@@ -107,18 +107,19 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-th,
-td {
+
+table th,
+table td {
     text-align: left;
     padding: 1em;
 }
 
-tr:nth-child(even) {
+table tr:nth-child(even) {
     background-color: #f2f2f2;
     color: rgb(48, 21, 146);
 }
 
-.th {
+table .th {
     background-color: rgb(48, 21, 146);
     color: white;
 }
@@ -126,6 +127,11 @@ tr:nth-child(even) {
 .center {
     display: flex;
     justify-content: center
+}
+.center form{
+margin: 1em auto;
+padding: 3em;
+color: white;
 }
 ul li {
     float: left;
@@ -167,32 +173,11 @@ li select {
     height: auto;
     position: fixed;
     top: 0;
-    bottom: 0;
+    left: 0;
     display: none;
     overflow: auto;
-}
-
-.modal-section {    
-    float: right;
-    width: 60%;
-    height: auto;
-    height: auto;
-    margin: auto;
-    margin-top: 1.8em;
-    border-radius: .5em;
-    background-color: rgb(48, 21, 146);
-    display: none;
-    color: #fff;
-    margin-right: 3em;
-
-}
-.modal-section span a{
-    font-size: 3em; 
-    text-decoration: none; 
-    color: goldenrod; 
-    width: 45px;
-    margin-left: .5em;
-    padding: 1px;  
+    z-index: 1; /* Sit on top */
+    color: goldenrod;
 }
 
 .card-2 {
@@ -251,11 +236,10 @@ li select {
         margin-top: 1.2em;
         width: 100%;
     }
+ 
     .modal-section{
         margin-top: 7em;
         width: 100%;
-        top:0;
-        bottom: 0;
         padding-left: 3em;
         padding-right: 4em;
         min-width: 25%
@@ -281,13 +265,19 @@ li select {
     .flex-container {
         order: 1
     }
+    .modal {
+        bottom: 0;
+    }
     table {
         width: auto;
     }
-    th,
-    td {
+    table th,
+    table td {
         text-align: left;
         padding: 3px;
     }
-
+    div .right {
+        text-align: center;
+        margin-bottom: 4px;
+    }
 }

@@ -42,7 +42,6 @@ class Validation {
     });
   }
 
-
   /**
      * Validate Login record
      *
@@ -55,7 +54,7 @@ class Validation {
   validateLogin(req, res, next) {
     const validateLogin = {
       email: 'required|email',
-      password: 'required|string|min:5|max:10',
+      password: 'required|string|min:5|max:20',
     };
 
     const validate = new Validator(req.body, validateLogin);

@@ -23,7 +23,8 @@ class IsRequest {
         .then((request) => {
           if (request.rows[0].status === 'resolved') {
             client.release();
-            return res.status(400).json({
+            return res.status(403).json({
+              status: 403,
               success: 'false',
               message: 'Request has already been resolved, it can not be approved',
             });
@@ -34,6 +35,7 @@ class IsRequest {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'Resoved request can not be edited',
             err: error,
@@ -55,7 +57,8 @@ class IsRequest {
         .then((request) => {
           if (request.rows[0].status === 'disapproved' || request.rows[0].status === 'pending') {
             client.release();
-            return res.status(400).json({
+            return res.status(403).json({
+              status: 403,
               success: 'false',
               message: 'Only approved request can be resolved',
             });
@@ -66,6 +69,7 @@ class IsRequest {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'could not retrieve requests',
             err: error,

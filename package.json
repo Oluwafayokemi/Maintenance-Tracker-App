@@ -8,7 +8,7 @@
   },
   "private": true,
   "scripts": {
-    "test": "cross-env NODE_ENV=test npm run migrate && nyc --reporter=html --reporter=text mocha --require babel-core/register --timeout 50000 --exit ./server/*/**.test.js",
+    "test": "npm run migrate && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register ./server/*/**.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",

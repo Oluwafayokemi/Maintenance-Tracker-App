@@ -19,12 +19,14 @@ class Request {
           if (!requests.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
           client.release();
           return res.status(200).json({
+            status: 200,
             success: 'true',
             message: 'all requests retrieved successfully',
             requests: requests.rows,
@@ -33,6 +35,7 @@ class Request {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'could not retrieve requests',
             error,
@@ -54,6 +57,7 @@ class Request {
           if (!requests.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
@@ -68,6 +72,7 @@ class Request {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'could not retrieve requests',
             error,
@@ -89,18 +94,14 @@ class Request {
           if (!request.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
-          // } else if (request.rows[0].status === 'resolved') {
-          //   client.release();
-          //   return res.status(400).json({
-          //     success: 'false',
-          //     message: 'Resolved request can not be approved',
-          //   });
           }
           client.release();
           return res.status(201).json({
+            status: 201,
             success: 'true',
             message: 'Request has been approved',
             updatedRequest: request.rows[0],
@@ -108,7 +109,8 @@ class Request {
         })
         .catch((error) => {
           client.release();
-          res.status(400).json({
+          return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'invalid request',
             error,
@@ -129,12 +131,14 @@ class Request {
           if (!request.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
           client.release();
           return res.status(201).json({
+            status: 201,
             success: 'true',
             message: 'Request has been dissapproved',
             updatedRequest: request.rows[0],
@@ -143,6 +147,7 @@ class Request {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 200,
             success: 'false',
             message: 'invalid request',
             error,
@@ -163,12 +168,14 @@ class Request {
           if (!request.rows[0]) {
             client.release();
             return res.status(404).json({
+              status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
           client.release();
           return res.status(201).json({
+            status: 201,
             success: 'true',
             message: 'Request has been resolved',
             updatedRequest: request.rows[0],
@@ -177,6 +184,7 @@ class Request {
         .catch((error) => {
           client.release();
           return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'invalid request',
             error,
