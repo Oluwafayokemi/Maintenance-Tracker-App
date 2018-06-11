@@ -160,35 +160,6 @@ label textarea {
 }
 /* -----------------------------------modal section for edit request-------------------- */
 
-
-
-/* Modal Content/Box */
-.modal-content {
-    background-color:rgb(48, 21, 146);
-    margin: 0 auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: goldenrod;
-    float: right;
-    font-size: 3em;
-    /* font-weight: bold; */
-}
-
-.close:hover,
-.close:focus {
-    color: goldenrod;
-    text-decoration: none;
-    cursor: pointer;
-}
- 
-
-
-
 table.table {
     background: rgb(48, 21, 146);
     color: white;

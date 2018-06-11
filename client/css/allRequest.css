@@ -30,7 +30,7 @@
 }
 
 .collapse {
-    background-color: goldenrod;
+    background-color: rgb(48, 21, 146);
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -41,7 +41,7 @@
 }
 
 .active, .collapse:hover {
-    background-color: gray;
+    background-color: goldenrod;
     color: #fff;
 }
 
@@ -51,4 +51,15 @@
     overflow: hidden;
     background-color: #f1f1f1;
     width: 67%;
+}
+.right {
+    float: right;
+    color: rgb(48, 21, 146);
+}
+div .right {
+    background: #fff;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: .9px 1em;
+    font-weight: bold;
 }
