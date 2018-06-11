@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maintenance-Tracker-App</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="./css/allRequest.css">
     <link rel="stylesheet" href="./css/flex.css">
+
+    <title>All-Requests</title>
 </head>
 
 <body>
@@ -40,43 +40,222 @@
                             <a href="index.html">Sign In</a>
                         </li>
                         <li>
-                            <a id="sign-out" href="index.html">Log Out</a>
+                            <a href="index.html">Log Out</a>
                         </li>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-11">
-            <div class="slider">
-                <ul id="slides">
-                        <li class="slide showing">Furniture Maintenance</li>
-                        <li class="slide">Computers</li>
-                        <li class="slide">Electrical Appliances</li>
-                        <li class="slide">Generators</li>
-                        <li class="slide">Machineries and Equipment</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="main center">
         <div class="col-12">
-            <div class="col-8 text">
-                <h2 class="col-3">Welcome to the Maintenance Tracker Site!</h2>
-                <h3 class="col-2">Here you have the priviledge of reporting to us on any issue concerning the management of the company's equipment</h3>
-                <h3 class="col3">If you notice any damage, please do report early to prevent worse damages</h3>
+            <button class="col-8 collapsible collapse">
+                <h1>Requests made as at today</button>
+            <div class="col-8 content" id="col1">
+                <div class="allRequest">
+                    <ol>
+                        <li>Air condition failing to start
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accepted</option>
+                                <option value="1">Rejected</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Generator one goes out when more than two system is turned on
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accepted</option>
+                                <option value="1">Rejected</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Furniture in the guest room is bad
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accepted</option>
+                                <option value="1">Rejected</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>The air conditioner blows hot air
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accepted</option>
+                                <option value="1">Rejected</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <button class="col-8 collapsible collapse">
+                <h1>Requests made as at 5/15/2018</button>
+            <div class="col-8 content" id="col2">
+                <div class="AllRequest">
+                    <ol>
+                        <li>Air condition failing to start
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accepted</option>
+                                <option value="1">Rejected</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Generator one goes out when more than two system is turned on
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accepted</option>
+                                <option value="1">Rejected</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Furniture in the guest room is bad
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>The air conditioner blows hot air
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <button class="col-8 collapsible collapse">
+                <h1>Requests made as at 4/15/2018</button>
+            <div class="col-8 content" id="col3">
+                <div class="AllRequest">
+                    <ol>
+                        <li>Air condition failing to start
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Generator one goes out when more than two system is turned on
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Furniture in the guest room is bad
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>The air conditioner blows hot air
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <button class="col-8 collapsible collapse">
+                <h1>Requests made as at 3/15/2018</button>
+            <div class="col-8 content" id="col4">
+                <div class="AllRequest">
+                    <ol>
+                        <li>Air condition failing to start
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Generator one goes out when more than two system is turned on
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Furniture in the guest room is bad
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>The air conditioner blows hot air
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <button class="col-8 collapsible collapse">
+                <h1>Requests made as at 2/15/2018</button>
+            <div class="col-8 content" id="col5">
+                <div class="AllRequest">
+                    <ol>
+                        <li>Air condition failing to start
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Generator one goes out when more than two system is turned on
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>Furniture in the guest room is bad
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                        <li>The air conditioner blows hot air
+                            <select>
+                                <option value="0">Status</option>
+                                <option value="0">Accept</option>
+                                <option value="1">Reject</option>
+                                <option value="2">Resolved</option>
+                            </select>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
-    <!-- <div class="footer">
-		<p>our Team/ Contact us <span>Call us: +23434783099</span></p>
-		
-		<small>
-			<i class="far fa-copyright"> Dj's maintenance. / All Rights Reserved.</i>
-		</small>
-	</div> -->
-    <script type="text/javascript" src="./js/script.js"></script>
+
+    <script src="./js/allRequest.js"></script>
+    <script src="./js/reqDetails.js"></script>
 </body>
 
 </html>

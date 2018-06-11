@@ -26,6 +26,7 @@ requestForm.onsubmit = (e) => {
       localStorage.getItem('token', `${localStorage.token}`);
       if (data.status === 201) {
         alert(data.message);
+        window.location.href = 'user.index.html';
       }
       const error = Object.assign({}, {
         status: data.status,

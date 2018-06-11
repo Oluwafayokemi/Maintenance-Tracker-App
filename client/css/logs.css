@@ -58,7 +58,9 @@ form {
 li {
     line-height: 1
 }
-
+btn.disable {
+    background: rgba(48, 21, 146, 0.2);
+}
 /* Full-width input fields */
 input[type=text] {
     width: 100%;
@@ -95,6 +97,12 @@ hr {
     opacity: 1;
 }
 
+.updateBtn {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: .5em 1em;
+    cursor: pointer;
+}
 select {
     width: 100%;
     padding: 16px 20px;
@@ -148,33 +156,20 @@ label textarea {
 }
 /* -----------------------------------modal section for edit request-------------------- */
 
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: goldenrod;
-    margin: 1em 2em; /* 15% from the top and centered */
+    background-color:rgb(48, 21, 146);
+    margin: 0 auto; /* 15% from the top and centered */
     padding: 20px;
-    float: left;
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .close {
-    color: rgb(48, 21, 146);
+    color: goldenrod;
     float: right;
     font-size: 3em;
     /* font-weight: bold; */
@@ -182,7 +177,16 @@ label textarea {
 
 .close:hover,
 .close:focus {
-    color: rgb(48, 21, 146);
+    color: goldenrod;
     text-decoration: none;
     cursor: pointer;
+}
+ 
+
+
+
+table.table {
+    background: rgb(48, 21, 146);
+    color: white;
+
 }
