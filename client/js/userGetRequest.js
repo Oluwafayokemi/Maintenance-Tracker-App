@@ -38,7 +38,7 @@ const getRequestObject = (response) => {
     for (let j = 0; j < arr.length; j++) {
       const cell = document.createElement('td');
       if (arr[j] === 'date') {
-        const cellText = document.createTextNode(response.requests[i].date).toLocaleString('en-GB', {
+        const cellText = document.createTextNode(response.requests[i].date.toLocaleString('en-GB', {
           hour12: true,
         }));
         cell.appendChild(cellText);
