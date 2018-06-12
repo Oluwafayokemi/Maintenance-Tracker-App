@@ -63,3 +63,11 @@ div .right {
     padding: .9px 1em;
     font-weight: bold;
 }
+
+.details ol li {
+    list-style: none;
+    text-transform: capitalize;
+}
+.details .des {
+    text-transform: unset;
+}

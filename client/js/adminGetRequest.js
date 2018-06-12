@@ -2,11 +2,15 @@
  * JS file to handle users get request.
  */
 const getRequestUrl = 'https://calm-fortress-33069.herokuapp.com';
-const getFirstName = document.getElementById('firstName');
-const getLastName = document.getElementById('lastName');
+const getId = document.getElementById('reqId');
+const getName = document.getElementById('Name');
 const getDepartment = document.getElementById('department');
+const getEmail = document.getElementById('Email');
 const getEquip = document.getElementById('equip');
 const getDesc = document.getElementById('descrip');
+const getStatus = document.getElementById('stat');
+const getDate = document.getElementById('dat');
+const getAction = document.getElementById('action');
 
 document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
@@ -27,14 +31,18 @@ const updateRequest = (id) => {
 };
 const getOneRequest = (requestId) => {
   const requestObject = userRequestArr.find(currRequest => currRequest.requestid === parseInt(requestId, 10));
-  getFirstName.textContent = requestObject.firstname;
-  getLastName.textContent = requestObject.lastname;
-  getEquip.textContent = requestObject.equipment;
-  getDesc.textContent = requestObject.description;
+  getId.textContent = `Request Id: ${requestObject.requestid}`;
+  getName.textContent = `Name: ${requestObject.firstname} ${requestObject.lastname}`;
+  getDepartment.textContent = `Department: ${requestObject.department}`;
+  getEmail.textContent = `Email: ${requestObject.email}`;
+  getEquip.textContent = `Equipment: ${requestObject.equipment}`;
+  getDesc.textContent = `Description: ${requestObject.description}`;
+  getStatus.textContent = `Status: ${requestObject.status}`;
+  getDate.textContent = `Date: ${new Date(requestObject.date).toLocaleString('en-GB', { hour12: true })}`;
 };
 const getRequestObject = (response) => {
   const tableBody = document.querySelector('#userTable');
-  const arr = ['requestid', 'date', 'equipment', 'description', 'status', 'details'];
+  const arr = ['id', 'date', 'equipment', 'description', 'status', 'action', 'details'];
   userRequestArr = response.requests;
   for (let i = 0; i < response.requests.length; i++) {
     // creates a table row
@@ -50,6 +58,14 @@ const getRequestObject = (response) => {
         row.appendChild(cell);
         continue;
       }
+      if (arr[j] === 'id') {
+        const id = document.createElement('td');
+        const idValue = document.createTextNode(i + 1);
+        id.appendChild(idValue);
+        cell.appendChild(id);
+        row.appendChild(cell);
+        continue;
+      } 
       if (arr[j] === 'details') {
         const button = document.createElement('button');
         button.setAttribute('class', 'updateBtn');
@@ -59,27 +75,28 @@ const getRequestObject = (response) => {
           toggleModal('modal-content');
         });
         const detail = document.createTextNode('Details');
-        button.appendChild(detail)
+        button.appendChild(detail);
         cell.append(button);
         row.append(cell);
         continue;
       }
-      if (arr[j] === 'status') {
+      if (arr[j] === 'action') {
         const button = document.createElement('select');
         button.setAttribute('id', 'mySelect');
-
+        button.addEventListener('change', () => {
+          requestStatus(response.requests[i].requestid, button);
+        });
         const option1 = document.createElement('option');
         option1.setAttribute('value', 'pending');
         option1.setAttribute('id', 'pen');
-        const optionText1 = document.createTextNode('pending');
+        const optionText1 = document.createTextNode('--select--');
         const option2 = document.createElement('option');
-        option2.setAttribute('id', 'acc');
-        option2.setAttribute('value', 'accept');
-        const optionText2 = document.createTextNode('Accept');
+        option2.setAttribute('value', 'approve');
+        const optionText2 = document.createTextNode('Approve');
         const option3 = document.createElement('option');
         option3.setAttribute('id', 'rej');
-        option3.setAttribute('value', 'reject');
-        const optionText3 = document.createTextNode('Reject');
+        option3.setAttribute('value', 'disapprove');
+        const optionText3 = document.createTextNode('Disapprove');
         const option4 = document.createElement('option');
         option4.setAttribute('id', 'res');
         option4.setAttribute('value', 'resolve');
@@ -108,8 +125,8 @@ const getAllRequest = () => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      if (data.status === 200) { console.log(data)
-        fetch(request)
+      if (data.status === 200) {
+        fetch(request);
         getRequestObject(data);
       }
       const error = Object.assign({}, {
@@ -120,3 +137,4 @@ const getAllRequest = () => {
     })
     .catch(error => console.log(error));
 };
+getAllRequest();

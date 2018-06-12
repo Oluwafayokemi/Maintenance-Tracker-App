@@ -29,7 +29,7 @@ const getOneRequest = (requestId) => {
 };
 const getRequestObject = (response) => {
   const tableBody = document.querySelector('#reqBody');
-  const arr = ['requestid', 'date', 'equipment', 'description', 'status', 'edit'];
+  const arr = ['id', 'date', 'equipment', 'description', 'status', 'edit'];
   userRequestArr = response.requests;
   for (let i = 0; i < response.requests.length; i++) {
     // creates a table row
@@ -38,7 +38,7 @@ const getRequestObject = (response) => {
     for (let j = 0; j < arr.length; j++) {
       const cell = document.createElement('td');
       if (arr[j] === 'date') {
-        const cellText = document.createTextNode(new Date(response.requests[i].date).toLocaleString('en-GB', {
+        const cellText = document.createTextNode(response.requests[i].date).toLocaleString('en-GB', {
           hour12: true,
         }));
         cell.appendChild(cellText);
@@ -61,6 +61,14 @@ const getRequestObject = (response) => {
         row.append(cell);
         continue;
       }
+      if (arr[j] === 'id') {
+        const id = document.createElement('td');
+        const idValue = document.createTextNode(i + 1);
+        id.appendChild(idValue);
+        cell.appendChild(id);
+        row.appendChild(cell);
+        continue;
+      }
       const cellText = document.createTextNode(response.requests[i][arr[j]]);
       cell.appendChild(cellText);
       row.appendChild(cell);
@@ -72,14 +80,17 @@ const getAllRequest = () => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      if (data.status === 200) {
+      if (data.status >= 200 && data.status < 300) {
         getRequestObject(data);
+      } else {
+        const error = Object.assign({}, {
+          status: data.status,
+          message: data.message,
+        });
+        Promise.reject(error);
       }
-      const error = Object.assign({}, {
-        status: data.status,
-        message: data.message,
-      });
-      return Promise.reject(error);
     })
     .catch(error => console.log(error));
 };
+
+getAllRequest();
