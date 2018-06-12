@@ -34,17 +34,19 @@ signupForm.onsubmit = (e) => {
       localStorage.setItem('token', data.token);
       localStorage.setItem('email', data.newUser.email);
       localStorage.setItem('firstName', data.newUser.firstName);
-      if (data.newUser.isAdmin === false) {
+      if (data.user.isAdmin === false) {
+        displayAlert(`success login in ${data.user.firstName}`);
         window.location.href = 'user.index.html';
-      } else if (data.newUser.isAdmin === true) {
+      } else if (data.user.isAdmin === true) {
+        displayAlert(`success login in Admin ${data.user.firstName}`);
         window.location.href = 'admin.index.html';
       } else {
-        let error = Object.assign({}, {
+        const error = Object.assign({}, {
           status: response.status,
           message: response.message,
-        })
-        return Promise.reject(error)
+        });
+        return Promise.reject(error);
       }
     })
-    .catch(error => alert('somehting went wrong', error));
+    .catch(err => displayAlert(err));
 };

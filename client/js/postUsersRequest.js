@@ -25,7 +25,7 @@ requestForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.getItem('token', `${localStorage.token}`);
       if (data.status === 201) {
-        alert(data.message);
+        displayAlert('Request has been submitted');
         window.location.href = 'user.index.html';
       }
       const error = Object.assign({}, {
@@ -34,5 +34,5 @@ requestForm.onsubmit = (e) => {
       });
       return Promise.reject(error);
     })
-    .catch(err => alert(err));
+    .catch(error => displayAlert(error));
 };

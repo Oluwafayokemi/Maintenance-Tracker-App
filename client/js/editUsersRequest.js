@@ -25,7 +25,7 @@ updateForm.onsubmit = (getRequests) => {
     .then((data) => {
       localStorage.getItem('token', `${localStorage.token}`);
       if (data.status >= 201 && data.status < 300) {
-        alert('update sucessful');
+        displayAlert('update sucessful');
         toggleModal('modal-content');
       }
       const error = Object.assign({}, {
@@ -34,5 +34,5 @@ updateForm.onsubmit = (getRequests) => {
       });
       return Promise.reject(error);
     })
-    .catch(err => console.log(err));
+    .catch(err => displayAlert(err));
 };

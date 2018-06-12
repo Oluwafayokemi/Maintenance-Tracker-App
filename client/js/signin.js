@@ -24,19 +24,21 @@ loginForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.setItem('token', data.token);
       localStorage.setItem('email', data.user.email);
-      localStorage.setItem('firstName', data.user.firstName)
+      localStorage.setItem('firstName', data.user.firstName);
 
       if (data.user.isAdmin === false) {
+        displayAlert(`success login in ${data.user.firstName}`);
         window.location.href = 'user.index.html';
       } else if (data.user.isAdmin === true) {
+        displayAlert(`success login in Admin ${data.user.firstName}`);
         window.location.href = 'admin.index.html';
       } else {
-        let error = Object.assign({}, {
+        const error = Object.assign({}, {
           status: response.status,
           message: response.message,
         });
         return Promise.reject(error);
       }
     })
-    .catch(err => alert(err));
+    .catch(err => displayAlert(err));
 };

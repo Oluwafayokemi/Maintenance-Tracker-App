@@ -13,6 +13,46 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+// -----------------displayAlert ----------------------------------
+
+const displayAlert = (message) => {
+  document.getElementById('display').style.display = 'block';
+  document.getElementById('alert').textContent = message;
+  setTimeout(() => {
+    document.getElementById('display').style = 'none';
+  }, 4000);
+};
+
+// -------------------myFunction ---------------------------------
+
+function myFunction() {
+  // Declare variables
+  let input, 
+filter, 
+table, 
+tr, 
+td, 
+i;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  table = document.getElementById('myTable');
+  tr = table.getElementsByTagName('tr');
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName('td')[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = '';
+      } else {
+        tr[i].style.display = 'none';
+      }
+    }
+  }
+}
+
+// -----------------------------modal-----------------
+
 const modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
@@ -37,3 +77,4 @@ window.onclick = function (event) {
     modal.style.display = 'none';
   }
 };
+

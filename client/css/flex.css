@@ -233,6 +233,25 @@ li select {
     color: white;
 }
 
+.alert {
+    background: gray;
+    color: rgb(48, 21, 146);
+    font-weight: bold;
+    text-align: center;
+    height: auto;
+    margin: 6em auto;
+    padding: 1em;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+.header {
+    text-align: center;
+    color: rgb(48, 21, 146);    
+}
 @media only screen and (max-width: 769px) {
     .row {
         -webkit-flex-direction: column;
