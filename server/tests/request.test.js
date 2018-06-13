@@ -47,8 +47,6 @@ describe('Get request for an admin', () => {
             expect(res.status).to.equal(200);
             expect(res.body).to.be.an('object');
             expect(res.body).to.haveOwnProperty('message').to.equal('all requests retrieved successfully');
-            // expect(res.body.equipment).to.equal('generator');
-            // expect(res.body.description).to.equal('Generator goes off always');
             done();
           });
       });
