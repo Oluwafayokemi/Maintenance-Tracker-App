@@ -1,8 +1,8 @@
 const updateForm = document.getElementById('update-form'); // get the form id//
 const requestURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
 
-updateForm.onsubmit = (e) => {
-  e.preventDefault();
+updateForm.onsubmit = (getRequests) => {
+  getRequests.preventDefault();
 
   const equipment = document.querySelector('#editEquip').value;
   const description = document.querySelector('#editDescrip').value;
@@ -11,7 +11,6 @@ updateForm.onsubmit = (e) => {
     equipment,
     description,
   };
-  console.log(editRequest)
   const request = new Request(`${requestURL}/api/v1/users/requests/${requestId}`, {
     method: 'PUT',
     headers: {
@@ -26,7 +25,8 @@ updateForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.getItem('token', `${localStorage.token}`);
       if (data.status >= 201 && data.status < 300) {
-        alert('update sucessful');
+        displayAlert('update sucessful');
+        toggleModal('modal-content');
       }
       const error = Object.assign({}, {
         status: data.status,
@@ -34,5 +34,5 @@ updateForm.onsubmit = (e) => {
       });
       return Promise.reject(error);
     })
-    .catch(err => console.log(err));
+    .catch(err => displayAlert(err));
 };

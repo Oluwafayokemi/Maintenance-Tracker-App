@@ -12,29 +12,41 @@ dotenv.config();
  */
 class User {
   /**
- * @param {object} request - HTTP User
- * @param {object} response - HTTP Response
- * @returns {object} Class instance
- * @description create User Account.
- */
-  create(req, res, next) {
+   * @param {object} request - HTTP User
+   * @param {object} response - HTTP Response
+   * @returns {object} Class instance
+   * @description create User Account.
+   */
+  create(req, res) {
     const salt = bcrypt.genSaltSync(Math.floor(Math.random() * 5));
 
     const {
-      firstName, lastName, email, department, password,
+      firstName,
+      lastName,
+      email,
+      department,
+      password,
     } = req.body;
+
     const encryptedPassword = bcrypt.hashSync(password, salt);
 
     const Query = {
-      text: 'INSERT INTO users (firstName, lastName, email,  department, password) VALUES($1, $2, $3, $4, $5) RETURNING firstName, lastName, isAdmin, email, department',
+      text: 'INSERT INTO users (firstName, lastName, email,  department, password) VALUES($1, $2, $3, $4, $5) RETURNING firstName, lastName, isAdmin, email, department;',
       values: [firstName, lastName, email, department, encryptedPassword],
     };
 
     db.connect()
       .then(client => client.query(Query)
-        .then(() => {
+        .then((newUser) => {
           client.release();
-          return next();
+          const token = auth.token(newUser.rows[0]);
+          return res.status(200).json({
+            status: 200,
+            success: 'true',
+            message: 'email already exists',
+            newUser: newUser.rows[0],
+            token,
+          });
         })
         .catch((err) => {
           client.release();
@@ -48,19 +60,22 @@ class User {
   }
 
   login(req, res) {
-    const { email, password } = req.body;
+    const {
+      email,
+      password,
+    } = req.body;
     const Query = {
       // give the query a unique name
       name: 'fetch-user',
-      text: 'SELECT * FROM users WHERE email = $1',
+      text: 'SELECT * FROM users WHERE email = $1 LIMIT 1;',
       values: [email],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((user) => {
+          client.release();
           if (!user.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
@@ -71,7 +86,6 @@ class User {
           const userPassword = bcrypt
             .compareSync(password.trim(), user.rows[0].password);
           if (!userPassword) {
-            client.release();
             return res.status(400).json({
               status: 400,
               success: 'false',
@@ -79,7 +93,6 @@ class User {
             });
           }
           const authToken = auth.token(user.rows[0]);
-          client.release();
           return res.status(200).json({
             status: 200,
             success: 'true',
@@ -108,22 +121,21 @@ class User {
   getAllRequest(req, res) {
     const Query = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE userid = $1',
+      text: 'SELECT * FROM requests WHERE userid = $1;',
       values: [req.body.token.userid],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((requests) => {
+          client.release();
           if (!requests.rows) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(200).json({
             status: 200,
             success: 'true',
@@ -143,26 +155,27 @@ class User {
 
   getOneRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    const { userid } = req.body.token;
+    const {
+      userid,
+    } = req.body.token;
 
     const Query = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE requestid = $1 AND userid = $2 ',
+      text: 'SELECT * FROM requests WHERE requestid = $1 AND userid = $2 LIMIT 1;',
       values: [requestid, userid],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          client.release();
           if (!request.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(200).json({
             status: 200,
             success: 'true',
@@ -183,11 +196,18 @@ class User {
 
   createRequest(req, res) {
     const {
-      userid, firstname, lastname, email, department,
+      userid,
+      firstname,
+      lastname,
+      email,
+      department,
     } = req.body.token;
-    const { equipment, description } = req.body;
+    const {
+      equipment,
+      description,
+    } = req.body;
     const Query = {
-      text: 'INSERT INTO requests(firstName, lastName, email, department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestId, firstName, lastName, email, department, equipment, description, status, date',
+      text: 'INSERT INTO requests(firstName, lastName, email, department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestId, firstName, lastName, email, department, equipment, description, status, date;',
       values: [firstname, lastname, email, department, equipment, description, userid, 'pending'],
     };
 
@@ -216,11 +236,20 @@ class User {
   updateRequest(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const {
-      userid, firstname, lastname, email, department,
+      userid,
+      firstname,
+      lastname,
+      email,
+      department,
     } = req.body.token;
-    const { equipment, description } = req.body;
+
+    const {
+      equipment,
+      description,
+    } = req.body;
+
     const Query = {
-      text: 'UPDATE requests SET firstName = $1, lastName = $2, email = $3, department =$4, equipment = $5, description = $6 WHERE userid = $7 AND requestid = $8 RETURNING firstName, lastName, email, department, equipment, description, status',
+      text: 'UPDATE requests SET firstName = $1, lastName = $2, email = $3, department =$4, equipment = $5, description = $6 WHERE userid = $7 AND requestid = $8 RETURNING firstName, lastName, email, department, equipment, description, status;',
       values: [firstname, lastname, email, department, equipment, description, userid, requestid],
     };
 
@@ -246,7 +275,6 @@ class User {
         }));
   }
 }
-
 
 const user = new User();
 export default user;

@@ -14,17 +14,16 @@ class Request {
   */
   getAll(req, res) {
     db.connect()
-      .then(client => client.query('SELECT * from requests')
+      .then(client => client.query('SELECT * from requests;')
         .then((requests) => {
+          client.release();
           if (!requests.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(200).json({
             status: 200,
             success: 'true',
@@ -47,22 +46,21 @@ class Request {
     const requestid = parseInt(req.params.id, 10);
     const Query = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE requestid = $1',
+      text: 'SELECT * FROM requests WHERE requestid = $1 LIMIT 1;',
       values: [requestid],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((requests) => {
+          client.release();
           if (!requests.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(200).json({
             success: 'true',
             message: 'all requests retrieved successfully',
@@ -84,22 +82,21 @@ class Request {
   approve(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE requestid= $2 RETURNING userid, equipment, description, status',
+      text: 'UPDATE requests SET status = $1 WHERE requestid= $2 RETURNING userid, equipment, description, status;',
       values: ['approved', requestid],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          client.release();
           if (!request.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -121,22 +118,21 @@ class Request {
   disapprove(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING equipment, description, status',
+      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING equipment, description, status;',
       values: ['disapproved', requestid],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          client.release();
           if (!request.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -158,22 +154,21 @@ class Request {
   resolve(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING userid, equipment, description, status',
+      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING userid, equipment, description, status;',
       values: ['resolved', requestid],
     };
 
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
+          client.release();
           if (!request.rows[0]) {
-            client.release();
             return res.status(404).json({
               status: 404,
               success: 'false',
               message: 'Request not found',
             });
           }
-          client.release();
           return res.status(201).json({
             status: 201,
             success: 'true',

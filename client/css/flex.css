@@ -129,9 +129,9 @@ table .th {
     justify-content: center
 }
 .center form{
-margin: 1em auto;
-padding: 3em;
-color: white;
+  margin: 1em auto;
+  padding: 3em;
+  color: white;
 }
 ul li {
     float: left;
@@ -179,6 +179,30 @@ li select {
     z-index: 1; /* Sit on top */
     color: goldenrod;
 }
+/* Modal Content/Box */
+.modal-content {
+    background-color:rgb(48, 21, 146);
+    margin: 0 auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: goldenrod;
+    float: right;
+    font-size: 3em;
+    /* font-weight: bold; */
+}
+
+.close:hover,
+.close:focus {
+    color: goldenrod;
+    text-decoration: none;
+    cursor: pointer;
+}
+ 
 
 .card-2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -209,6 +233,25 @@ li select {
     color: white;
 }
 
+.alert {
+    background: gray;
+    color: rgb(48, 21, 146);
+    font-weight: bold;
+    text-align: center;
+    height: auto;
+    margin: 6em auto;
+    padding: 1em;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+.header {
+    text-align: center;
+    color: rgb(48, 21, 146);    
+}
 @media only screen and (max-width: 769px) {
     .row {
         -webkit-flex-direction: column;
