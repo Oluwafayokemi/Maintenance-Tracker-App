@@ -1,5 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/Oluwafayokemi/Maintenance-Tracker-App/badge.svg?branch=develop)](https://coveralls.io/github/Oluwafayokemi/Maintenance-Tracker-App?branch=develop)
 [![Build Status](https://travis-ci.org/Oluwafayokemi/Maintenance-Tracker-App.svg?branch=develop)](https://travis-ci.org/Oluwafayokemi/Maintenance-Tracker-App)
+[![Maintainability](https://api.codeclimate.com/v1/badges/61759dbc3da7669a8836/maintainability)](https://codeclimate.com/github/Oluwafayokemi/Maintenance-Tracker-App/maintainability)
 
 # Maintenance-Tracker-App
 Maintenance Tracker App is an application that provides users with the ability to reach out to
