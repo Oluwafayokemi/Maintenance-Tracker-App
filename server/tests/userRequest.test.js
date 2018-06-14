@@ -8,7 +8,7 @@ import app from '../app';
 const request = supertest(app);
 const { expect } = chai;
 const adminUser = {
-  id: 1,
+  userid: 1,
   firstname: 'fayokemi',
   lastname: 'adeyina',
   isadmin: true,
@@ -19,7 +19,7 @@ const adminUser = {
 };
 
 const defaultUser = {
-  id: 2,
+  userid: 2,
   firstname: 'omotola',
   lastname: 'adeyina',
   isadmin: false,

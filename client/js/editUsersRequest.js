@@ -23,16 +23,16 @@ updateForm.onsubmit = (getRequests) => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      localStorage.getItem('token', `${localStorage.token}`);
       if (data.status >= 201 && data.status < 300) {
         displayAlert('update sucessful');
         toggleModal('modal-content');
+      } else {
+        const error = Object.assign({}, {
+          status: data.status,
+          message: data.message,
+        });
+        return Promise.reject(error);
       }
-      const error = Object.assign({}, {
-        status: data.status,
-        message: data.message,
-      });
-      return Promise.reject(error);
     })
     .catch(err => displayAlert(err));
 };

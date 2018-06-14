@@ -6,7 +6,7 @@ const getId = document.getElementById('reqId');
 const getName = document.getElementById('Name');
 const getDepartment = document.getElementById('department');
 const getEmail = document.getElementById('Email');
-const getEquip = document.getElementById('equip');
+const getEquip = document.getElementById('equ');
 const getDesc = document.getElementById('descrip');
 const getStatus = document.getElementById('stat');
 const getDate = document.getElementById('dat');
@@ -65,7 +65,7 @@ const getRequestObject = (response) => {
         cell.appendChild(id);
         row.appendChild(cell);
         continue;
-      } 
+      }
       if (arr[j] === 'details') {
         const button = document.createElement('button');
         button.setAttribute('class', 'updateBtn');
@@ -126,16 +126,15 @@ const getAllRequest = () => {
     .then(response => response.json())
     .then((data) => {
       if (data.status === 200) {
-
-        fetch(request);
         getRequestObject(data);
+      } else {
+        const error = Object.assign({}, {
+          status: data.status,
+          message: data.message,
+        });
+        return Promise.reject(error);
       }
-      const error = Object.assign({}, {
-        status: data.status,
-        message: data.message,
-      });
-      return Promise.reject(error);
     })
-    .catch(error => console.log(error));
+    .catch(error => displayAlert(error));
 };
 getAllRequest();

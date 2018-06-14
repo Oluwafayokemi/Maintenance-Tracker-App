@@ -31,20 +31,26 @@ class User {
     const encryptedPassword = bcrypt.hashSync(password, salt);
 
     const queryString = {
-      text: 'INSERT INTO users (firstName, lastName, email,  department, password) VALUES($1, $2, $3, $4, $5) RETURNING firstName, lastName, isAdmin, email, department;',
+      text: 'INSERT INTO users (firstName, lastName, email,  department, password) VALUES($1, $2, $3, $4, $5) RETURNING *;',
       values: [firstName, lastName, email, department, encryptedPassword],
     };
 
     db.connect()
       .then(client => client.query(queryString)
-        .then((newUser) => {
-          client.release(newUser);
-          const token = auth.token(newUser.rows[0]);
+        .then((user) => {
+          client.release(user);
+          const token = auth.token(user.rows[0]);
           return res.status(200).json({
             status: 200,
             success: 'true',
             message: 'sign up was successful',
-            newUser: newUser.rows[0],
+            user: {
+              firstName: user.rows[0].firstname,
+              lastName: user.rows[0].lastname,
+              email: user.rows[0].email,
+              department: user.rows[0].department,
+              isAdmin: user.rows[0].isadmin,
+            },
             token,
           });
         })
@@ -98,7 +104,6 @@ class User {
             status: 200,
             success: 'true',
             message: 'Sign in successful',
-            token: authToken,
             user: {
               firstName: user.rows[0].firstname,
               lastName: user.rows[0].lastname,
@@ -106,6 +111,7 @@ class User {
               department: user.rows[0].department,
               isAdmin: user.rows[0].isadmin,
             },
+            token: authToken,
           });
         })
         .catch((error) => {

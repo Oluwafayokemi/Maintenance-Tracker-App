@@ -87,10 +87,10 @@ const getAllRequest = () => {
           status: data.status,
           message: data.message,
         });
-        Promise.reject(error);
+        return Promise.reject(error);
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => displayAlert(error));
 };
 
 getAllRequest();
