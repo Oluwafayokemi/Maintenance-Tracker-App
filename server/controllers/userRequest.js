@@ -15,7 +15,7 @@ class UserRequest {
 
   create(req, res) {
     const {
-      id: userid,
+      userid,
       firstname,
       lastname,
       email,
@@ -65,7 +65,7 @@ class UserRequest {
     const queryString = {
       name: 'fetch-user',
       text: 'SELECT * FROM requests WHERE userid = $1;',
-      values: [req.body.token.id],
+      values: [req.body.token.userid],
     };
     db.connect()
       .then(client => client.query(queryString)
@@ -105,7 +105,7 @@ class UserRequest {
   getOne(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const {
-      id: userid,
+      userid,
     } = req.body.token;
 
     const query = {
@@ -152,7 +152,7 @@ class UserRequest {
   update(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const {
-      id: userid,
+      userid,
       firstname,
       lastname,
       email,

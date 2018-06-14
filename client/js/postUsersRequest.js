@@ -22,17 +22,18 @@ requestForm.onsubmit = (e) => {
 
   fetch(request)
     .then(response => response.json())
-    .then((data) => {
+    .then((data) => { console.log(data)
       localStorage.getItem('token', `${localStorage.token}`);
-      if (data.status === 201) {
-        displayAlert('Request has been submitted');
+      if (data.status >= 200 && data.status < 300) {
+        displayAlert(data.message);
         window.location.href = 'user.index.html';
+      } else {
+        const error = Object.assign({}, {
+          status: data.status,
+          message: data.message,
+        });
+        return Promise.reject(error);
       }
-      const error = Object.assign({}, {
-        status: data.status,
-        message: data.message,
-      });
-      return Promise.reject(error);
     })
-    .catch(error => displayAlert(error));
+    .catch(error => displayAlert(error.message));
 };

@@ -42,8 +42,8 @@ signupForm.onsubmit = (e) => {
         window.location.href = 'admin.index.html';
       } else {
         const error = Object.assign({}, {
-          status: response.status,
-          message: response.message,
+          status: data.status,
+          message: data.message,
         });
         return Promise.reject(error);
       }

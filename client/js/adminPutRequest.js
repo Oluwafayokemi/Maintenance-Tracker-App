@@ -16,14 +16,14 @@ const requestStatus = (requestId, selectElement) => {
     .then(response => response.json())
     .then((data) => {
       if (data.status >= 201 && data.status < 300) {
-        alert(data.message);
+        displayAlert(data.message);
+      } else {
+        const error = Object.assign({}, {
+          status: data.status,
+          message: data.message,
+        });
+        return Promise.reject(error);
       }
-      const error = Object.assign({}, {
-        status: data.status,
-        message: data.message,
-      });
-      return Promise.reject(error);
     })
-    .catch(err => console.log(err));
+    .catch(err => displayAlert(err));
 };
-
