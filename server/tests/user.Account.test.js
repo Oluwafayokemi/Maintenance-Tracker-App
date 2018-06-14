@@ -3,27 +3,22 @@ import chai from 'chai';
 import supertest from 'supertest';
 import dotenv from 'dotenv';
 import app from '../app';
-import Test from './testInit';
 
 dotenv.config();
 
 const request = supertest(app);
 const { expect } = chai;
-const testVariables = new Test();
 
 describe('Test user API', () => {
   describe('creating a new admin or user', () => {
-    const { firstName } = testVariables;
-    const { lastName } = testVariables;
-
     it('should return a status 400 error response for an empty firstName field', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
           firstName: '',
-          lastName,
-          email: testVariables.demoUserEmail,
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          lastName: 'lastName',
+          email: 'fay@gmail.com',
+          password: 'fay',
+          department: 'fay',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -36,11 +31,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for an empty firstName field with only spaces', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName: '            ',
-          lastName,
-          email: testVariables.demoUserEmail,
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          firstName: '             ',
+          lastName: 'lastName',
+          email: 'fay@gmail.com',
+          password: 'password',
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -53,11 +48,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for an empty lastName field', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
+          firstName: 'firstName',
           lastName: '',
-          email: testVariables.demoUserEmail,
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          email: 'fay@gmail.com',
+          password: 'password',
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -69,11 +64,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for a empty lastName field with only spaces', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
+          firstName: 'firstName',
           lastName: '             ',
-          email: testVariables.demoUserEmail,
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          email: 'fay@gmail.com',
+          password: 'password',
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -86,11 +81,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for an empty email field', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
-          lastName,
+          firstName: 'firstName',
+          lastName: 'lastName',
           email: '',
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          password: 'password',
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -103,11 +98,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for a empty email field with only spaces', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
-          lastName,
+          firstName: 'firstName',
+          lastName: 'lastName',
           email: '            ',
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          password: 'password',
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -120,11 +115,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for invalid email', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
-          lastName,
-          email: '',
-          password: testVariables.demoUserPassword,
-          department: testVariables.demoUserDepartment,
+          firstName: 'firstName',
+          lastName: 'lastName',
+          email: 'fay',
+          password: 'password',
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -137,11 +132,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for empty password field', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
-          lastName,
-          email: testVariables.demoUserEmail,
+          firstName: 'firstName',
+          lastName: 'lastName',
+          email: 'fay@gmail.com',
           password: '',
-          department: testVariables.demoUserDepartment,
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -154,11 +149,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for password field with only spaces', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
-          lastName,
-          email: testVariables.demoUserEmail,
+          firstName: 'firstName',
+          lastName: 'lastName',
+          email: 'fay@gmail.com',
           password: '          ',
-          department: testVariables.demoUserDepartment,
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -170,11 +165,11 @@ describe('Test user API', () => {
     it('should return a status 400 error response for password field with only spaces', (done) => {
       request.post('/api/v1/auth/signup')
         .send({
-          firstName,
-          lastName,
-          email: testVariables.demoUserEmail,
+          firstName: 'firstName',
+          lastName: 'lastName',
+          email: 'fay@gmail.com',
           password: '          ',
-          department: testVariables.demoUserDepartment,
+          department: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -189,9 +184,9 @@ describe('Test user API', () => {
         .post('/api/v1/auth/signup')
         .set('Content-type', 'application/json')
         .send({
-          firstName: 'Zion',
-          lastName: 'minao',
-          email: 'zion@gmail.com',
+          firstName: 'samson',
+          lastName: 'jacob',
+          email: 'samson@gmail.com',
           password: 'tester',
           department: 'mechanical',
         })
@@ -199,9 +194,6 @@ describe('Test user API', () => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal('sign up was successful');
-          expect(res.body).to.haveOwnProperty('lastName').to.equal('minao');
-          expect(res.body).to.haveOwnProperty('email').to.equal('zion@gmail.com');
-          expect(res.body).to.haveOwnProperty('department').to.equal('mechanical');
           done();
         });
     });
@@ -214,8 +206,8 @@ describe('Test user API', () => {
         .set('Content-type', 'application/json')
         .send({
           email: '',
-          password: testVariables.demoUserPassword,
-          requests: testVariables.demoUserRequests,
+          password: 'password',
+          requests: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -229,8 +221,8 @@ describe('Test user API', () => {
       request.post('/api/v1/auth/login')
         .send({
           email: '          ',
-          password: testVariables.demoUserPassword,
-          requests: testVariables.demoUserRequests,
+          password: 'password',
+          requests: 'department',
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -243,7 +235,7 @@ describe('Test user API', () => {
     it('should return a status 400 error response for empty password field', (done) => {
       request.post('/api/v1/auth/login')
         .send({
-          email: testVariables.adminEmail,
+          email: 'joy@gmail.com',
           password: '',
         })
         .end((err, res) => {
@@ -257,7 +249,7 @@ describe('Test user API', () => {
     it('should return a status 400 error response for password field with only spaces', (done) => {
       request.post('/api/v1/auth/login')
         .send({
-          email: testVariables.adminEmail,
+          email: 'joy@gmail.com',
           password: '         ',
         })
         .end((err, res) => {
@@ -290,7 +282,8 @@ describe('Test user API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('message').to.equal('Wrong Password');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Invalid Input');
+          expect(res.body.error.password).to.equal('The password must be at least 5 characters.');
           done();
         });
     });
@@ -324,10 +317,6 @@ describe('Test user API', () => {
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('success').to.equal('true');
           expect(res.body).to.haveOwnProperty('message').to.equal('Sign in successful');
-          expect(res.body).to.haveOwnProperty('firsName').to.equal('omotola');
-          expect(res.body).to.haveOwnProperty('lastName').to.equal('adeyina');
-          expect(res.body).to.haveOwnProperty('email').to.equal('omotola@gmail.com');
-          expect(res.body).to.haveOwnProperty('department').to.equal('Water Management');
           done();
         });
     });

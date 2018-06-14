@@ -22,7 +22,13 @@ class IsRequest {
       .then(client => client.query(Query)
         .then((request) => {
           client.release();
-          if (request.rows[0].status === 'resolved') {
+          if (!request.rows[0]) {
+            return res.status(404).json({
+              status: 404,
+              success: 'false',
+              message: 'Request does not exist',
+            });
+          } else if (request.rows[0].status === 'resolved') {
             return res.status(403).json({
               status: 403,
               success: 'false',
@@ -55,7 +61,13 @@ class IsRequest {
       .then(client => client.query(Query)
         .then((request) => {
           client.release();
-          if (request.rows[0].status === 'disapproved' || request.rows[0].status === 'pending') {
+          if (!request.rows[0]) {
+            return res.status(404).json({
+              status: 404,
+              success: 'false',
+              message: 'Request does not exist',
+            });
+          } else if (request.rows[0].status === 'disapproved' || request.rows[0].status === 'pending') {
             return res.status(403).json({
               status: 403,
               success: 'false',
@@ -69,7 +81,7 @@ class IsRequest {
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'could not retrieve requests',
+            message: 'Invalid Request',
             err: error,
           });
         }));

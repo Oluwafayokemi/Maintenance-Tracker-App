@@ -5,23 +5,24 @@ import db from '../models/index';
  * @class request
  */
 
-class Request {
+class AdminRequest {
   /**
   * @param {object} request - HTTP Request
   * @param {object} response - HTTP Response
   * @returns {object} Class instance
-  * @description Admin request page.
+  * @description gets all the request created by all users.
   */
+
   getAll(req, res) {
     db.connect()
       .then(client => client.query('SELECT * from requests;')
         .then((requests) => {
-          client.release();
-          if (!requests.rows[0]) {
+          client.release(requests);
+          if (!requests.rows) {
             return res.status(404).json({
               status: 404,
               success: 'false',
-              message: 'Request not found',
+              message: 'Request does not exist',
             });
           }
           return res.status(200).json({
@@ -36,11 +37,18 @@ class Request {
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'could not retrieve requests',
+            message: 'Invalid request',
             error,
           });
         }));
   }
+
+  /**
+  * @param {object} request - HTTP Request
+  * @param {object} response - HTTP Response
+  * @returns {object} Class instance
+  * @description gets one the request created by an authenticated user by Id.
+  */
 
   getOne(req, res) {
     const requestid = parseInt(req.params.id, 10);
@@ -52,19 +60,19 @@ class Request {
 
     db.connect()
       .then(client => client.query(Query)
-        .then((requests) => {
-          client.release();
-          if (!requests.rows[0]) {
+        .then((request) => {
+          client.release(request);
+          if (!request.rows[0]) {
             return res.status(404).json({
               status: 404,
               success: 'false',
-              message: 'Request not found',
+              message: 'Request does not exist',
             });
           }
           return res.status(200).json({
             success: 'true',
             message: 'all requests retrieved successfully',
-            requests: requests.rows[0],
+            request: request.rows[0],
           });
         })
         .catch((error) => {
@@ -72,13 +80,19 @@ class Request {
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'could not retrieve requests',
+            message: 'Invalid Request',
             error,
           });
         }));
   }
 
-  // When this route is called status  === pending
+  /**
+   * @param {object} request - HTTP Request
+   * @param {object} response - HTTP Response
+   * @returns {object} Class instance
+   * @description approves a request.
+   */
+
   approve(req, res) {
     const requestid = parseInt(req.params.id, 10);
     const Query = {
@@ -89,14 +103,7 @@ class Request {
     db.connect()
       .then(client => client.query(Query)
         .then((request) => {
-          client.release();
-          if (!request.rows[0]) {
-            return res.status(404).json({
-              status: 404,
-              success: 'false',
-              message: 'Request not found',
-            });
-          }
+          client.release(request);
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -109,30 +116,30 @@ class Request {
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'invalid request',
+            message: 'Invalid Request',
             error,
           });
         }));
   }
 
+  /**
+ * @param {object} request - HTTP Request
+ * @param {object} response - HTTP Response
+ * @returns {object} Class instance
+ * @description disapproves a request.
+ */
+
   disapprove(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    const Query = {
+    const query = {
       text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING equipment, description, status;',
       values: ['disapproved', requestid],
     };
 
     db.connect()
-      .then(client => client.query(Query)
+      .then(client => client.query(query)
         .then((request) => {
-          client.release();
-          if (!request.rows[0]) {
-            return res.status(404).json({
-              status: 404,
-              success: 'false',
-              message: 'Request not found',
-            });
-          }
+          client.release(request);
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -143,32 +150,32 @@ class Request {
         .catch((error) => {
           client.release();
           return res.status(400).json({
-            status: 200,
+            status: 400,
             success: 'false',
-            message: 'invalid request',
+            message: 'Invalid Request',
             error,
           });
         }));
   }
 
+  /**
+ * @param {object} request - HTTP Request
+ * @param {object} response - HTTP Response
+ * @returns {object} Class instance
+ * @description resolves a request.
+ */
+
   resolve(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    const Query = {
+    const query = {
       text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING userid, equipment, description, status;',
       values: ['resolved', requestid],
     };
 
     db.connect()
-      .then(client => client.query(Query)
+      .then(client => client.query(query)
         .then((request) => {
-          client.release();
-          if (!request.rows[0]) {
-            return res.status(404).json({
-              status: 404,
-              success: 'false',
-              message: 'Request not found',
-            });
-          }
+          client.release(request);
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -181,12 +188,12 @@ class Request {
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'invalid request',
+            message: 'Invalid Request',
             error,
           });
         }));
   }
 }
 
-const request = new Request();
-export default request;
+const adminRequest = new AdminRequest();
+export default adminRequest;
