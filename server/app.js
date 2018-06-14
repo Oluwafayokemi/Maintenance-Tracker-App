@@ -4,8 +4,9 @@ import compression from 'compression';
 import helmet from 'helmet';
 import path from 'path';
 import cors from 'cors';
-import requestRouter from './routes/request';
 import userRouter from './routes/userAccount';
+import adminRequestRouter from './routes/adminRequest';
+import userRequestRouter from './routes/userRequest';
 
 const app = express();
 app.use(compression());
@@ -16,8 +17,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client')));
 
-app.use(requestRouter);
 app.use(userRouter);
+app.use(adminRequestRouter);
+app.use(userRequestRouter);
 
 app.get('*', (req, res) => {
   res.status(200).json('Welcome To maintenance Tracker App, Built by Fayokemi Adeyina');

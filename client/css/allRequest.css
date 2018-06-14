@@ -71,3 +71,8 @@ div .right {
 .details .des {
     text-transform: unset;
 }
+table.table {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: 1em;
+}
