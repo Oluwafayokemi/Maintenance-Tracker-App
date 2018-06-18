@@ -25,5 +25,5 @@ const requestStatus = (requestId, selectElement) => {
         return Promise.reject(error);
       }
     })
-    .catch(err => displayAlert(err));
+    .catch(error => displayAlert(error.message));
 };
