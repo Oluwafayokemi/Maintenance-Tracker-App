@@ -30,7 +30,7 @@
                         <li>
                             <a href="admin.index.html">Home</a>
                         </li>
-                      
+
                         <li>
                             <a href="index.html">Sign In</a>
                         </li>
@@ -44,8 +44,18 @@
             </div>
         </div>
     </div>
+    <div id="display" class="alert col-12">
+        <p id="alert"></p>
+    </div>
+    <div class="header">
+        <h1>Logs of All Request</h1>
+    </div>
+    <div class="padding">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Status..">
+    </div>
+
     <div class="padding col-12">
-		<table id="tableItem" class="col-12 table">
+        <table id="tableItem" class="col-12 table">
             <thead id="userTable">
                 <tr>
                     <th>S/N</th>
@@ -95,10 +105,10 @@
                         <li id="dat"></li>
                     </ol>
                 </div>
-                </div>
             </div>
-
         </div>
+
+    </div>
     </div>
     <script src="./js/allRequest.js"></script>
     <script src="./js/script.js"></script>

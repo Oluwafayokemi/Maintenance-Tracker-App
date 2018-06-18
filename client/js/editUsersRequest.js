@@ -24,7 +24,7 @@ updateForm.onsubmit = (getRequests) => {
     .then(response => response.json())
     .then((data) => {
       if (data.status >= 201 && data.status < 300) {
-        displayAlert('update sucessful');
+        displayAlert(data.message);
         toggleModal('modal-content');
       } else {
         const error = Object.assign({}, {
@@ -34,5 +34,5 @@ updateForm.onsubmit = (getRequests) => {
         return Promise.reject(error);
       }
     })
-    .catch(err => displayAlert(err));
+    .catch(error => console.log(error.message));
 };

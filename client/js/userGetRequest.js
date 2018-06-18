@@ -90,7 +90,7 @@ const getAllRequest = () => {
         return Promise.reject(error);
       }
     })
-    .catch(error => displayAlert(error));
+    .catch(error => displayAlert(error.message));
 };
 
 getAllRequest();
