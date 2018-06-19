@@ -26,10 +26,10 @@ loginForm.addEventListener('submit', (e) => {
       localStorage.setItem('email', data.user.email);
       localStorage.setItem('firstName', data.user.firstName);
 
-      if (data.user.isAdmin === false) {
+      if (data.status === 200 && data.user.isAdmin === false) {
         displayAlert(data.message);
         window.location.href = 'user.index.html';
-      } else if (data.user.isAdmin === true) {
+      } else if (data.status === 200 && data.user.isAdmin === true) {
         displayAlert(`success login in Admin ${data.user.firstName}`);
         window.location.href = 'admin.index.html';
       } else {
