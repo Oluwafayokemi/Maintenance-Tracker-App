@@ -125,7 +125,10 @@ const getAllRequest = () => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      if (data.status === 200) {
+      if (data.status === 401) {
+        displayAlert('Please sign in or sign up if you are a new user');
+        window.location.href = 'admin.index.html';
+      } else if (data.status === 200) {
         getRequestObject(data);
       } else {
         const error = Object.assign({}, {

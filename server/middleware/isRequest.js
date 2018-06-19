@@ -43,7 +43,6 @@ class IsRequest {
             status: 400,
             success: 'false',
             message: 'Resoved request can not be edited',
-            err: error,
           });
         }));
   }
@@ -82,7 +81,6 @@ class IsRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request',
-            err: error,
           });
         }));
   }

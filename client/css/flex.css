@@ -323,4 +323,7 @@ li select {
         text-align: center;
         margin-bottom: 4px;
     }
+    .modal-content{
+        width: 80%;
+    }
 }

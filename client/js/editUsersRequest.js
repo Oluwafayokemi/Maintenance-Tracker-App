@@ -23,7 +23,10 @@ updateForm.onsubmit = (getRequests) => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      if (data.status >= 201 && data.status < 300) {
+      if (data.status === 401) {
+        displayAlert('Please sign in or sign up if you are a new user');
+        window.location.href = 'user.index.html';
+      } else if (data.status >= 201 && data.status < 300) {
         displayAlert(data.message);
         toggleModal('modal-content');
       } else {
@@ -34,5 +37,5 @@ updateForm.onsubmit = (getRequests) => {
         return Promise.reject(error);
       }
     })
-    .catch(error => console.log(error.message));
+    .catch(error => displayAlert(error.message));
 };
