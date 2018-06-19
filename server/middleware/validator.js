@@ -37,8 +37,8 @@ class Validation {
 
     return res.status(400).json({
       message: 'Invalid Input',
-      statusCode: 400,
-      error,
+      status: 400,
+      err: error,
     });
   }
 
@@ -74,8 +74,8 @@ class Validation {
 
     return res.status(400).json({
       message: 'Invalid Input',
-      statusCode: 400,
-      error,
+      status: 400,
+      err: error,
     });
   }
 
@@ -125,8 +125,8 @@ class Validation {
 
     return res.status(400).send({
       message: 'Invalid Input',
-      statusCode: 400,
-      error,
+      status: 400,
+      err: error,
     });
   }
 }

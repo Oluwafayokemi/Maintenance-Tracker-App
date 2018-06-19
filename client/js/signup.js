@@ -1,5 +1,6 @@
 const signupForm = document.getElementById('signup-form'); // get the form id//
 const apiURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
+
 signupForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -32,12 +33,12 @@ signupForm.addEventListener('submit', (e) => {
     .then(response => response.json())
     .then((data) => {
       localStorage.setItem('token', data.token);
-      localStorage.setItem('email', data.newUser.email);
-      localStorage.setItem('firstName', data.newUser.firstName);
-      if (data.user.isAdmin === false) {
+      localStorage.setItem('email', data.user.email);
+      localStorage.setItem('firstName', data.user.firstName);
+      if (data.status === 200 && data.user.isAdmin === false) {
         displayAlert(data.message);
         window.location.href = 'user.index.html';
-      } else if (data.user.isAdmin === true) {
+      } else if (data.status === 200 && data.user.isAdmin === true) {
         displayAlert(data.message);
         window.location.href = 'admin.index.html';
       } else {
@@ -46,7 +47,8 @@ signupForm.addEventListener('submit', (e) => {
           message: data.message,
         });
         return Promise.reject(error);
-      }
+      } 
+}
     })
     .catch(error => displayAlert(error.message));
 });
