@@ -38,7 +38,6 @@ class AdminRequest {
             status: 400,
             success: 'false',
             message: 'Invalid request',
-            error,
           });
         }));
   }
@@ -81,7 +80,6 @@ class AdminRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request',
-            error,
           });
         }));
   }
@@ -117,7 +115,6 @@ class AdminRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request',
-            error,
           });
         }));
   }
@@ -153,7 +150,6 @@ class AdminRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request',
-            error,
           });
         }));
   }
@@ -189,7 +185,6 @@ class AdminRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request',
-            error,
           });
         }));
   }

@@ -49,7 +49,6 @@ class UserRequest {
             status: 400,
             success: 'false',
             message: 'Request not created',
-            error,
           });
         }));
   }
@@ -137,7 +136,6 @@ class UserRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request Id',
-            error,
           });
         }));
   }
@@ -199,7 +197,6 @@ class UserRequest {
             status: 400,
             success: 'false',
             message: 'Invalid Request Id',
-            error,
           });
         }));
   }

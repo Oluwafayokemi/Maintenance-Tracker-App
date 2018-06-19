@@ -32,14 +32,17 @@ signupForm.addEventListener('submit', (e) => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('email', data.user.email);
-      localStorage.setItem('firstName', data.user.firstName);
-      if (data.status === 200 && data.user.isAdmin === false) {
+      if (data.status !== 200) {
+        displayAlert(data.message)
+      } else if (data.user.isAdmin === false) {
         displayAlert(data.message);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('firstName', data.user.firstName);
         window.location.href = 'user.index.html';
-      } else if (data.status === 200 && data.user.isAdmin === true) {
+      } else if (data.user.isAdmin === true) {
         displayAlert(data.message);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('firstName', data.user.firstName);
         window.location.href = 'admin.index.html';
       } else {
         const error = Object.assign({}, {
@@ -47,8 +50,7 @@ signupForm.addEventListener('submit', (e) => {
           message: data.message,
         });
         return Promise.reject(error);
-      } 
-}
+      }
     })
     .catch(error => displayAlert(error.message));
 });

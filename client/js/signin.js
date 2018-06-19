@@ -1,7 +1,7 @@
 const loginForm = document.getElementById('signin-form'); // get the form id//
 const signinURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
 
-loginForm.addEventListener('submit', (e) => {
+loginForm.onsubmit = (e) => {
   e.preventDefault();
 
   const email = document.getElementById('signin').value;
@@ -22,15 +22,18 @@ loginForm.addEventListener('submit', (e) => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('email', data.user.email);
-      localStorage.setItem('firstName', data.user.firstName);
 
-      if (data.status === 200 && data.user.isAdmin === false) {
+      if (data.status !== 200) {
         displayAlert(data.message);
+      } else if (data.user.isAdmin === false) {
+        displayAlert(`success login in ${data.user.firstName}`);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('firstName', data.user.firstName);
         window.location.href = 'user.index.html';
-      } else if (data.status === 200 && data.user.isAdmin === true) {
+      } else if (data.user.isAdmin === true) {
         displayAlert(`success login in Admin ${data.user.firstName}`);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('firstName', data.user.firstName);
         window.location.href = 'admin.index.html';
       } else {
         const error = Object.assign({}, {
@@ -41,4 +44,4 @@ loginForm.addEventListener('submit', (e) => {
       }
     })
     .catch(error => displayAlert(error.message));
-});
+};

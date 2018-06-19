@@ -60,7 +60,6 @@ class User {
             status: 400,
             success: 'false',
             message: 'email already exists',
-            err,
           });
         }));
   }
@@ -120,7 +119,6 @@ class User {
             status: 403,
             success: 'false',
             message: 'invalid action',
-            error,
           });
         }));
   }
