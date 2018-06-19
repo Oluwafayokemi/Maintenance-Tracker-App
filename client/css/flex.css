@@ -12,12 +12,8 @@ body {
     -webkit-flex-direction: row;
     display: flex;
     flex-direction: row;
-    /* -webkit-justify-content: space-between;
-    justify-content: space-between; */
     -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding-top: 1em;
-    
+    flex-wrap: wrap;    
 }
 .row > * {
     flex: auto;
