@@ -16,7 +16,7 @@ class AdminRequest {
   getAll(req, res) {
     const queryString = {
       name: 'fetch-user',
-      text: 'SELECT requests.requestid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status FROM requests, users',
+      text: 'SELECT requests.requestid, users.userid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status FROM requests, users',
     };
 
     db.connect()
