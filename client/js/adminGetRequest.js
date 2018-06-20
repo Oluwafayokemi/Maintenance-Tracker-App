@@ -127,7 +127,7 @@ const getAllRequest = () => {
     .then((data) => {
       if (data.status === 401) {
         displayAlert('Please sign in or sign up if you are a new user');
-        window.location.href = 'admin.index.html';
+        window.location.href = 'index.html';
       } else if (data.status === 200) {
         getRequestObject(data);
       } else {
