@@ -43,6 +43,43 @@ class Validation {
   }
 
   /**
+     * Validate filter record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @param {function} next
+     * @returns {object} Class instance
+     * @memberof Validation
+     */
+
+  validateFilter(req, res, next) {
+    const requestRules = {
+      offset: 'integer',
+      limit: 'integer',
+    };
+
+    const validate = new Validator(req.query, requestRules);
+    if (validate.passes()) return next();
+
+    const error = {};
+    const offset = validate.errors.first('offset');
+    const limit = validate.errors.first('limit');
+
+    if (offset) {
+      error.offset = offset;
+    }
+    if (limit) {
+      error.limit = limit;
+    }
+
+    return res.status(400).json({
+      message: 'Invalid Input',
+      status: 400,
+      error,
+    });
+  }
+
+  /**
      * Validate Login record
      *
      * @param {object} req - HTTP Request
@@ -51,6 +88,7 @@ class Validation {
      * @returns {object} Class instance
      * @memberof Validation
      */
+
   validateLogin(req, res, next) {
     const validateLogin = {
       email: 'required|email',

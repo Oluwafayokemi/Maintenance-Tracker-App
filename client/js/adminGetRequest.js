@@ -39,6 +39,7 @@ const getOneRequest = (requestId) => {
   getDesc.textContent = `Description: ${requestObject.description}`;
   getStatus.textContent = `Status: ${requestObject.status}`;
   getDate.textContent = `Date: ${new Date(requestObject.date).toLocaleString('en-GB', { hour12: true })}`;
+  console.log(requestObject);
 };
 const getRequestObject = (response) => {
   const tableBody = document.querySelector('#userTable');
