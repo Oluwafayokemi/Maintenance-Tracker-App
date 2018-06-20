@@ -1,5 +1,6 @@
 const requestForm = document.getElementById('request-form'); // get the form id//
 const requestURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
+document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 
 requestForm.onsubmit = (e) => {
   e.preventDefault();
