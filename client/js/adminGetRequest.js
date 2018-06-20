@@ -12,7 +12,7 @@ const getStatus = document.getElementById('stat');
 const getDate = document.getElementById('dat');
 const getAction = document.getElementById('action');
 
-document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
+document.querySelector('#fir_name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
 
 const requestTable = document.querySelector('#tableItem');
