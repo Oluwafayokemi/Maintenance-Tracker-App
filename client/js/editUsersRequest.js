@@ -25,9 +25,10 @@ updateForm.onsubmit = (getRequests) => {
     .then((data) => {
       if (data.status === 401) {
         displayAlert('Please sign in or sign up if you are a new user');
-        window.location.href = 'user.index.html';
+        window.location.href = 'index.html';
       } else if (data.status >= 201 && data.status < 300) {
         displayAlert(data.message);
+        window.location.href = 'user.index.html';
         toggleModal('modal-content');
       } else {
         const error = Object.assign({}, {
