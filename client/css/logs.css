@@ -41,7 +41,6 @@
     color: white;
 }
 .content {
-    /* padding: 0 18px; */
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
@@ -118,7 +117,6 @@ select {
     outline: none;
     color: rgb(48, 21, 146);
     cursor: pointer;
-
 }
 textarea {
     width: 100%;

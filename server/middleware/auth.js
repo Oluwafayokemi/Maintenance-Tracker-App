@@ -13,8 +13,10 @@ class jwts {
    * @return {String} Returned token
    */
   static token(user) {
+    const { userid, isadmin } = user;
+    const userDetails = { userid, isadmin };
     const authToken = jwt.sign(
-      user, secret,
+      userDetails, secret,
       { expiresIn: '1d' },
     );
 
