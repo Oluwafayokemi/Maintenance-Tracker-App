@@ -14,8 +14,13 @@ class AdminRequest {
   */
 
   getAll(req, res) {
+    const queryString = {
+      name: 'fetch-user',
+      text: 'SELECT requests.requestid, users.userid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status FROM requests, users',
+    };
+
     db.connect()
-      .then(client => client.query('SELECT * from requests;')
+      .then(client => client.query(queryString)
         .then((requests) => {
           client.release(requests);
           if (!requests.rows) {
@@ -38,6 +43,7 @@ class AdminRequest {
             status: 400,
             success: 'false',
             message: 'Invalid request',
+            error
           });
         }));
   }
