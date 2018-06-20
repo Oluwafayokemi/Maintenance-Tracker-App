@@ -14,22 +14,15 @@ class UserRequest {
    */
 
   create(req, res) {
-    const {
-      userid,
-      firstname,
-      lastname,
-      email,
-      department,
-    } = req.body.token;
-
+    const { userid } = req.body.token;
     const {
       equipment,
       description,
     } = req.body;
 
     const query = {
-      text: 'INSERT INTO requests(firstName, lastName, email, department, equipment, description, userid, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestId, firstName, lastName, email, department, equipment, description, status, date;',
-      values: [firstname, lastname, email, department, equipment, description, userid, 'pending'],
+      text: 'INSERT INTO requests(equipment, description, userid, status) VALUES($1, $2, $3, $4) RETURNING requestId, userid, equipment, description, status, date;',
+      values: [equipment, description, userid, 'pending'],
     };
 
     db.connect()
@@ -44,11 +37,12 @@ class UserRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
             message: 'Request not created',
+            error
           });
         }));
   }
@@ -151,10 +145,6 @@ class UserRequest {
     const requestid = parseInt(req.params.id, 10);
     const {
       userid,
-      firstname,
-      lastname,
-      email,
-      department,
     } = req.body.token;
 
     const {
@@ -163,8 +153,8 @@ class UserRequest {
     } = req.body;
 
     const query = {
-      text: 'UPDATE requests SET firstName = $1, lastName = $2, email = $3, department =$4, equipment = $5, description = $6 WHERE userid = $7 AND requestid = $8 RETURNING firstName, lastName, email, department, equipment, description, status;',
-      values: [firstname, lastname, email, department, equipment, description, userid, requestid],
+      text: 'UPDATE requests SET equipment = $1, description = $2 WHERE userid = $3 AND requestid = $4 RETURNING requestid, userid, equipment, description, status;',
+      values: [equipment, description, userid, requestid],
     };
 
     db.connect()

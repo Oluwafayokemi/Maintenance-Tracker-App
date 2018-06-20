@@ -9,24 +9,12 @@ const request = supertest(app);
 const { expect } = chai;
 const adminUser = {
   userid: 1,
-  firstname: 'fayokemi',
-  lastname: 'adeyina',
   isadmin: true,
-  email: 'fayoaright@gmail.com',
-  password: '$2a$10$xyYyMLbzC55twFiAlPiaaOUtLl19iHFngx1.fK55Uc0QGLW5NTXF6',
-  department: 'Water Management',
-  joined: '2018-05-29T23:00:00.000Z',
 };
 
 const defaultUser = {
   userid: 2,
-  firstname: 'omotola',
-  lastname: 'adeyina',
   isadmin: false,
-  email: 'omotola@gmail.com',
-  password: '$2a$10$xyYyMLbzC55twFiAlPiaaOUtLl19iHFngx1.fK55Uc0QGLW5NTXF6',
-  department: 'Water Management',
-  joined: '2018-05-29T23:00:00.000Z',
 };
 
 let adminToken;
@@ -80,16 +68,13 @@ describe('Get request for an admin', () => {
               expect(res.body).to.haveOwnProperty('message').to.equal('all requests retrieved successfully');
               expect(res.body).to.haveOwnProperty('success').to.equal('true');
               expect(res.body).to.haveOwnProperty('requests').to.be.an('array');
-              expect(res.body.requests[0]).to.haveOwnProperty('firstname').to.be.equal('fayokemi');
-              expect(res.body.requests[0]).to.haveOwnProperty('lastname').to.be.equal('adeyina');
+              expect(res.body.requests[0]).to.haveOwnProperty('userid').to.be.equal(1);
               expect(res.body.requests[0]).to.haveOwnProperty('equipment').to.be.equal('generator');
               expect(res.body.requests[0]).to.haveOwnProperty('description').to.be.equal('Generator goes off always');
-              expect(res.body.requests[1]).to.haveOwnProperty('firstname').to.be.equal('fayokemi');
-              expect(res.body.requests[1]).to.haveOwnProperty('lastname').to.be.equal('adeyina');
+              expect(res.body.requests[1]).to.haveOwnProperty('userid').to.be.equal(1);
               expect(res.body.requests[1]).to.haveOwnProperty('equipment').to.be.equal('generator');
               expect(res.body.requests[1]).to.haveOwnProperty('description').to.be.equal('Generator goes off always');
-              expect(res.body.requests[2]).to.haveOwnProperty('firstname').to.be.equal('omotola');
-              expect(res.body.requests[2]).to.haveOwnProperty('lastname').to.be.equal('adeyina');
+              expect(res.body.requests[2]).to.haveOwnProperty('userid').to.be.equal(2);
               expect(res.body.requests[2]).to.haveOwnProperty('equipment').to.be.equal('Air Condition');
               expect(res.body.requests[2]).to.haveOwnProperty('description').to.be.equal('air condition blows hot air');
               done();
@@ -131,8 +116,7 @@ describe('Get request for an admin', () => {
               expect(res.body).to.be.an('object');
               expect(res.body).to.haveOwnProperty('message').to.equal('all requests retrieved successfully');
               expect(res.body).to.haveOwnProperty('success').to.equal('true');
-              expect(res.body.request).to.haveOwnProperty('firstname').to.be.equal('fayokemi');
-              expect(res.body.request).to.haveOwnProperty('lastname').to.be.equal('adeyina');
+              expect(res.body.request).to.haveOwnProperty('userid').to.be.equal(1);
               expect(res.body.request).to.haveOwnProperty('equipment').to.be.equal('generator');
               expect(res.body.request).to.haveOwnProperty('description').to.be.equal('Generator goes off always');
               done();
