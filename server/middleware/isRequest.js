@@ -11,6 +11,13 @@ class IsRequest {
 
   isResolved(req, res, next) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
 
     const Query = {
       name: 'fetch-user',
@@ -38,7 +45,7 @@ class IsRequest {
           return next();
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
@@ -49,6 +56,13 @@ class IsRequest {
 
   resolveCheck(req, res, next) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
 
     const Query = {
       name: 'fetch-user',
@@ -76,7 +90,7 @@ class IsRequest {
           return next();
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',

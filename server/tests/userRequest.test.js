@@ -201,7 +201,7 @@ describe('Get request for an admin', () => {
             .end((err, res) => {
               expect(res.status).to.equal(400);
               expect(res.body).to.be.an('object');
-              expect(res.body).to.haveOwnProperty('message').to.equal('Invalid Request Id');
+              expect(res.body).to.haveOwnProperty('message').to.equal('Request id is not a string');
               expect(res.body).to.haveOwnProperty('success').to.equal('false');
               done();
             });
@@ -318,7 +318,7 @@ describe('Get request for an admin', () => {
               expect(res.body).to.be.an('object');
               expect(res.body)
                 .to.haveOwnProperty('message')
-                .to.equal('Invalid Request Id');
+                .to.equal('Request id is not a string');
               done();
             });
         });

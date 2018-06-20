@@ -54,8 +54,8 @@ class User {
             token,
           });
         })
-        .catch((err) => {
-          client.release();
+        .catch((error) => {
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
@@ -114,9 +114,9 @@ class User {
           });
         })
         .catch((error) => {
-          client.release();
-          return res.status(403).json({
-            status: 403,
+          client.release(error);
+          return res.status(400).json({
+            status: 400,
             success: 'false',
             message: 'invalid action',
           });

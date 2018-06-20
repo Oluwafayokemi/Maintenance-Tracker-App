@@ -143,7 +143,7 @@ describe('Get request for an admin', () => {
             .end((err, res) => {
               expect(res.status).to.equal(400);
               expect(res.body).to.be.an('object');
-              expect(res.body).to.haveOwnProperty('message').to.equal('Invalid Request');
+              expect(res.body).to.haveOwnProperty('message').to.equal('Request id is not a string');
               expect(res.body).to.haveOwnProperty('success').to.equal('false');
               done();
             });
@@ -237,15 +237,40 @@ describe('Get request for an admin', () => {
             });
         });
 
-        it('should return 400 response for trying to resolve a request with an invalid id', (done) => {
+        it('should return 400 response for trying to resolve a request with an invalid id of type string', (done) => {
           request
             .put('/api/v1/requests/sdkjslkdjlfk/resolve')
             .set('x-access-token', adminToken)
             .end((err, res) => {
               expect(res.status).to.equal(400);
               expect(res.body).to.be.an('object');
-              expect(res.body).to.haveOwnProperty('message').to.equal('Invalid Request');
               expect(res.body).to.haveOwnProperty('success').to.equal('false');
+              expect(res.body).to.haveOwnProperty('message').to.equal('Request id is not a string');
+              done();
+            });
+        });
+
+        it('should return 400 response for trying to approve a request with an invalid id of type string', (done) => {
+          request
+            .put('/api/v1/requests/sdkjslkdjlfk/approve')
+            .set('x-access-token', adminToken)
+            .end((err, res) => {
+              expect(res.status).to.equal(400);
+              expect(res.body).to.be.an('object');
+              expect(res.body).to.haveOwnProperty('success').to.equal('false');
+              expect(res.body).to.haveOwnProperty('message').to.equal('Request id is not a string');
+              done();
+            });
+        });
+        it('should return 400 response for trying to disapprove a request with an invalid id of type string', (done) => {
+          request
+            .put('/api/v1/requests/sdkjslkdjlfk/disapprove')
+            .set('x-access-token', adminToken)
+            .end((err, res) => {
+              expect(res.status).to.equal(400);
+              expect(res.body).to.be.an('object');
+              expect(res.body).to.haveOwnProperty('success').to.equal('false');
+              expect(res.body).to.haveOwnProperty('message').to.equal('Request id is not a string');
               done();
             });
         });
