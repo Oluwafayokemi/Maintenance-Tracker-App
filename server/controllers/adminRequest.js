@@ -38,12 +38,11 @@ class AdminRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
             message: 'Invalid request',
-            error
           });
         }));
   }
@@ -57,6 +56,13 @@ class AdminRequest {
 
   getOne(req, res) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
     const Query = {
       name: 'fetch-user',
       text: 'SELECT * FROM requests WHERE requestid = $1 LIMIT 1;',
@@ -81,7 +87,7 @@ class AdminRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
@@ -99,6 +105,13 @@ class AdminRequest {
 
   approve(req, res) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
     const Query = {
       text: 'UPDATE requests SET status = $1 WHERE requestid= $2 RETURNING userid, equipment, description, status;',
       values: ['approved', requestid],
@@ -116,7 +129,7 @@ class AdminRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
@@ -134,6 +147,13 @@ class AdminRequest {
 
   disapprove(req, res) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
     const query = {
       text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING equipment, description, status;',
       values: ['disapproved', requestid],
@@ -151,7 +171,7 @@ class AdminRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
@@ -169,6 +189,13 @@ class AdminRequest {
 
   resolve(req, res) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
     const query = {
       text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING userid, equipment, description, status;',
       values: ['resolved', requestid],
@@ -186,7 +213,7 @@ class AdminRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',

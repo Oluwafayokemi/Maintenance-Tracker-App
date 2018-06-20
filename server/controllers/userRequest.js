@@ -78,8 +78,8 @@ class UserRequest {
             requests: requests.rows,
           });
         })
-        .catch(() => {
-          client.release();
+        .catch((error) => {
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
@@ -97,6 +97,13 @@ class UserRequest {
 
   getOne(req, res) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'Request id is not a string'
+      });
+    }
     const {
       userid,
     } = req.body.token;
@@ -125,11 +132,11 @@ class UserRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'Invalid Request Id',
+            message: 'Invalid Request',
           });
         }));
   }
@@ -143,6 +150,13 @@ class UserRequest {
 
   update(req, res) {
     const requestid = parseInt(req.params.id, 10);
+    if (isNaN(requestid)) {
+      return res.status(400).json({
+        success: 'false',
+        status: 400,
+        message: 'Request id is not a string'
+      });
+    }
     const {
       userid,
     } = req.body.token;
@@ -182,11 +196,11 @@ class UserRequest {
           });
         })
         .catch((error) => {
-          client.release();
+          client.release(error);
           return res.status(400).json({
             status: 400,
             success: 'false',
-            message: 'Invalid Request Id',
+            message: 'Invalid Request',
           });
         }));
   }
