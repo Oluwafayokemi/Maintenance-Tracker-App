@@ -14,9 +14,11 @@ class AdminRequest {
   */
 
   getAll(req, res) {
+    const { offset, limit } = req.query;
     const queryString = {
       name: 'fetch-user',
-      text: 'SELECT requests.requestid, users.userid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status FROM requests, users',
+      text: 'SELECT requests.requestid, users.userid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status, requests.date FROM requests, users offset $1 limit $2;',
+      values: [offset, limit],
     };
 
     db.connect()
@@ -60,7 +62,7 @@ class AdminRequest {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'Request id is not a string'
+        message: 'Request id is not a string',
       });
     }
     const Query = {
@@ -109,7 +111,7 @@ class AdminRequest {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'Request id is not a string'
+        message: 'Request id is not a string',
       });
     }
     const Query = {
@@ -151,7 +153,7 @@ class AdminRequest {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'Request id is not a string'
+        message: 'Request id is not a string',
       });
     }
     const query = {
@@ -193,7 +195,7 @@ class AdminRequest {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'Request id is not a string'
+        message: 'Request id is not a string',
       });
     }
     const query = {

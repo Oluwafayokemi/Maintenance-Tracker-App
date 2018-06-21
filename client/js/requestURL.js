@@ -1,4 +1,3 @@
-
 /**
  * JS file to handle users update request.
  */
@@ -13,7 +12,6 @@ const requestStatus = (requestId, selectElement) => {
       'x-access-token': `${localStorage.token}`,
     },
   });
-
   fetch(request)
     .then(response => response.json())
     .then((data) => {

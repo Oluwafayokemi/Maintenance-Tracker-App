@@ -1,3 +1,5 @@
+/* eslint-disable no-continue, no-plusplus, no-loop-func */
+
 /**
  * JS file to handle users get request.
  */
@@ -7,8 +9,6 @@ const updateDesc = document.getElementById('editDescrip');
 
 document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
-
-const requestTable = document.querySelector('#tableItem');
 
 const request = new Request(`${getRequestUrl}/api/v1/users/requests`, {
   method: 'GET',
