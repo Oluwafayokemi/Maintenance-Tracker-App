@@ -42,7 +42,6 @@ class UserRequest {
             status: 400,
             success: 'false',
             message: 'Request not created',
-            error
           });
         }));
   }
@@ -55,10 +54,12 @@ class UserRequest {
    */
 
   getAll(req, res) {
+    const { offset, limit } = req.query;
+
     const queryString = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE userid = $1;',
-      values: [req.body.token.userid],
+      text: 'SELECT * FROM requests WHERE userid = $1 offset $2 limit $3;',
+      values: [req.body.token.userid, offset, limit],
     };
     db.connect()
       .then(client => client.query(queryString)
