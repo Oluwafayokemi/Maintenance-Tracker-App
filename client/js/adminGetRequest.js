@@ -12,17 +12,36 @@ const getEquip = document.getElementById('equ');
 const getDesc = document.getElementById('descrip');
 const getStatus = document.getElementById('stat');
 const getDate = document.getElementById('dat');
+const previousBtn = document.getElementById('fa-left');
+const nextBtn = document.getElementById('fa-right');
+const tableItem = document.getElementById('tableItem')
+
+let offset = 0;
+const limit = 10;
+
+const previous = () => {
+  if (offset === 0) {
+    return;
+  }
+  offset -= 10;
+  getAllRequest();
+};
+const next = () => {
+  if (userRequestArr.length < 10) {
+    return;
+  }
+  offset += 10;
+  getAllRequest();
+};
+previousBtn.addEventListener('click', () => {
+  previous();
+});
+nextBtn.addEventListener('click', () => {
+  next();
+});
 
 document.querySelector('#fir_name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
-
-const request = new Request(`${getRequestUrl}/api/v1/requests`, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'x-access-token': `${localStorage.token}`,
-  },
-});
 
 const getOneRequest = (requestId) => {
   const requestObject = userRequestArr.find(currRequest => currRequest.requestid === parseInt(requestId, 10));
@@ -40,7 +59,7 @@ const updateRequest = (id) => {
   getOneRequest(id);
 };
 const getRequestObject = (response) => {
-  const tableBody = document.querySelector('#userTable');
+  const tableBody = document.createElement('tbody');
   const arr = ['id', 'date', 'equipment', 'action', 'status', 'details'];
   userRequestArr = response.requests;
   for (let i = 0; i < response.requests.length; i++) {
@@ -120,8 +139,18 @@ const getRequestObject = (response) => {
     }
     tableBody.appendChild(row);
   }
+  tableItem.removeChild(tableItem.lastChild);
+  tableItem.appendChild(tableBody);
 };
 const getAllRequest = () => {
+  const request = new Request(`${getRequestUrl}/api/v1/requests?offset=${offset}&limit=${limit}`, {
+    method: 'GET',
+    cache: 'reload',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': `${localStorage.token}`,
+    },
+  });
   fetch(request)
     .then(response => response.json())
     .then((data) => {
