@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="row " id="header">
+  <div class="row" id="header">
     <div class="maintenance-box">
       <a href="user.index.html">
         <img src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-5/256/maintenance-icon.png" alt="logo">
@@ -53,30 +53,24 @@
   <!-- get all request -->
 
   <div class="padding col-12">
-    <table id="tableItem" class="table">
-      <div class="flex">
-        <input class="submitbtn" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Status..">
+    <table id="table" class="table">
+      <div class="flex col-12">
+        <input class="searchBtn" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Status..">
         <div class="page">
-          <i class="fas fa-chevron-left"></i>
-          <i class="fas fa-chevron-right"></i>
+          <i class="fas fa-chevron-left" id="left"></i>
+          <i class="fas fa-chevron-right" id="right"></i>
         </div>
       </div>
-  </div>
-  <thead>
-    <tr>
-      <th>S/N</th>
-      <th>Date</th>
-      <th>Equipment</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody id="reqBody">
-  <tr>
-    
-  </tr>
-  </tbody>
-  </table>
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Date</th>
+          <th>Equipment</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
   </div>
   <div class="main col-12">
 
@@ -99,7 +93,7 @@
             <label for="equipment">
               <strong>Equipment</strong>
             </label>
-            <select id="editEquip" name="equipment">
+            <select id="editEquip" class=btn-btn name="equipment">
               <option value="Air condition">Air condition</option>
               <option value="Furniture">Furniture</option>
               <option value="Generator">Generator</option>
@@ -116,7 +110,8 @@
             <label for="description">
               <strong>Description</strong>
             </label>
-            <textarea name="description" id="editDescrip" placeholder="Please give a brief description of your report" required></textarea>
+            <textarea name="description" class="btn-btn" id="editDescrip" placeholder="Please give a brief description of your report"
+              required></textarea>
 
             <hr>
             <div class="btn">

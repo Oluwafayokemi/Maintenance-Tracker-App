@@ -107,7 +107,6 @@ table {
     width: 100%;
     margin: 0 auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 table th,
@@ -234,7 +233,6 @@ li select {
         -webkit-justify-content: center;
         justify-content: center;
     }
-
     ul li.right,
     ul li {
         float: none;
@@ -295,5 +293,13 @@ li select {
     }
     .modal-content{
         width: 80%;
+    }
+    .flex {
+        display: flex;
+    }
+    .flex .page{
+        display: flex;
+        flex-direction: row;
+        margin: 1em;
     }
 }

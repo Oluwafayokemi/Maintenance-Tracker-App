@@ -6,29 +6,49 @@
 const getRequestUrl = 'https://calm-fortress-33069.herokuapp.com';
 const updateEquip = document.getElementById('editEquip');
 const updateDesc = document.getElementById('editDescrip');
+const previousButton = document.getElementById('left');
+const nextButton = document.getElementById('right');
+const tableItem = document.getElementById('table');
+
+let offset = 0;
+const limit = 10;
+
+const previous = () => {
+  if (offset === 0) {
+    return;
+  }
+  offset -= 10;
+  getAllRequest();
+};
+const next = () => {
+  if (userRequestArr.length < 10) {
+    return;
+  }
+  offset += 10;
+  getAllRequest();
+};
+
+previousButton.addEventListener('click', () => {
+  previous();
+});
+nextButton.addEventListener('click', () => {
+  next();
+});
 
 document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
 
-const request = new Request(`${getRequestUrl}/api/v1/users/requests`, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'x-access-token': `${localStorage.token}`,
-  },
-});
-
-const updateRequest = (id) => {
-  requestId = id;
-  getOneRequest(id);
-};
 const getOneRequest = (requestId) => {
   const requestObject = userRequestArr.find(currRequest => currRequest.requestid === parseInt(requestId, 10));
   updateEquip.value = requestObject.equipment;
   updateDesc.value = requestObject.description;
 };
+const updateRequest = (id) => {
+  requestId = id;
+  getOneRequest(id);
+};
 const getRequestObject = (response) => {
-  const tableBody = document.querySelector('#reqBody');
+  const tableBody = document.createElement('tbody');
   const arr = ['id', 'date', 'equipment', 'description', 'status', 'edit'];
   userRequestArr = response.requests;
   for (let i = 0; i < response.requests.length; i++) {
@@ -75,8 +95,18 @@ const getRequestObject = (response) => {
     }
     tableBody.appendChild(row);
   }
+  tableItem.removeChild(tableItem.lastChild);
+  tableItem.appendChild(tableBody);
 };
 const getAllRequest = () => {
+  const request = new Request(`${getRequestUrl}/api/v1/users/requests?offset=${offset}&limit=${limit}`, {
+    method: 'GET',
+    cache: 'reload',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': `${localStorage.token}`,
+    },
+  });
   fetch(request)
     .then(response => response.json())
     .then((data) => {

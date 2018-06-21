@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+    box-sizing: border-box;
+}
+
 .main{
     padding: 2em;
 
@@ -81,6 +87,25 @@ hr {
     opacity: 0.9;
     text-align: center
 }
+.searchBtn {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: 1em;
+    margin-bottom:8px;
+    border: 2px solid goldenrod;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.btn-btn {
+    background: white;
+    color: rgb(48, 21, 146);
+    padding: 1em;
+    margin-bottom:8px;
+    border: 2px solid goldenrod;
+    cursor: pointer;
+    opacity: 0.9;
+    font-size: 1em;
+}
 
 .submitbtn:hover {
     opacity: 1;
@@ -97,6 +122,7 @@ hr {
     cursor: no-drop;
 }
 select {
+    font-family: 'lato', sans-serif;
     width: 100%;
     padding: 16px 20px;
     border: none;
@@ -105,19 +131,21 @@ select {
     outline: none;
     color: rgb(48, 21, 146);
     cursor: pointer;
+    margin-top: .5em;
 }
 textarea {
     width: 100%;
+    font-family: 'lato', sans-serif;
     height: 150px;
-    padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid goldenrod;
     border-radius: 4px;
     background-color: #f8f8f8;
-    font-size: 16px;
+    font-size: 1em;
     resize: none;
     outline: none;
     cursor: pointer;
+    margin-top: .5em;
 }
 ol {
     list-style: none;
