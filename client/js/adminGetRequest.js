@@ -1,3 +1,5 @@
+/* eslint-disable no-continue, no-plusplus, no-loop-func */
+
 /**
  * JS file to handle users get request.
  */
@@ -10,12 +12,9 @@ const getEquip = document.getElementById('equ');
 const getDesc = document.getElementById('descrip');
 const getStatus = document.getElementById('stat');
 const getDate = document.getElementById('dat');
-const getAction = document.getElementById('action');
 
 document.querySelector('#fir_name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
 let userRequestArr;
-
-const requestTable = document.querySelector('#tableItem');
 
 const request = new Request(`${getRequestUrl}/api/v1/requests`, {
   method: 'GET',
@@ -25,10 +24,6 @@ const request = new Request(`${getRequestUrl}/api/v1/requests`, {
   },
 });
 
-const updateRequest = (id) => {
-  requestId = id;
-  getOneRequest(id);
-};
 const getOneRequest = (requestId) => {
   const requestObject = userRequestArr.find(currRequest => currRequest.requestid === parseInt(requestId, 10));
   getId.textContent = `Request Id: ${requestObject.requestid}`;
@@ -39,11 +34,14 @@ const getOneRequest = (requestId) => {
   getDesc.textContent = `Description: ${requestObject.description}`;
   getStatus.textContent = `Status: ${requestObject.status}`;
   getDate.textContent = `Date: ${new Date(requestObject.date).toLocaleString('en-GB', { hour12: true })}`;
-  console.log(requestObject);
+};
+const updateRequest = (id) => {
+  requestId = id;
+  getOneRequest(id);
 };
 const getRequestObject = (response) => {
   const tableBody = document.querySelector('#userTable');
-  const arr = ['id', 'date', 'equipment', 'description', 'status', 'action', 'details'];
+  const arr = ['id', 'date', 'equipment', 'action', 'status', 'details'];
   userRequestArr = response.requests;
   for (let i = 0; i < response.requests.length; i++) {
     // creates a table row
@@ -69,7 +67,7 @@ const getRequestObject = (response) => {
       }
       if (arr[j] === 'details') {
         const button = document.createElement('button');
-        button.setAttribute('class', 'updateBtn');
+        button.setAttribute('class', 'submitBtn');
         button.setAttribute('id', 'myBtn');
         button.addEventListener('click', () => {
           updateRequest(response.requests[i].requestid);
@@ -83,6 +81,7 @@ const getRequestObject = (response) => {
       }
       if (arr[j] === 'action') {
         const button = document.createElement('select');
+        button.setAttribute('class', 'submitBtn');
         button.setAttribute('id', 'mySelect');
         button.addEventListener('change', () => {
           requestStatus(response.requests[i].requestid, button);

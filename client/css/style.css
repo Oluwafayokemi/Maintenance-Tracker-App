@@ -105,6 +105,9 @@ img {
 table {
     border-collapse: collapse;
     width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 table th,
@@ -116,6 +119,11 @@ table td {
 table tr:nth-child(even) {
     background-color: #f2f2f2;
     color: rgb(48, 21, 146);
+}
+
+table tr:nth-child(odd) {
+    background-color: rgb(48, 21, 146);
+    color: white;
 }
 
 table .th {
@@ -164,43 +172,6 @@ li select {
 .padding {
     padding: 1em;
 }
-.modal {
-    margin: 6em auto;
-    padding: 0;
-    width: 100%;
-    min-width: 200px;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    overflow: auto;
-    z-index: 1; /* Sit on top */
-    color: goldenrod;
-}
-/* Modal Content/Box */
-.modal-content {
-    background-color:rgb(48, 21, 146);
-    margin: 0 auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: goldenrod;
-    float: right;
-    font-size: 3em;
-}
-
-.close:hover,
-.close:focus {
-    color: goldenrod;
-    text-decoration: none;
-    cursor: pointer;
-}
- 
 
 .card-2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -250,6 +221,7 @@ li select {
     text-align: center;
     color: rgb(48, 21, 146);    
 }
+
 @media only screen and (max-width: 769px) {
     .row {
         -webkit-flex-direction: column;

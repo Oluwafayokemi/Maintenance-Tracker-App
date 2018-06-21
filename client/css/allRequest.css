@@ -1,13 +1,11 @@
-.main {
-    margin: 0 auto;
-    padding: 2em;
-}
+
 .maintenance-box {
     margin-top: 0;
     border: none;
     height: 4.78em;
     padding-top: .5em ;
     background-color: rgb(48, 21, 146);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: white;
     text-align: center;
 }
@@ -71,8 +69,82 @@ div .right {
 .details .des {
     text-transform: unset;
 }
-table.table {
+
+.submitBtn {
     background: rgb(48, 21, 146);
     color: white;
     padding: 1em;
+    margin-bottom:8px;
+    border: 2px solid goldenrod;
+    cursor: pointer;
+    opacity: 0.9;
+    text-align: center
 }
+.submitBtn:hover {
+    opacity: 1;
+}
+
+.flex {
+    background: white;
+    padding: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flex .page {
+    color: #fff;
+    float: right;
+    margin-top: .5em;
+    background: rgb(48, 21, 146);
+    padding: .5em;
+    text-align: center;
+    margin-right: 6em;
+    border: 2px solid goldenrod;
+}
+.flex .page i {
+    width: 1.5em;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+table.table {
+    background: rgb(48, 21, 146);
+    color: white;
+}
+/* -------------------------------------modal------------------------------------------------------- */
+.modal {
+    margin: 6em auto;
+    padding: 0;
+    width: 100%;
+    min-width: 200px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: auto;
+    z-index: 1; /* Sit on top */
+    color: goldenrod;
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color:rgb(48, 21, 146);
+    margin: 5em auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* The Close Button */
+.close {
+    color: goldenrod;
+    float: right;
+    font-size: 3em;
+}
+
+.close:hover,
+.close:focus {
+    color: goldenrod;
+    text-decoration: none;
+    cursor: pointer;
+}
+ 

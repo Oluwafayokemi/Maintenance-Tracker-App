@@ -10,6 +10,7 @@
     background-color: rgb(48, 21, 146);
     color: white;
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .maintenance-box img {
     width: 60px;
@@ -62,20 +63,6 @@ li {
 btn.disable {
     background: rgba(48, 21, 146, 0.2);
 }
-/* Full-width input fields */
-input[type=text] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-input[type=text]:focus {
-    background-color: #ddd;
-    outline: none;
-}
 
 /* Overwrite default styles of hr */
 hr {
@@ -92,6 +79,7 @@ hr {
     border: 2px solid goldenrod;
     cursor: pointer;
     opacity: 0.9;
+    text-align: center
 }
 
 .submitbtn:hover {
@@ -165,3 +153,67 @@ table.table {
     color: white;
 
 }
+
+/* ----------------------------------section for table input header-------------------- */
+
+.flex {
+    background: white;
+    padding: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flex .page {
+    color: #fff;
+    float: right;
+    margin-top: .5em;
+    background: rgb(48, 21, 146);
+    padding: .5em;
+    text-align: center;
+    margin-right: 17em;
+    border: 2px solid goldenrod;
+}
+.flex .page i {
+    width: 1.5em;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+/* -----------------------------------------------modal----------------------------------------- */
+
+.modal {
+    margin: 6em auto;
+    padding: 0;
+    width: 100%;
+    min-width: 200px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: auto;
+    z-index: 1; /* Sit on top */
+    color: goldenrod;
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color:rgb(48, 21, 146);
+    margin: 2em auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* The Close Button */
+.close {
+    color: goldenrod;
+    float: right;
+    font-size: 3em;
+}
+
+.close:hover,
+.close:focus {
+    color: goldenrod;
+    text-decoration: none;
+    cursor: pointer;
+}
+ 
