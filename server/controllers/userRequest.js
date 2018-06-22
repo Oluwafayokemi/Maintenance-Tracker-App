@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import db from '../models/index';
+import emailNotification from '../extension/mail';
 
 /**
  * @export
@@ -29,6 +30,7 @@ class UserRequest {
       .then(client => client.query(query)
         .then((request) => {
           client.release(request);
+          emailNotification.createRequest(equipment);
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -98,11 +100,11 @@ class UserRequest {
 
   getOne(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    if (isNaN(requestid)) {
+    if (Number.isNaN(requestid)) {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'Request id is not a string'
+        message: 'Request id is not a string',
       });
     }
     const {
