@@ -1,5 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import db from '../models/index';
+import emailNotification from '../extension/mail';
+
 /**
  * @export
  * @class request
@@ -58,7 +60,7 @@ class AdminRequest {
 
   getOne(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    if (isNaN(requestid)) {
+    if (Number.isNaN(requestid)) {
       return res.status(400).json({
         status: 400,
         success: 'false',
@@ -107,7 +109,7 @@ class AdminRequest {
 
   approve(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    if (isNaN(requestid)) {
+    if (Number.isNaN(requestid)) {
       return res.status(400).json({
         status: 400,
         success: 'false',
@@ -123,6 +125,7 @@ class AdminRequest {
       .then(client => client.query(Query)
         .then((request) => {
           client.release(request);
+          emailNotification.requestStatus(requestid);
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -165,6 +168,7 @@ class AdminRequest {
       .then(client => client.query(query)
         .then((request) => {
           client.release(request);
+          emailNotification.requestStatus(requestid);
           return res.status(201).json({
             status: 201,
             success: 'true',
@@ -207,6 +211,7 @@ class AdminRequest {
       .then(client => client.query(query)
         .then((request) => {
           client.release(request);
+          emailNotification.requestStatus(requestid);
           return res.status(201).json({
             status: 201,
             success: 'true',
