@@ -152,7 +152,7 @@ class AdminRequest {
 
   disapprove(req, res) {
     const requestid = parseInt(req.params.id, 10);
-    if (isNaN(requestid)) {
+    if (Number.isNaN(requestid)) {
       return res.status(400).json({
         status: 400,
         success: 'false',
