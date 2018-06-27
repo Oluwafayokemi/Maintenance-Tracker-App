@@ -36,6 +36,11 @@ nextButton.addEventListener('click', () => {
 });
 
 document.querySelector('#name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
+const logoutBtn = document.querySelector('#logout');
+logoutBtn.addEventListener('click', () => {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+});
 let userRequestArr;
 
 const getOneRequest = (requestId) => {
@@ -111,8 +116,8 @@ const getAllRequest = () => {
     .then(response => response.json())
     .then((data) => {
       if (data.status === 401) {
-        displayAlert('Please sign in or sign up if you are a new user');
         window.location.href = 'index.html';
+        displayAlert('Please sign in or sign up if you are a new user');
       } else if (data.status >= 200 && data.status < 300) {
         getRequestObject(data);
       } else {

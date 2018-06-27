@@ -1,11 +1,12 @@
-
 /**
  * JS file to handle users update request.
  */
 const requestURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
 
 const requestStatus = (requestId, selectElement) => {
-  const { value: statusText } = selectElement;
+  const {
+    value: statusText
+  } = selectElement;
   const request = new Request(`${requestURL}/api/v1/requests/${requestId}/${statusText}`, {
     method: 'PUT',
     headers: {
@@ -18,8 +19,8 @@ const requestStatus = (requestId, selectElement) => {
     .then(response => response.json())
     .then((data) => {
       if (data.status === 401) {
-        displayAlert('Please sign in or sign up if you are a new user');
         window.location.href = 'index.html';
+        displayAlert('Please sign in or sign up if you are a new user');
       } else if (data.status >= 201 && data.status < 300) {
         displayAlert(data.message);
         window.location.href = 'admin.index.html';

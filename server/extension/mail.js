@@ -37,9 +37,7 @@ class EmailNotification {
       <div>${emailText}</div>
       <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`,
     };
-    transporter.sendMail(mailOptions, (error) => {
-      return (error ? 'false' : 'true');
-    });
+    transporter.sendMail(mailOptions);
   }
   /**
    * @param {string} equipment - HTTP Request

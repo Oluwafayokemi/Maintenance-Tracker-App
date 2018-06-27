@@ -1,4 +1,3 @@
-
 const toggleModal = () => {
   const displayModal = document.getElementById('myModal').style.display;
 
