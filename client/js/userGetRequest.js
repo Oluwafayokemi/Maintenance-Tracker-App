@@ -54,6 +54,7 @@ const updateRequest = (id) => {
 };
 const getRequestObject = (response) => {
   const tableBody = document.createElement('tbody');
+  tableBody.setAttribute('id', 'tableItem')
   const arr = ['id', 'date', 'equipment', 'description', 'status', 'edit'];
   userRequestArr = response.requests;
   for (let i = 0; i < response.requests.length; i++) {
