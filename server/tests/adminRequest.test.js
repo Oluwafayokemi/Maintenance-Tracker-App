@@ -68,13 +68,13 @@ describe('Get request for an admin', () => {
               expect(res.body).to.haveOwnProperty('message').to.equal('all requests retrieved successfully');
               expect(res.body).to.haveOwnProperty('success').to.equal('true');
               expect(res.body).to.haveOwnProperty('requests').to.be.an('array');
-              expect(res.body.requests[0]).to.haveOwnProperty('userid').to.be.equal(1);
-              expect(res.body.requests[0]).to.haveOwnProperty('equipment').to.be.equal('generator');
-              expect(res.body.requests[0]).to.haveOwnProperty('description').to.be.equal('Generator goes off always');
-              expect(res.body.requests[1]).to.haveOwnProperty('userid').to.be.equal(2);
+              expect(res.body.requests[0]).to.haveOwnProperty('userid').to.be.equal(2);
+              expect(res.body.requests[0]).to.haveOwnProperty('equipment').to.be.equal('Air Condition');
+              expect(res.body.requests[0]).to.haveOwnProperty('description').to.be.equal('air condition blows hot air');
+              expect(res.body.requests[1]).to.haveOwnProperty('userid').to.be.equal(1);
               expect(res.body.requests[1]).to.haveOwnProperty('equipment').to.be.equal('generator');
               expect(res.body.requests[1]).to.haveOwnProperty('description').to.be.equal('Generator goes off always');
-              expect(res.body.requests[2]).to.haveOwnProperty('userid').to.be.equal(3);
+              expect(res.body.requests[2]).to.haveOwnProperty('userid').to.be.equal(1);
               expect(res.body.requests[2]).to.haveOwnProperty('equipment').to.be.equal('generator');
               expect(res.body.requests[2]).to.haveOwnProperty('description').to.be.equal('Generator goes off always');
               done();
