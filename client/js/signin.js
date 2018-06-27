@@ -1,5 +1,12 @@
 const loginForm = document.getElementById('signin-form'); // get the form id//
 const signinURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
+const displayAlert = (message) => {
+  document.getElementById('display').style.display = 'block';
+  document.getElementById('alert').textContent = message;
+  setTimeout(() => {
+    document.getElementById('display').style = 'none';
+  }, 4000);
+};
 
 loginForm.onsubmit = (e) => {
   e.preventDefault();

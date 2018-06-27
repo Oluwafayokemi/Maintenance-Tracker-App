@@ -16,3 +16,7 @@
 [0520/172019.202:ERROR:crash_report_database_win.cc(427)] unexpected header
 [0521/093202.239:ERROR:crash_report_database_win.cc(427)] unexpected header
 [0607/143703.190:ERROR:settings.cc(258)] Settings magic is not 1129342067
+[0625/114930.810:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0625/115257.083:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0626/103041.699:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0627/151912.281:ERROR:crash_report_database_win.cc(428)] unexpected header

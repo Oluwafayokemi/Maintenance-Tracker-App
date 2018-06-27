@@ -33,13 +33,14 @@ class EmailNotification {
       from: 'Maintenance Tracker(Facility Department)',
       to: userEmail,
       subject: emailSubject,
-      html: `<h3 style="grey: white;padding: .5em;">Maintenance Tracker</h3>
-      <div style="padding: .5em;">${emailText}</div>
-      <p style="padding: .5em;"><b>**Note if you are not subscribed to Maintenance Tracker, please ignore this mail.</p>`,
+      html: `<h3 style="background-color: blue; color: white; padding: .5em;">Maintenance Tracker</h3>
+      <div>${emailText}</div>
+      <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`,
     };
-    transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions, (error) => {
+      return (error ? 'false' : 'true');
+    });
   }
-
   /**
    * @param {string} equipment - HTTP Request
    * @description sends email notification to an admin when a user creates a request
@@ -49,7 +50,7 @@ class EmailNotification {
     const queryString = {
       // give the query a unique name
       name: 'fetch-user',
-      text: 'SELECT email, lastname FROM users WHERE isadmin = TRUE;',
+      text: 'SELECT email, firstname FROM users WHERE isadmin = TRUE;',
     };
     db.connect()
       .then(client => client.query(queryString)
@@ -59,11 +60,12 @@ class EmailNotification {
             email,
             firstname,
           } = data.rows[0];
-          const emailBody = `<p>Dear Admin ${firstname.toUppercase()}, <p>A new request with</p> <p>Equipment type: ${equipment}</p>, <p>was sent to the maintainance tracker site</p>. <P><strong>Do attend to the request as soon as possible</strong></p>. <p>Time created:${new Date()}</p>.`;
+          const emailBody = `<p>Dear Admin ${firstname}, <p>A new request with</p> <p>Equipment type: ${equipment}</p>, <p>was sent to the maintainance tracker site</p>. <P><strong>Do attend to the request as soon as possible</strong></p>. 
+          <p>Time created:${new Date()}</p>.
+          <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`;
           this.sendMail(email, 'Notification of a new Request sent to the maintainance tracker app', emailBody);
         })
-        .catch(() => {
-        }));
+        .catch(error => error));
   }
 
   /**
@@ -88,11 +90,10 @@ class EmailNotification {
             email,
             firstname,
           } = data.rows[0];
-          const emailBody = `<p>Dear ${firstname.toUppercase()}</p>, <p>The request you created on ${equipment}, as at ${date} has been ${status}.</p> <p>Time updated: ${new Date()}`;
+          const emailBody = `<p>Dear <strong>${firstname}</strong></p>, <p>The request you created on ${equipment}, as at ${date} has been ${status}.</p> <p>Time updated: ${new Date()}`;
           this.sendMail(email, `Request ${status}`, emailBody);
         })
-        .catch(() => {
-        }));
+        .catch(error => error));
   }
 }
 
