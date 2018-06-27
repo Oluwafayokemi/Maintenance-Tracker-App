@@ -14,7 +14,7 @@ const getStatus = document.getElementById('stat');
 const getDate = document.getElementById('dat');
 const previousBtn = document.getElementById('fa-left');
 const nextBtn = document.getElementById('fa-right');
-const tableItem = document.getElementById('tableItem')
+const tableItem = document.getElementById('tableItem');
 
 let offset = 0;
 const limit = 10;
@@ -99,38 +99,32 @@ const getRequestObject = (response) => {
         continue;
       }
       if (arr[j] === 'action') {
-        const button = document.createElement('select');
-        button.setAttribute('class', 'submitBtn');
-        button.setAttribute('id', 'mySelect');
-        button.addEventListener('change', () => {
-          requestStatus(response.requests[i].requestid, button);
+        const selectBox = document.createElement('select');
+        selectBox.setAttribute('class', 'submitBtn');
+        selectBox.setAttribute('id', 'mySelect');
+        selectBox.addEventListener('change', () => {
+          requestStatus(response.requests[i].requestid, selectBox);
         });
-        const option1 = document.createElement('option');
-        option1.setAttribute('value', 'pending');
-        option1.setAttribute('id', 'pen');
-        const optionText1 = document.createTextNode('--select--');
-        const option2 = document.createElement('option');
-        option2.setAttribute('value', 'approve');
-        const optionText2 = document.createTextNode('Approve');
-        const option3 = document.createElement('option');
-        option3.setAttribute('id', 'rej');
-        option3.setAttribute('value', 'disapprove');
-        const optionText3 = document.createTextNode('Disapprove');
-        const option4 = document.createElement('option');
-        option4.setAttribute('id', 'res');
-        option4.setAttribute('value', 'resolve');
-        const optionText4 = document.createTextNode('Resolve');
-
-        option1.appendChild(optionText1);
-        option2.appendChild(optionText2);
-        option3.appendChild(optionText3);
-        option4.appendChild(optionText4);
-        button.appendChild(option1);
-        button.appendChild(option2);
-        button.appendChild(option3);
-        button.appendChild(option4);
-        cell.append(button);
-        row.append(cell);
+        const createNewOption = (newElement, attributesObj, elementText) => {
+          const element = document.createElement(newElement);
+          for (const key in attributesObj) {
+            element.setAttribute(key, attributesObj[key]);
+            let text;
+            text = document.createTextNode(elementText);
+            element.appendChild(text);
+            selectBox.appendChild(element);
+          }
+          cell.append(selectBox);
+          row.append(cell);
+        };
+        createNewOption('option', { value: 'pending' }, '--select--');
+        createNewOption('option', { value: 'approve' }, 'Approve');
+        createNewOption('option', {
+          value: 'disapprove',
+        }, 'Disapprove');
+        createNewOption('option', {
+          value: 'resolve',
+        }, 'Resolve');
         continue;
       }
       const cellText = document.createTextNode(response.requests[i][arr[j]]);

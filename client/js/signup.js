@@ -9,12 +9,15 @@ signupForm.addEventListener('submit', (e) => {
   const department = document.getElementById('department').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('passwordCheck').value;
+
   const newUser = {
     firstName,
     lastName,
     department,
     email,
     password,
+    confirmPassword,
   };
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
@@ -32,8 +35,10 @@ signupForm.addEventListener('submit', (e) => {
   fetch(request)
     .then(response => response.json())
     .then((data) => {
-      if (data.status !== 200) {
-        displayAlert(data.message)
+      if (password != confirmPassword) {
+        displayAlert('password not matching');
+      } else if (data.status !== 200) {
+        displayAlert(data.message);
       } else if (data.user.isAdmin === false) {
         displayAlert(data.message);
         localStorage.setItem('token', data.token);
