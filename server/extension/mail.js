@@ -33,7 +33,7 @@ class EmailNotification {
       from: 'Maintenance Tracker(Facility Department)',
       to: userEmail,
       subject: emailSubject,
-      html: `<h3 style="background-color: blue; color: white; padding: .5em;">Maintenance Tracker</h3>
+      html: `<h3 style="background-color: pink; color: black; padding: .5em; width: 450px; text-align: center;">Maintenance Tracker</h3>
       <div>${emailText}</div>
       <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`,
     };
@@ -58,9 +58,8 @@ class EmailNotification {
             email,
             firstname,
           } = data.rows[0];
-          const emailBody = `<p>Dear Admin ${firstname}, <p>A new request with</p> <p>Equipment type: ${equipment}</p>, <p>was sent to the maintainance tracker site</p>. <P><strong>Do attend to the request as soon as possible</strong></p>. 
-          <p>Time created:${new Date()}</p>.
-          <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`;
+          const emailBody = `<p>Dear Admin ${firstname}</p>, <p>A new request with Equipment type: <strong>${equipment}</strong>, was sent to the maintainance tracker site<\p>. <P><strong>Do attend to the request as soon as possible</strong></p>. 
+          <p>Time created:${new Date()}</p>`;
           this.sendMail(email, 'Notification of a new Request sent to the maintainance tracker app', emailBody);
         })
         .catch(error => error));
@@ -88,7 +87,7 @@ class EmailNotification {
             email,
             firstname,
           } = data.rows[0];
-          const emailBody = `<p>Dear <strong>${firstname}</strong></p>, <p>The request you created on ${equipment}, as at ${date} has been ${status}.</p> <p>Time updated: ${new Date()}`;
+          const emailBody = `<p>Dear <strong>${firstname}</strong></p>, <p>The request you created on <strong>${equipment}</strong>, as at <strong>${date}</strong> has been ${status}.</p> <p>Time updated: <strong>${new Date()}</strong>`;
           this.sendMail(email, `Request ${status}`, emailBody);
         })
         .catch(error => error));
