@@ -4,7 +4,9 @@
 const requestURL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
 
 const requestStatus = (requestId, selectElement) => {
-  const { value: statusText } = selectElement;
+  const {
+    value: statusText
+  } = selectElement;
   const request = new Request(`${requestURL}/api/v1/requests/${requestId}/${statusText}`, {
     method: 'PUT',
     headers: {

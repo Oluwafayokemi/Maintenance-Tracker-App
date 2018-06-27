@@ -41,6 +41,11 @@ nextBtn.addEventListener('click', () => {
 });
 
 document.querySelector('#fir_name').textContent = `Welcome ${localStorage.firstName.toLowerCase()}`;
+const logoutBtn = document.querySelector('#logoutBtn');
+logoutBtn.addEventListener('click', () => {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+});
 let userRequestArr;
 
 const getOneRequest = (requestId) => {
@@ -117,8 +122,12 @@ const getRequestObject = (response) => {
           cell.append(selectBox);
           row.append(cell);
         };
-        createNewOption('option', { value: 'pending' }, '--select--');
-        createNewOption('option', { value: 'approve' }, 'Approve');
+        createNewOption('option', {
+          value: 'pending'
+        }, '--select--');
+        createNewOption('option', {
+          value: 'approve'
+        }, 'Approve');
         createNewOption('option', {
           value: 'disapprove',
         }, 'Disapprove');
@@ -149,8 +158,8 @@ const getAllRequest = () => {
     .then(response => response.json())
     .then((data) => {
       if (data.status === 401) {
-        displayAlert('Please sign in or sign up if you are a new user');
         window.location.href = 'index.html';
+        displayAlert('Please sign in or sign up if you are a new user');
       } else if (data.status === 200) {
         getRequestObject(data);
       } else {
