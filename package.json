@@ -14,7 +14,7 @@
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
     "start": "babel-node ./server/app.js",
     "migrate": "babel-node ./server/models/db.js",
-    "heroku-postbuild": "npm run migrate --env production",
+    "heroku-postbuild": "--env production",
     "email": "babel-node ./server/extension/mail.js"
   },
   "repository": {
