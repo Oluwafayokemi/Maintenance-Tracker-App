@@ -22,7 +22,7 @@ class UserRequest {
     } = req.body;
 
     const query = {
-      text: 'INSERT INTO requests(equipment, description, userid, status) VALUES($1, $2, $3, $4) RETURNING requestId, userid, equipment, description, status, date;',
+      text: 'INSERT INTO requests(equipment, description, userId, status) VALUES($1, $2, $3, $4) RETURNING requestId, userid, equipment, description, status, date;',
       values: [equipment, description, userid, 'pending'],
     };
 
@@ -44,6 +44,7 @@ class UserRequest {
             status: 400,
             success: 'false',
             message: 'Request not created',
+            error,
           });
         }));
   }
@@ -60,7 +61,7 @@ class UserRequest {
 
     const queryString = {
       name: 'fetch-user',
-      text: 'SELECT * FROM requests WHERE userid = $1 offset $2 limit $3;',
+      text: 'SELECT * FROM requests WHERE userid = $1 ORDER BY requestid DESC offset $2 limit $3;',
       values: [req.body.token.userid, offset, limit],
     };
     db.connect()

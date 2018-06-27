@@ -19,7 +19,7 @@ class AdminRequest {
     const { offset, limit } = req.query;
     const queryString = {
       name: 'fetch-user',
-      text: 'SELECT requests.requestid, users.userid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status, requests.date FROM requests, users offset $1 limit $2;',
+      text: 'SELECT requests.requestid, users.userid, users.firstname, users.lastname, users.email, users.department, requests.equipment, requests.description, requests.status, requests.date FROM requests INNER JOIN users ON requests.userid = users.userid ORDER BY requests.requestid DESC offset $1 limit $2;',
       values: [offset, limit],
     };
 

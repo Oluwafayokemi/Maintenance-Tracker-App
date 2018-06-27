@@ -73,7 +73,7 @@ class EmailNotification {
     const query = {
       // give the query a unique name
       name: 'fetch-user',
-      text: 'SELECT requests.requestid, requests.equipment, requests.status, requests.date, users.firstname, users.email FROM users, requests WHERE requests.requestid = $1 LIMIT 1;',
+      text: 'SELECT requests.requestid, requests.equipment, requests.status, requests.date, users.firstname, users.email FROM requests INNER JOIN users ON requests.userid = users.userid WHERE requests.requestid = $1 LIMIT 1;',
       values: [requestid],
     };
     db.connect()
