@@ -1,7 +1,7 @@
 {
   "name": "maintenance-tracker-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "[![Coverage Status](https://coveralls.io/repos/github/Oluwafayokemi/Maintenance-Tracker-App/badge.svg?branch=develop)](https://coveralls.io/github/Oluwafayokemi/Maintenance-Tracker-App?branch=develop) [![Build Status](https://travis-ci.org/Oluwafayokemi/Maintenance-Tracker-App.svg?branch=develop)](https://travis-ci.org/Oluwafayokemi/Maintenance-Tracker-App) [![Maintainability](https://api.codeclimate.com/v1/badges/61759dbc3da7669a8836/maintainability)](https://codeclimate.com/github/Oluwafayokemi/Maintenance-Tracker-App/maintainability)",
   "main": "app.js",
   "engines": {
     "node": "10.0.0"
@@ -14,7 +14,9 @@
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
     "start": "babel-node ./server/app.js",
     "migrate": "babel-node ./server/models/db.js",
-    "email": "babel-node ./server/extension/mail.js"
+    "email": "babel-node ./server/extension/mail.js",
+    "start-js": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -29,16 +31,23 @@
   "homepage": "https://github.com/Oluwafayokemi/Maintenance-Tracker-App#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "nodemon": "^1.17.4"
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.17.4",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-plugin-istanbul": "^4.1.6",
     "bcrypt-nodejs": "^0.0.3",
     "bcryptjs": "^2.4.3",
@@ -61,6 +70,9 @@
     "nodemon": "^1.17.3",
     "nyc": "^11.7.1",
     "pg": "^7.4.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
     "serve-static": "^1.13.2",
     "supertest": "^3.0.0",
     "validatorjs": "^3.14.2"
