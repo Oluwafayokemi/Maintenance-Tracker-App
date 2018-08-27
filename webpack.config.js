@@ -5,36 +5,35 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
   filename: './index.html',
 });
-
 module.exports = {
+  entry: './src/index.js',
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
+          'file-loader',
           {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
+            loader: 'image-webpack-loader',
             options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64]',
-              sourceMap: true,
-              minimize: true,
+              disable: true,
             },
           },
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.scss', '.js'],
   },
   plugins: [htmlWebpackPlugin],
 };
