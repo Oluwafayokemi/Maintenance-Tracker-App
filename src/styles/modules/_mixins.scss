@@ -1,0 +1,29 @@
+@mixin container($width: 90%, $max-width: 50em) {
+	width: $width;
+	margin: 0 auto;
+	max-width: $max-width;
+}
+
+@mixin clearfix {
+	&::after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+@mixin sans-serif($fs, $ls: .3rem, $color: $blue, $tt: uppercase, $lh: 1){
+	font-size: $fs;
+	letter-spacing: $ls;
+	color: $color;
+	text-transform: $tt;
+	line-height: $lh;
+	font-family: $ff-s;
+	font-weight: $fw-n;
+}
+
+@mixin mq($width: 50em) {
+	@media (min-width: $width) {
+		@content;
+	}
+}

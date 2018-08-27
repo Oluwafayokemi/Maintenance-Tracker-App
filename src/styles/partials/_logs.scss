@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+    box-sizing: border-box;
+}
+
+.main{
+    padding: 2em;
+
+}
+.maintenance-box {
+    margin-top: 0;
+    border: none;
+    height: 4.78em;
+    padding-top: .5em ;
+    background-color: rgb(48, 21, 146);
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.maintenance-box img {
+    width: 60px;
+}
+.maintenance-box a {
+    cursor: pointer;
+}
+
+.nav {
+    margin-bottom: 2em;
+}
+.table {
+    overflow-x: auto;
+  }
+.collapse {
+    background-color: rgb(48, 21, 146) ;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    border: none;
+    text-align: justify;
+    outline: none;
+    font-size: 10px;
+    margin-bottom: 1em;
+
+}
+.collapse:hover {
+    background: gray;
+    color: white;
+}
+.content {
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+/* Add padding to containers */
+form {
+    padding: 0 3em;
+    background-color:  rgb(48, 21, 146);
+
+}
+.padding table {
+    color: white;
+}
+
+li {
+    line-height: 1
+}
+btn.disable {
+    background: rgba(48, 21, 146, 0.2);
+}
+
+/* Overwrite default styles of hr */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.submitbtn {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: 1em;
+    margin-bottom:8px;
+    border: 2px solid goldenrod;
+    cursor: pointer;
+    opacity: 0.9;
+    text-align: center
+}
+.searchBtn {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: 1em;
+    margin-bottom:8px;
+    border: 2px solid goldenrod;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.btn-btn {
+    background: white;
+    color: rgb(48, 21, 146);
+    padding: 1em;
+    margin-bottom:8px;
+    border: 2px solid goldenrod;
+    cursor: pointer;
+    opacity: 0.9;
+    font-size: 1em;
+}
+
+.submitbtn:hover {
+    opacity: 1;
+}
+
+.updateBtn {
+    background: rgb(48, 21, 146);
+    color: white;
+    padding: .5em 1em;
+    cursor: pointer;
+}
+.updateBtn:disabled {
+    background: rgba(48, 21, 146, 0.2);
+    cursor: no-drop;
+}
+select {
+    font-family: 'lato', sans-serif;
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    outline: none;
+    color: rgb(48, 21, 146);
+    cursor: pointer;
+    margin-top: .5em;
+}
+textarea {
+    width: 100%;
+    font-family: 'lato', sans-serif;
+    height: 150px;
+    box-sizing: border-box;
+    border: 2px solid goldenrod;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 1em;
+    resize: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: .5em;
+}
+ol {
+    list-style: none;
+}
+.right {
+    float: right;
+    color: rgb(48, 21, 146);
+}
+div .right {
+    background: #fff;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: .9px 1em;
+    font-weight: bold;
+}
+td i{
+ color: white;
+ cursor: pointer;
+ width: 2em;
+}
+td button {
+  background: rgb(48, 21, 146);
+  border: 1px solid goldenrod;
+  margin-right: 1em;
+}
+label textarea {
+    margin-top: 5em;
+}
+/* -----------------------------------modal section for edit request-------------------- */
+
+table.table {
+    background: rgb(48, 21, 146);
+    color: white;
+
+}
+
+/* ----------------------------------section for table input header-------------------- */
+
+.flex {
+    background: white;
+    padding: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flex .page {
+    color: #fff;
+    float: right;
+    margin-top: .5em;
+    background: rgb(48, 21, 146);
+    padding: .5em;
+    text-align: center;
+    margin-right: 17em;
+    border: 2px solid goldenrod;
+}
+.flex .page i {
+    width: 1.5em;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+/* -----------------------------------------------modal----------------------------------------- */
+
+.modal {
+    margin: 6em auto;
+    padding: 0;
+    width: 100%;
+    min-width: 200px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: auto;
+    z-index: 1; /* Sit on top */
+    color: goldenrod;
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color:rgb(48, 21, 146);
+    margin: 2em auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* The Close Button */
+.close {
+    color: goldenrod;
+    float: right;
+    font-size: 3em;
+}
+
+.close:hover,
+.close:focus {
+    color: goldenrod;
+    text-decoration: none;
+    cursor: pointer;
+}
+ 
