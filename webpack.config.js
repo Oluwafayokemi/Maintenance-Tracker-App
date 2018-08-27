@@ -10,13 +10,27 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          importLoaders: 1,
+          localIdentName: '[name]_[local]_[hash:base64]',
+          sourceMap: true,
+          minimize: true,
+        },
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -33,7 +47,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.scss', '.js'],
+    extensions: ['*', '.js', '.jsx', '.scss'],
   },
   plugins: [htmlWebpackPlugin],
 };

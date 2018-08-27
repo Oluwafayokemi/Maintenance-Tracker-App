@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/App.scss';
 
-export default class AdminDashboard extends Component {
-  render() {
+const AdminDashboard = () => {
     return (
-
+      <h1> you when</h1>
     )
-  }
 }
