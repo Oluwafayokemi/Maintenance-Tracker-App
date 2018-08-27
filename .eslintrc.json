@@ -1,9 +1,12 @@
 {
-    "extends": "airbnb",
-    "globals": {
-        "document": true,
-        "fetch": true,
-        "localStorage": true,
-        "window": true
-    }
+  "extends": "airbnb",
+  "globals": {
+      "document": true,
+      "fetch": true,
+      "localStorage": true,
+      "window": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
 }
