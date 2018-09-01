@@ -1,19 +1,26 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import App from './App';
-import Index from './components/Index';
+import { Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import Home from './components/Home';
 import Admin from './components/AdminDashboard';
+import NewRequest from './components/NewRequest';
+import User from './components/UserDashboard';
+import App from './App';
+import store from './rootReducer';
+import history from './util/history';
 
 ReactDOM.render(
-  <Router>
-    <div className="main">
-      <Route exact path="/" component={App} />
-      <Route path="/home" component={Index} />
-      <Route path="/admin" component={Admin} />
-    </div>
-  </Router>,
+  <Provider store={store}>
+    <Router history={history}>
+      <React.Fragment>
+        <Route exact path="/" component={Home} />
+        <Route path="/header" component={App} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/newRequest" component={NewRequest} />
+        <Route path="/user" component={User} />
+      </React.Fragment>
+    </Router>
+  </Provider>,
   document.getElementById('index'),
 );
-

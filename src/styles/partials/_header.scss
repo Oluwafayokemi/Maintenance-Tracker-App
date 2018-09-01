@@ -1,4 +1,20 @@
-.header {
-    color: $blue;
-    margin: 0 auto;
+.maintenance-box {
+    margin-top: 0;
+    border: none;
+    height: 4.78em;
+    padding-top: .5em ;
+    background-color: rgb(48, 21, 146);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+    text-align: center;
+}
+.maintenance-box img {
+    width: 60px;
+}
+.maintenance-box a {
+    cursor: pointer;
+}
+
+.nav {
+    margin-bottom: 2em;
 }
