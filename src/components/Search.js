@@ -26,4 +26,5 @@ const Search = ({ isAdmin }) => (
     </div>
   </div>
 );
+
 export default Search;

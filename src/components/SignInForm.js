@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/App.scss';
 import history from '../util/history';
 
-export default class SignInForm extends React.PureComponent {
+export default class SignInForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +17,11 @@ export default class SignInForm extends React.PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const loginbtn = document.querySelector('#login-btn');
+    loginbtn.textContent = 'loading...';
+
     this.props.logInUserRequest(this.state)
       .then((response) => {
-        console.log(response.user.user.isAdmin)
         if (response.user.user.isAdmin) {
           history.push('/admin');
         } else if (!response.user.user.isAdmin) {
@@ -70,7 +72,7 @@ export default class SignInForm extends React.PureComponent {
                       />
                     </div>
                   </li>
-                  <button type="submit" value="submit">
+                  <button type="submit" value="submit" id="login-btn">
                     Login
                   </button>
                 </form>

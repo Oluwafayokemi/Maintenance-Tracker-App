@@ -18,11 +18,12 @@ export default (state = initialState.request, action = {}) => {
     case 'ADD_NEW_REQUEST':
       return {
         ...state,
+        request: action.request,
       };
 
-    case 'GET_ALL_REQUEST':
+    case 'GET_ALL_USER_REQUEST':
       return {
-        ...state,
+        ...action.allUserRequest,
       };
 
     case 'GET_ONE_REQUEST':

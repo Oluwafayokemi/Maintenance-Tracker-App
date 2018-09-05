@@ -17,6 +17,7 @@ export const logInUserRequest = userDetails => async (dispatch) => {
       data: userDetails,
     });
     toastr.success(response.data.message);
+    localStorage.setItem('token', response.data.token);
     return dispatch(logInUserAction(response.data));
   } catch ({ response }) {
     toastr.error(response.data.message);

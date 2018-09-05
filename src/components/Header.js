@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../styles/App.scss';
 
 const Header = ({ isUser }) => (
   <React.Fragment>
     <div className="row header" id="header">
       <div className="maintenance-box">
-        <a href="admin.index.html">
+        <Link to="/">
           <img src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-5/256/maintenance-icon.png" alt="logo" />
-        </a>
+        </Link>
       </div>
       <div className="nav">
         <div className="col-12">
@@ -18,16 +20,16 @@ const Header = ({ isUser }) => (
 
             <ul className="ul">
               <li>
-                <a href="admin.index.html">Home</a>
+                <Link to="/user"> Home </Link>
               </li>
               <li>
-                {isUser ? <a href="admin.index.html">New Request</a> : ''}
+                {isUser ? <Link to="/NewRequest"> New Request </Link> : ''}
               </li>
               <li>
-                <a href="index.html">Sign In</a>
+                <Link to="/"> Sign In </Link>
               </li>
               <li id="logoutBtn">
-                <a href="index">Log Out</a>
+                <Link to="/"> Log Out </Link>
               </li>
               <div className="right" />
             </ul>
@@ -37,4 +39,5 @@ const Header = ({ isUser }) => (
     </div>
   </React.Fragment>
 );
+
 export default Header;
