@@ -1,5 +1,5 @@
-
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
@@ -21,6 +21,7 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
+        test: /\.css$/,
         loader: 'css-loader',
         options: {
           modules: true,
@@ -43,6 +44,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'src/index.html'),
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss'],

@@ -172,4 +172,5 @@ const getAllRequest = () => {
     })
     .catch(error => displayAlert(error.message));
 };
+
 getAllRequest();

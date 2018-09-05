@@ -132,13 +132,15 @@ table .th {
 
 .center {
     display: flex;
-    justify-content: center
+    justify-content: center;
+
+    form {
+    margin: 1em auto;
+    padding: 3em;
+    color: white;
+    }
 }
-.center form{
-  margin: 1em auto;
-  padding: 3em;
-  color: white;
-}
+
 ul li {
     float: left;
 }
