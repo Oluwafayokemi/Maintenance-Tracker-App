@@ -4,7 +4,6 @@ import authenticate from '../middleware/authenticate';
 import roleAuth from '../middleware/roleAuth';
 import isRequest from '../middleware/isRequest';
 import Validator from '../middleware/validator';
-import idCheck from '../middleware/requestIdCheck';
 
 const router = express.Router();
 const validate = new Validator();

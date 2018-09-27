@@ -1,9 +1,8 @@
 import React from 'react';
-import Home from './components/Home';
-import Admin from './components/AdminDashboard';
-import User from './components/UserDashboard';
-import NewRequest from './components/NewRequest';
-import Header from './components/Header';
+import Home from './components/authentication/Home';
+import Admin from './components/adminDashboard/AdminDashboard';
+import User from './components/userDashboard/UserDashboard';
+import NewRequest from './components/userDashboard/newRequest/NewRequestContainer';
 import './styles/App.scss';
 
 const App = () => (

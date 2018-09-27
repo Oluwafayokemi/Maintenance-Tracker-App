@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from '../components/Header';
+import NavBar from '../common/NavBar';
 
-describe('Tests Header component', () => {
+describe('Tests NavBar component', () => {
   it('should render without errors', () => {
-    const wrapper = shallow(<Header />);
+    const wrapper = shallow(<NavBar />);
     expect(wrapper).toMatchSnapshot();
   });
 });

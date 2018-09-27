@@ -1,6 +1,5 @@
 import React from 'react';
-import '../styles/App.scss';
-import history from '../util/history';
+import history from '../../../util/history';
 
 export default class SignInForm extends React.Component {
   constructor(props) {
@@ -15,22 +14,22 @@ export default class SignInForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    const loginbtn = document.querySelector('#login-btn');
+    const { logInUserRequest } = await this.props;
+    const loginbtn = window.document.querySelector('#login-btn');
     loginbtn.textContent = 'loading...';
-
-    this.props.logInUserRequest(this.state)
-      .then((response) => {
-        if (response.user.user.isAdmin) {
-          history.push('/admin');
-        } else if (!response.user.user.isAdmin) {
-          history.push('/user');
-        }
-      })
-      .catch((err) => {
-        err;
-      });
+    const response = await logInUserRequest(this.state);
+    try {
+      if (response.user.isAdmin) {
+       return history.push('/admin');
+      } else if (!response.user.isAdmin) {
+        return history.push('/user');
+      }
+    }
+    catch (err) {
+      err;
+    };
   }
 
   render() {

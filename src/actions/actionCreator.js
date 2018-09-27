@@ -1,4 +1,4 @@
-import { ADD_NEW_REQUEST, GET_ALL_REQUEST_ADMIN, GET_ALL_REQUEST_USER, GET_ONE_REQUEST } from './actionTypes';
+import { ADD_NEW_REQUEST, GET_ALL_REQUEST_ADMIN, GET_ALL_REQUEST_USER, GET_ONE_REQUEST, CHANGE_REQUEST_STATUS } from './actionTypes';
 
 export const addNewRequest = text => ({
   type: ADD_NEW_REQUEST,
@@ -18,4 +18,9 @@ export const getAllUserRequest = text => ({
 export const getOneRequest = text => ({
   type: GET_ONE_REQUEST,
   text,
+});
+
+export const changeRequestStatus = status => ({
+  type: CHANGE_REQUEST_STATUS,
+  status,
 });

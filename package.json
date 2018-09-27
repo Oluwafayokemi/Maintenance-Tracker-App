@@ -10,6 +10,7 @@
   "scripts": {
     "test": "npm run migrate && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register ./server/*/**.test.js && npm run test:jest",
     "test:jest": "jest --coverage ./src/tests/*.test.js",
+    "update:snap": "test:jest -- -u",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
@@ -70,6 +71,7 @@
     "font-awesome-loader": "^1.0.2",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.5.0",
+    "jsdom": "^12.0.0",
     "node-sass": "^4.9.3",
     "nodemon": "^1.17.4",
     "sass-loader": "^7.1.0",
@@ -117,6 +119,7 @@
     "serve-static": "^1.13.2",
     "short-id": "0.1.0-1",
     "supertest": "^3.0.0",
+    "toastr": "^2.1.4",
     "validatorjs": "^3.14.2"
   }
 }
