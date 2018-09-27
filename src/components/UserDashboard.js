@@ -2,62 +2,68 @@ import React from 'react';
 import '../styles/App.scss';
 import Header from './Header';
 import Search from './Search';
+import {getUsersRequest} from '../actions/getAllUserRequest';
+import ModalBox from './Modal';
 
-const UserDashboard = () => (
-  <React.Fragment>
-    <Header isUser />
-    <div className="user">
-      <Search isAdmin={false} />
+const selectData = [
+  'Air Condition',
+  'Genrator',
+  'Electricity',
+  'Paintings',
+  'Computers',
+  'Ups',
+  'Camera',
+  'Others',
+];
 
-      <div className="main col-12">
-        <div type="submit" id="myBtn" />
-        <div id="myModal" className="modal">
+class UserDashboard extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: '',
+      equipment: '',
+    };
+  }
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
-          <div className="modal-content">
-            <span className="close">&times;</span>
-            <form id="update-form">
-              <div className="editForm">
-                <h1>Form field to Edit Your Request</h1>
-                <p>Kindly chceck to make sure all fields are filled out appropriately</p>
-                <hr />
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const request = this.props.createUserRequest(this.state);
+    try {
+      history.push('/user');
+    }
+    catch (err) {
+      err
+    }
+  }
+  render() {
+    return (
 
-                <label htmlFor="equipment">
-                  <strong>Equipment</strong>
-                </label>
-                <select id="editEquip" className="btn-btn" name="equipment">
-                  <option value="Air condition">Air condition</option>
-                  <option value="Furniture">Furniture</option>
-                  <option value="Generator">Generator</option>
-                  <option value="Electricity">Electricity</option>
-                  <option value="Paintings">Paintings</option>
-                  <option value="computers">computers</option>
-                  <option value="Printers">Printers</option>
-                  <option value="UPS">UPS</option>
-                  <option value="Camera">Camera</option>
-                  <option value="Others">Others</option>
-                </select>
+      <React.Fragment>
+        <Header isUser />
+        <div className="user">
+          <Search isAdmin={false} />
 
-                <label htmlFor="description">
-                  <strong>Description</strong>
-                </label>
-                <textarea
-                  name="description"
-                  className="btn-btn"
-                  id="editDescrip"
-                  placeholder="Please give a brief description of your report"
-                  required
-                />
+          <div className="main col-12">
+            <div type="submit" id="myBtn" />
+            <div id="myModal" className="modal">
 
-                <hr />
-                <div className="btn">
-                  <button type="submit" className="submitbtn">Submit</button>
-                </div>
+              <div className="modal-content">
+                <span className="close">&times;</span>
+               <ModalBox />
               </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </React.Fragment>
-);
-export default UserDashboard;
+      </React.Fragment>
+    )
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getUsersRequest,
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(UserDashboard);

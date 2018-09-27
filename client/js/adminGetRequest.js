@@ -123,10 +123,10 @@ const getRequestObject = (response) => {
           row.append(cell);
         };
         createNewOption('option', {
-          value: 'pending'
+          value: 'pending',
         }, '--select--');
         createNewOption('option', {
-          value: 'approve'
+          value: 'approve',
         }, 'Approve');
         createNewOption('option', {
           value: 'disapprove',

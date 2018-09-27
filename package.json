@@ -8,7 +8,8 @@
   },
   "private": true,
   "scripts": {
-    "test": "npm run migrate && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register ./server/*/**.test.js",
+    "test": "npm run migrate && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register ./server/*/**.test.js && npm run test:jest",
+    "test:jest": "jest --coverage ./src/tests/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon ./server/app.js --exec babel-node -- ",
@@ -17,6 +18,29 @@
     "email": "babel-node ./server/extension/mail.js",
     "start:js": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
+  },
+  "jest": {
+    "setupFiles": [
+      "./src/tests/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss|jpg|png|svg)$": "<rootDir>/src/empty-module.js"
+    },
+    "bail": true,
+    "collectCoverageFrom": [
+      "src/components/*.js",
+      "src/reducer/*.js",
+      "src/actions/*.js"
+    ],
+    "coverageReporters": [
+      "cobertura",
+      "html",
+      "text",
+      "text-summary"
+    ]
   },
   "repository": {
     "type": "git",
@@ -36,12 +60,16 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.5.1",
+    "enzyme-adapter-react-16": "^1.4.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
     "font-awesome-loader": "^1.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.5.0",
     "node-sass": "^4.9.3",
     "nodemon": "^1.17.4",
     "sass-loader": "^7.1.0",
@@ -53,6 +81,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
+    "babel-jest": "^23.4.2",
     "babel-plugin-istanbul": "^4.1.6",
     "bcrypt-nodejs": "^0.0.3",
     "bcryptjs": "^2.4.3",
@@ -80,11 +109,13 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.2",
+    "react-modal": "^3.5.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "serve-static": "^1.13.2",
+    "short-id": "0.1.0-1",
     "supertest": "^3.0.0",
     "validatorjs": "^3.14.2"
   }

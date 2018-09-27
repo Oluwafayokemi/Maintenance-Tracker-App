@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/App.scss';
 import history from '../util/history';
 
-export default class SignUpForm extends React.PureComponent {
+export default class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
