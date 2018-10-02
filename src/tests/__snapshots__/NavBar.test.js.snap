@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tests Header component should render without errors 1`] = `
+exports[`Tests NavBar component should render without errors 1`] = `
 <Fragment>
   <div
     className="row header"

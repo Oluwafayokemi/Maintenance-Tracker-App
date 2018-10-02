@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(userRouter);
 app.use(adminRequestRouter);
@@ -32,7 +32,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-const port = parseInt(process.env.PORT, 10) || 4000;
+const port = parseInt(process.env.PORT, 10) || 9000;
 app.set('port', port);
 
 app.listen(port, () => {

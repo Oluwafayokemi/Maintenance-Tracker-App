@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
-
-import requestReducer from './request.reducer';
+import authReducer from './authReducer';
+import adminRequestReducer from './adminRequestReducer';
+import userRequestReducer from './userRequestReducer';
+import commonReducer from './commonReducer';
 
 export default combineReducers({
-  requestReducer,
+  adminRequests: adminRequestReducer,
+  userRequests: userRequestReducer,
+  auth: authReducer,
+  common: commonReducer,
 });

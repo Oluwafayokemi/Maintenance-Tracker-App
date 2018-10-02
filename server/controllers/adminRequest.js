@@ -117,7 +117,7 @@ class AdminRequest {
       });
     }
     const Query = {
-      text: 'UPDATE requests SET status = $1 WHERE requestid= $2 RETURNING userid, equipment, description, status;',
+      text: 'UPDATE requests SET status = $1 WHERE requestid= $2 RETURNING *;',
       values: ['approved', requestid],
     };
 
@@ -130,7 +130,9 @@ class AdminRequest {
             status: 201,
             success: 'true',
             message: 'Request has been approved',
-            updatedRequest: request.rows[0],
+            updatedRequest: {
+              request: request.rows[0],
+            },
           });
         })
         .catch((error) => {
@@ -160,7 +162,7 @@ class AdminRequest {
       });
     }
     const query = {
-      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING equipment, description, status;',
+      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING *;',
       values: ['disapproved', requestid],
     };
 
@@ -173,7 +175,9 @@ class AdminRequest {
             status: 201,
             success: 'true',
             message: 'Request has been dissapproved',
-            updatedRequest: request.rows[0],
+            updatedRequest: {
+              request: request.rows[0],
+            },
           });
         })
         .catch((error) => {
@@ -203,7 +207,7 @@ class AdminRequest {
       });
     }
     const query = {
-      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING userid, equipment, description, status;',
+      text: 'UPDATE requests SET status = $1 WHERE requestid = $2 RETURNING *;',
       values: ['resolved', requestid],
     };
 
@@ -216,7 +220,9 @@ class AdminRequest {
             status: 201,
             success: 'true',
             message: 'Request has been resolved',
-            updatedRequest: request.rows[0],
+            updatedRequest: {
+              request: request.rows[0],
+            },
           });
         })
         .catch((error) => {

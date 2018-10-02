@@ -23,7 +23,6 @@ export default class SelectRequest extends React.Component {
   handleChange = (event) => {
     this.setState({ value: event.target.value });
     this.props.handleSelectChange(this.state.value)
-    console.log(this.state.value)
   }
 
   render() {

@@ -1,15 +1,14 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { signUpUserRequest } from '../actions/signUp.action';
-import { logInUserRequest } from '../actions/logIn.action';
-import '../styles/App.scss';
-import SignUpForm from './SignUpForm';
-import SignInForm from './SignInForm';
+import { signUpUserRequest } from '../../actions/signUp.action';
+import { logInUserRequest } from '../../actions/logIn.action';
+import SignUpForm from './signUpForm/SignUpForm';
+import SignInForm from './signInForm/SignInForm';
 
-export class Home extends React.PureComponent {
+class Home extends React.PureComponent {
   render() {
+    const { logIn, signUp } = this.props;
     return (
       <React.Fragment>
         <div className="base">
@@ -21,7 +20,7 @@ export class Home extends React.PureComponent {
             </div>
 
             <SignInForm
-              logInUserRequest={this.props.logInUserRequest}
+              logInUserRequest={logIn}
             />
 
             <div id="display" className="alert col-12">
@@ -39,7 +38,7 @@ export class Home extends React.PureComponent {
               </div>
 
               <SignUpForm
-                signUpUserRequest={this.props.signUpUserRequest}
+                signUpUserRequest={signUp}
               />
 
             </div>
@@ -51,12 +50,17 @@ export class Home extends React.PureComponent {
 }
 
 Home.propTypes = {
-  signUpUserRequest: PropTypes.func.isRequired,
-  logInUserRequest: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired,
+  logIn: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  signUpUserRequest, logInUserRequest,
-}, dispatch);
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
 
-export default connect(null, mapDispatchToProps)(Home);
+const mapDispatchToProps = dispatch => ({
+  logIn: data => dispatch(logInUserRequest(data)),
+  signUp: data => dispatch(signUpUserRequest(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests SignUpForm component should render without errors 1`] = `
+<Fragment>
+  <div
+    className="col-6 allbody three"
+  >
+    <h1>
+      Create a new account
+    </h1>
+    <p>
+      Its free and always will be.
+    </p>
+    <form
+      className="form menu"
+      id="signup-form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="container"
+      >
+        <label
+          htmlFor="firstName"
+        >
+          <b>
+            First Name
+          </b>
+        </label>
+        <input
+          id="firstName"
+          name="firstName"
+          onChange={[Function]}
+          placeholder="Enter First Name"
+          required={true}
+          type="text"
+          value=""
+        />
+        <label
+          htmlFor="lastName"
+        >
+          <b>
+            Last Name
+          </b>
+        </label>
+        <input
+          id="lastName"
+          name="lastName"
+          onChange={[Function]}
+          placeholder="Enter Last Name"
+          required={true}
+          type="text"
+          value=""
+        />
+        <label
+          htmlFor="department"
+        >
+          <b>
+            Department
+          </b>
+        </label>
+        <input
+          id="department"
+          name="department"
+          onChange={[Function]}
+          placeholder="Department"
+          required={true}
+          type="text"
+          value=""
+        />
+        <label
+          htmlFor="email"
+        >
+          <b>
+            Email
+          </b>
+        </label>
+        <input
+          id="email"
+          name="email"
+          onChange={[Function]}
+          placeholder="Enter email"
+          required={true}
+          type="email"
+          value=""
+        />
+        <label
+          htmlFor="password"
+        >
+          <b>
+            Password
+          </b>
+        </label>
+        <input
+          id="password"
+          maxLength="20"
+          minLength="5"
+          name="password"
+          onChange={[Function]}
+          placeholder="Enter Password"
+          required={true}
+          type="password"
+          value=""
+        />
+        <label
+          htmlFor="passwordCheck"
+        >
+          <b>
+            Confirm Password
+          </b>
+        </label>
+        <input
+          id="passwordCheck"
+          maxLength="20"
+          minLength="5"
+          name="passwordCheck"
+          onChange={[Function]}
+          placeholder="Confirm Password"
+          required={true}
+          type="password"
+          value=""
+        />
+        <button
+          type="submit"
+          value="submit"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</Fragment>
+`;

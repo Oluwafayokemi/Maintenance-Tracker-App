@@ -179,14 +179,14 @@ describe('Test user API', () => {
         });
     });
 
-    it('should return 200 response for creating an default user ', (done) => {
+    it('should return 200 response for creating a default user ', (done) => {
       request
         .post('/api/v1/auth/signup')
         .set('Content-type', 'application/json')
         .send({
           firstName: 'samson',
           lastName: 'jacob',
-          email: 'samson@gmail.com',
+          email: 'samsons@gmail.com',
           password: 'tester',
           department: 'mechanical',
         })

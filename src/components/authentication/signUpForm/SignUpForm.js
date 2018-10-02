@@ -1,6 +1,5 @@
 import React from 'react';
-import '../styles/App.scss';
-import history from '../util/history';
+import history from '../../../util/history';
 
 export default class SignUpForm extends React.Component {
   constructor(props) {
@@ -20,8 +19,9 @@ export default class SignUpForm extends React.Component {
   }
 
   handleSubmit = (event) => {
+    const { signUp } = this.props;
     event.preventDefault();
-    this.props.signUpUserRequest(this.state)
+    signUp(this.state)
     .then((response) => {
       if (response.user.isAdmin){
         history.push('/admin')

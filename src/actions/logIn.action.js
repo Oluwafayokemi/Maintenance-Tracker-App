@@ -1,25 +1,33 @@
-import axios from 'axios';
-import { LOG_IN_USER } from './actionTypes';
+import toastr from 'toastr';
+import { LOG_IN_USER, IS_LOADING, IS_COMPLETE } from './actionTypes';
+import fetchData from '../util/fetchData';
+import localStorageUtil from '../util/localStorageUtil';
 
 export const logInUserAction = user => ({
   type: LOG_IN_USER,
   user,
 });
 
-const BASE_URL = 'https://calm-fortress-33069.herokuapp.com'; // production url//
-
 export const logInUserRequest = userDetails => async (dispatch) => {
+  dispatch({ type: IS_LOADING });
   try {
-    const response = await axios({
+    const response = await fetchData({
       method: 'post',
-      url: `${BASE_URL}/api/v1/auth/login`,
+      url: 'auth/login',
       headers: { 'Content-Type': 'application/json' },
       data: userDetails,
     });
-    toastr.success(response.data.message);
-    localStorage.setItem('token', response.data.token);
-    return dispatch(logInUserAction(response.data));
-  } catch ({ response }) {
-    toastr.error(response.data.message);
+    if (response.data.status === 200) {
+      toastr.success(response.data.message);
+      localStorageUtil.setItem('maintenace-tracker', { ...response.data.user, token: response.data.token });
+      return dispatch(logInUserAction(response.data.user));
+    }
+    const error = Object.assign({}, {
+      status: response.data.status,
+      message: response.data.message,
+    });
+    return Promise.reject(error);
+  } catch (error) {
+    return toastr.error(error);
   }
 };
