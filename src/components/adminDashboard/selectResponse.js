@@ -5,7 +5,7 @@ const selectData = [
   '--select--',
   'approve',
   'disapprove',
-  'resolve'
+  'resolve',
 ];
 
 export default class SelectResponse extends React.Component {
@@ -14,26 +14,25 @@ export default class SelectResponse extends React.Component {
     this.state = {
       value: '',
       requestId: '',
-      token: props.token
     };
-  }
-
-  handleChange = async (event) => {
-  await this.setState({ value: event.target.value });
-   return this.setRequestId();
   }
 
   setRequestId = async () => {
     const { requests } = await this.props;
-    const requestId = requests.requestid
+    const requestId = requests.requestid;
     this.setState({
-      requestId: requestId
+      requestId,
     });
+  }
+
+  handleChange = async (event) => {
+    await this.setState({ value: event.target.value });
+    return this.setRequestId();
   }
 
   handleUpdate = async (event) => {
     event.preventDefault();
-    const { editStatus } = await this.props
+    const { editStatus } = await this.props;
     editStatus(this.state);
   }
 
@@ -43,10 +42,10 @@ export default class SelectResponse extends React.Component {
       <dl>
         <React.Fragment>
           <form onSubmit={this.handleUpdate}>
-          <input type="hidden" value={requestId} onChange={this.setRequestId}/>
-            <select name="select" value={this.state.value} onChange={(event) => this.handleChange(event)} className="submitBtn" >
-              {selectData.map((data) => (
-                  <option name={data} value={data == '--select--' ? 'pending' : data} key={shortId.generate()}>{data}</option>
+            <input type="hidden" value={requestId} onChange={this.setRequestId} />
+            <select name="select" value={this.state.value} onChange={event => this.handleChange(event)} className="submitBtn" >
+              {selectData.map(data => (
+                <option name={data} value={data == '--select--' ? 'pending' : data} key={shortId.generate()}>{data}</option>
               ))}
             </select>
             <button >Submit</button>
@@ -54,6 +53,5 @@ export default class SelectResponse extends React.Component {
         </React.Fragment>
       </dl>
     );
-
   }
 }

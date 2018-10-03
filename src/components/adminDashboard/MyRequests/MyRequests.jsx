@@ -35,7 +35,7 @@ const MyRequests = ({
 );
 
 MyRequests.propTypes = {
-  request: PropTypes.shape({}).isRequired,
+  request: PropTypes.shape([]).isRequired,
   index: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   editStatus: PropTypes.func.isRequired,

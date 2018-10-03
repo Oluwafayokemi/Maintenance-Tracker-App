@@ -20,7 +20,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(userRouter);
 app.use(adminRequestRouter);
 app.use(userRequestRouter);
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 app.get('*', (req, res) => {
   res.status(200).json('Welcome To maintenance Tracker App, Built by Fayokemi Adeyina');
 });

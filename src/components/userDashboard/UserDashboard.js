@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 import NavBar from '../../common/NavBar';
 import Search from '../Search';
 import MyRequests from '../userDashboard/myRequests/myRequestsContainer';
-import { fetchUserRequest } from '../../actions/userRequest.action';
+import { fetchUserRequests, editUserRequest } from '../../actions/userRequest.action';
 import history from '../../util/history';
 
-export class UserDashboard extends Component {
-  async componentDidlMount() {
+export class UserDashboard extends Component { 
+  componentDidMount() {
     const { auth } = this.props;
     const authToken = auth.token;
     if (!authToken) {
       history.push('/');
       return null;
     }
-    const { getRequests } = await this.props;
-    return getRequests();
+    const { userRequests } = this.props;
+    return userRequests();
   }
 
   render() {
-    const { getRequests } = this.props;
+    const { requests, editRequest } = this.props;
     return (
       <React.Fragment>
         <NavBar isUser />
@@ -33,7 +33,8 @@ export class UserDashboard extends Component {
 
           <Search isAdmin />
           <MyRequests
-            requests={getRequests.requests}
+            requests={requests.requests}
+            editRequest={editRequest}
           />
 
         </div>
@@ -44,11 +45,12 @@ export class UserDashboard extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  userRequests: state.userRequests,
+  requests: state.userRequests,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getRequests: () => dispatch(fetchUserRequest()),
+  userRequests: () => dispatch(fetchUserRequests()),
+  editRequest: request => dispatch(editUserRequest(request)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);

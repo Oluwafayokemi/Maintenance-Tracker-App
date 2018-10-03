@@ -9,16 +9,16 @@
   
 .modal-main {
   position:fixed;
-  background: white;
   width: 50%;
   z-index: 1;
-  height: 50%;
+  height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
   box-shadow: 0px 28px 56px 100vw rgba(0,0,0,0.7), 0 0 0 0 rgba(0,0,0,0.22);
   border-radius: 5px;
   border: 2px solid goldenrod;
+  
 }
 .modal-body {
   text-align: center;
@@ -27,6 +27,8 @@
 .black {
     color: $blue;
     line-height: 1.5;
+    background: white;
+
 }
 .display-block {
   display: block;
@@ -53,5 +55,17 @@
   border: none;
   background-color: inherit;
   color: inherit;
-}
 
+}
+.closing-icon {
+  background: $blue;
+  color: goldenrod;
+  border: none;
+  font-size: 3em;
+  cursor: pointer;
+  text-align: right;
+}
+.font{
+  color: goldenrod;
+  background-color: $blue;
+}

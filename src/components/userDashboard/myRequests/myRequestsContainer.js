@@ -10,7 +10,7 @@ export default class MyRequestContainer extends React.Component {
   }
 
   render() {
-    const { requests } = this.props;
+    const { requests, editRequest } = this.props;
     return (
       <React.Fragment>
 
@@ -22,6 +22,7 @@ export default class MyRequestContainer extends React.Component {
               <th>Equipment</th>
               <th>Description</th>
               <th>Status</th>
+              <th />
             </tr>
           </thead>
           <tbody>{
@@ -31,6 +32,7 @@ export default class MyRequestContainer extends React.Component {
                 key={shortId.generate()}
                 request={request}
                 index={index}
+                editRequest={editRequest}
               />
             )) : null
           }

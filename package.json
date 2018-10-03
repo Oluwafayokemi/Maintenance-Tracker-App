@@ -18,7 +18,8 @@
     "migrate": "babel-node ./server/models/db.js",
     "email": "babel-node ./server/extension/mail.js",
     "start:js": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "heroku-postbuild": "npm run build"
   },
   "jest": {
     "setupFiles": [
@@ -83,6 +84,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.4.2",
     "babel-plugin-istanbul": "^4.1.6",
     "bcrypt-nodejs": "^0.0.3",

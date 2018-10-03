@@ -9,12 +9,16 @@ export default (state = initialState.adminRequests, action) => {
       };
 
     case 'CHANGE_REQUEST_STATUS':
+      console.log(action, 'admin request shape ------------');
       return {
         ...state,
-        requests: [
-          action.status.request,
-          ...state.requests.filter(request => request.requestid !== action.status.request.requestid),
-        ],
+        requests: state.requests.map((request) => {
+          if (request.requestid === action.status.requestid) {
+            return { ...action.status };
+          }
+          return request;
+        }),
+        request: action.request,
       };
 
     default:

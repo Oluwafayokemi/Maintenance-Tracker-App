@@ -19,9 +19,6 @@ const NewRequest = ({ value, handleChange, handleSubmit }) => (
   <React.Fragment>
     <NavBar />
     <div className="request">
-      <div id="display" className="alert col-12">
-        <p id="alert" />
-      </div>
       <div className="col-12 center">
         <div className="table">
           <form onSubmit={handleSubmit}>

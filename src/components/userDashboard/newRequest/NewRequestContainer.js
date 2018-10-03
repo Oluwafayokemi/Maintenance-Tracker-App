@@ -12,30 +12,30 @@ export class NewRequestContainer extends React.PureComponent {
     };
   }
   handleChange = (event) => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { createRequest } = await this.props
+    const { createRequest } = await this.props;
     await createRequest(this.state);
   }
-  
+
   render() {
-    const {description, equipment } = this.state;
+    const { description, equipment } = this.state;
     const input = {
-      description: description,
-      equipment: equipment
-    }
+      description,
+      equipment,
+    };
     return (
       <React.Fragment>
-       <NewRequest 
-       value={input}
-       handleChange={this.handleChange}
-       handleSubmit={this.handleSubmit}
-       />
+        <NewRequest
+          value={input}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -44,7 +44,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createRequest: (request) => dispatch(createUserRequest(request)),
+  createRequest: request => dispatch(createUserRequest(request)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewRequestContainer);

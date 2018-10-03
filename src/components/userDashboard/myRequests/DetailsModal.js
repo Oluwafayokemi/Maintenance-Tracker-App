@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../../../common/Modal';
+import EditRequestContainer from '../editRequest/EditRequestContainer';
 
 export default class DetailsModal extends React.Component {
   constructor(props) {
@@ -18,29 +19,27 @@ export default class DetailsModal extends React.Component {
 
   render() {
     const { show, edit } = this.state;
-    const { request } = this.props;
+    const { request, editRequest } = this.props;
     return (
       <React.Fragment>
         <Modal
           show={show}
           toggleModal={this.toggleModal()}
-          title="Request Details"
-          styles="black"
-          edit={!edit}
+          title="Edit Request"
+          styles="font"
+          edit={edit}
         >
-          <div className="modal-body">
-            <p><strong>Name: </strong> <span>{request.firstname} {request.lastname}</span></p>
-            <p><strong>Email: </strong> <span>{request.email}</span></p>
-            <p><strong>Department: </strong> <span>{request.department}</span></p>
-            <p><strong>Description: </strong><span>{request.description}</span></p>
-          </div>
+          <EditRequestContainer
+            request={request}
+            editRequest={editRequest}
+          />
         </Modal>
         <button
           type="button"
           onClick={this.toggleModal()}
           className="submitBtn"
         >
-          Details
+          Edit
         </button>
       </React.Fragment>
     );
