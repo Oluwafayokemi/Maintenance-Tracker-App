@@ -39,11 +39,11 @@ export class NewRequestContainer extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   createRequest: request => dispatch(createUserRequest(request)),
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectResponse from '../selectResponse';
+import SelectResponse from '../selectResponse/SelectResponseContainer';
 import DetailsModal from '../MyRequests/DetailsModal';
 
 const MyRequests = ({
@@ -35,10 +35,14 @@ const MyRequests = ({
 );
 
 MyRequests.propTypes = {
-  request: PropTypes.shape([]).isRequired,
+  request: PropTypes.shape({}).isRequired,
   index: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   editStatus: PropTypes.func.isRequired,
+};
+
+MyRequests.defaultProps = {
+  title: '',
 };
 
 export default MyRequests;

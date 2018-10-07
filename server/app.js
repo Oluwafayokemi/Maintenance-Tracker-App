@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-const port = parseInt(process.env.PORT, 10) || 9000;
+const port = parseInt(process.env.PORT, 10) || 3003;
 app.set('port', port);
 
 app.listen(port, () => {

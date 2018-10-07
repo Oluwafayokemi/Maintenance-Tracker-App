@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from '../../../common/Modal';
 
 export default class DetailsModal extends React.Component {
@@ -23,10 +24,10 @@ export default class DetailsModal extends React.Component {
       <React.Fragment>
         <Modal
           show={show}
+          edit={!edit}
           toggleModal={this.toggleModal()}
           title="Request Details"
           styles="black"
-          edit={!edit}
         >
           <div className="modal-body">
             <p><strong>Name: </strong> <span>{request.firstname} {request.lastname}</span></p>
@@ -46,3 +47,7 @@ export default class DetailsModal extends React.Component {
     );
   }
 }
+
+DetailsModal.propTypes = {
+  request: PropTypes.shape({}).isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from '../../../common/Modal';
 import EditRequestContainer from '../editRequest/EditRequestContainer';
 
@@ -45,3 +46,8 @@ export default class DetailsModal extends React.Component {
     );
   }
 }
+
+DetailsModal.propTypes = {
+  editRequest: PropTypes.func.isRequired,
+  request: PropTypes.shape([]).isRequired,
+};

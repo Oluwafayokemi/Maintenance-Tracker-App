@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../styles/App.scss';
 
-const Header = ({ isUser }) => (
+const NavBar = ({ isUser }) => (
   <React.Fragment>
     <div className="row header" id="header">
       <div className="maintenance-box">
@@ -20,7 +20,7 @@ const Header = ({ isUser }) => (
 
             <ul className="ul">
               <li>
-                <Link to="/user"> Home </Link>
+                {isUser ? <Link to="/user"> Home </Link> : <Link to="/admin"> Home </Link> }
               </li>
               <li>
                 {isUser ? <Link to="/NewRequest"> New Request </Link> : ''}
@@ -40,4 +40,12 @@ const Header = ({ isUser }) => (
   </React.Fragment>
 );
 
-export default Header;
+NavBar.propTypes = {
+  isUser: PropTypes.bool,
+};
+
+NavBar.defaultProps = {
+  isUser: true,
+};
+
+export default NavBar;

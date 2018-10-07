@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EditRequest from './EditRequest';
 
 export default class EditRequestContainer extends React.PureComponent {
@@ -12,16 +13,15 @@ export default class EditRequestContainer extends React.PureComponent {
   }
   componentDidMount = () => {
     this.setState({ ...this.state, ...this.props.request });
-    debugger;
   };
- 
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { editRequest, request } = this.props;
+    const { editRequest } = this.props;
     editRequest({ ...this.state });
   }
 
@@ -42,3 +42,8 @@ export default class EditRequestContainer extends React.PureComponent {
     );
   }
 }
+
+EditRequestContainer.propTypes = {
+  request: PropTypes.shape([]).isRequired,
+  editRequest: PropTypes.func.isRequired,
+};

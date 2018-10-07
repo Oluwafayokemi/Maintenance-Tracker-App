@@ -3,10 +3,10 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { signUpUserRequest } from '../../actions/signUp.action';
 import { logInUserRequest } from '../../actions/logIn.action';
-import SignUpForm from './signUpForm/SignUpForm';
-import SignInForm from './signInForm/SignInForm';
+import SignUpForm from './signUpForm/SignUpFormContainer';
+import LoginForm from './loginForm/LoginFormContainer';
 
-class Home extends React.PureComponent {
+export class Home extends React.PureComponent {
   render() {
     const { logIn, signUp } = this.props;
     return (
@@ -19,7 +19,7 @@ class Home extends React.PureComponent {
               </a>
             </div>
 
-            <SignInForm
+            <LoginForm
               logInUserRequest={logIn}
             />
 
@@ -54,11 +54,11 @@ Home.propTypes = {
   logIn: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   logIn: data => dispatch(logInUserRequest(data)),
   signUp: data => dispatch(signUpUserRequest(data)),
 });

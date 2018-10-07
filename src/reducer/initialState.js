@@ -7,8 +7,6 @@ export default {
   common: {
     errors: {},
     message: '',
-    error: false,
-    loading: false,
   },
 };
 

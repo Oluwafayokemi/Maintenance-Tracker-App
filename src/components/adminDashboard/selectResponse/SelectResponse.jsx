@@ -1,0 +1,50 @@
+import React from 'react';
+import shortId from 'short-id';
+import PropTypes from 'prop-types';
+
+const selectData = [
+  '--select--',
+  'approve',
+  'disapprove',
+  'resolve',
+];
+
+const SelectResponse = ({
+  requestId, handleUpdate, setRequestId, handleChange, value,
+}) => (
+  <React.Fragment>
+    <form onSubmit={handleUpdate}>
+      <input type="hidden" value={requestId} onChange={setRequestId} />
+      <select name="select" value={value} onChange={handleChange} className="submitBtn">
+        {selectData.map(data => (
+          <option
+            name={data}
+            value={data === '--select--'
+                ? 'pending' : data}
+            key={shortId.generate()}
+          >
+            {data}
+          </option>))}
+      </select>
+      <button>Submit</button>
+    </form>
+  </React.Fragment>
+);
+
+SelectResponse.propTypes = {
+  handleUpdate: PropTypes.func,
+  requestId: PropTypes.number,
+  setRequestId: PropTypes.func,
+  handleChange: PropTypes.func,
+  value: PropTypes.string,
+};
+
+SelectResponse.defaultProps = {
+  requestId: 1,
+  handleUpdate: () => {},
+  setRequestId: () => {},
+  handleChange: () => {},
+  value: '',
+};
+
+export default SelectResponse;

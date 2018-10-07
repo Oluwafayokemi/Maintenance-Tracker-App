@@ -1,5 +1,5 @@
 import toastr from 'toastr';
-import { ADD_NEW_REQUEST, GET_USER_REQUESTS, EDIT_USER_REQUEST, IS_LOADING, IS_COMPLETE } from './actionTypes';
+import { ADD_NEW_REQUEST, GET_USER_REQUESTS, EDIT_USER_REQUEST } from './actionTypes';
 import fetchData from '../util/fetchData';
 import localStorageUtil from '../util/localStorageUtil';
 import history from '../util/history';
@@ -18,7 +18,6 @@ export const editRequests = request => ({
 });
 
 export const fetchUserRequests = () => async (dispatch, getState) => {
-  dispatch({ type: IS_LOADING });
   const state = getState();
   const { token } = state.auth;
   try {
@@ -29,9 +28,7 @@ export const fetchUserRequests = () => async (dispatch, getState) => {
         'x-access-token': `${token}`,
       },
     });
-    dispatch({ type: IS_COMPLETE });
     if (response.status === 200) {
-      toastr.success(response.data.message);
       localStorageUtil.setItem('usersRequest', {
         ...state.userRequests, ...response.data,
       });

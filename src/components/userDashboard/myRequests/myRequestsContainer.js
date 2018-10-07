@@ -1,6 +1,6 @@
 import React from 'react';
 import shortId from 'short-id';
-import PropTypes from 'prop-types';
+import PropTypes, { shape, string, number } from 'prop-types';
 import MyRequests from './myRequests';
 
 export default class MyRequestContainer extends React.Component {
@@ -13,7 +13,6 @@ export default class MyRequestContainer extends React.Component {
     const { requests, editRequest } = this.props;
     return (
       <React.Fragment>
-
         <table id="tableItem">
           <thead>
             <tr>
@@ -44,5 +43,21 @@ export default class MyRequestContainer extends React.Component {
 }
 
 MyRequestContainer.propTypes = {
-  requests: PropTypes.shape([]).isRequired,
+  requests: PropTypes.arrayOf(shape({
+    requestid: number,
+    userid: number,
+    firstname: string,
+    lastname: string,
+    email: string,
+    department: string,
+    equipment: string,
+    description: string,
+    status: string,
+    date: string,
+  })),
+  editRequest: PropTypes.func.isRequired,
+};
+
+MyRequestContainer.defaultProps = {
+  requests: [],
 };

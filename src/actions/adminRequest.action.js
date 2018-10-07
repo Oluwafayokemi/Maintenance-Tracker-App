@@ -27,8 +27,7 @@ export const getAdminRequest = requestDetails => async (dispatch, getState) => {
       data: requestDetails,
     });
     if (response.data.status === 200) {
-      toastr.success(response.data.message);
-      localStorageUtil.setItem('maintenance-tracker', {
+      localStorageUtil.setItem('userData', {
         ...state.adminRequests, ...response.data,
       });
       return dispatch(getAllAdminRequest(response.data.requests));
@@ -63,6 +62,7 @@ export const editRequestStatus = status => async (dispatch, getState) => {
       });
       return dispatch(changeRequestStatus(response.data.updatedRequest.request));
     }
+
     const error = Object.assign({}, {
       status: response.data.status,
       message: response.data.message,

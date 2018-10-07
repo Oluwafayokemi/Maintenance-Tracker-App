@@ -44,7 +44,14 @@ exports[`Tests NavBar component should render without errors 1`] = `
                  Home 
               </Link>
             </li>
-            <li />
+            <li>
+              <Link
+                replace={false}
+                to="/NewRequest"
+              >
+                 New Request 
+              </Link>
+            </li>
             <li>
               <Link
                 replace={false}
