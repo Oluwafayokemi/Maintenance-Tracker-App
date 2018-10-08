@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EditRequest from '../../../components/userDashboard/editRequest/EditRequest';
+import EditRequest from '../../../../components/userDashboard/editRequest/EditRequest';
 
 describe('Tests EditRequest component', () => {
   const props = {

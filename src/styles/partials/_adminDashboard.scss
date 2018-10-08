@@ -74,7 +74,7 @@
     .submitBtn {
         background: rgb(48, 21, 146);
         color: white;
-        padding: 1em;
+        padding: 5px 1em;
         margin-bottom:8px;
         border: 2px solid goldenrod;
         cursor: pointer;
@@ -84,13 +84,37 @@
     .selectBtn {
         background: rgb(48, 21, 146);
         color: white;
-        padding: 1em;
+        padding: 2px;
         margin-bottom:8px;
         border: 2px solid goldenrod;
         cursor: pointer;
         opacity: 0.9;
-        text-align: center
-    }
+        text-align: center;
+      }
+        @media only screen and (max-width: 650px) {
+        .selectBtn  {
+          background: rgb(48, 21, 146);
+          color: white;
+          padding: 1px;
+          margin-bottom:8px;
+          border: 2px solid goldenrod;
+          cursor: pointer;
+          opacity: 0.9;
+          text-align: center;
+            }
+        }
+        @media only screen and (max-width: 650px) {
+          .submitBtn  {
+            background: rgb(48, 21, 146);
+            color: white;
+            padding: 5px;
+            margin-bottom:8px;
+            border: 2px solid goldenrod;
+            cursor: pointer;
+            opacity: 0.9;
+            text-align: center;
+              }
+          }
     .submitStatus {
         background: rgb(48, 21,146);
         color: #fff;

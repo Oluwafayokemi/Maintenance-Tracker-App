@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MyRequests from '../../../components/userDashboard/myRequests/myRequests';
+import MyRequests from '../../../../components/userDashboard/myRequests/myRequests';
 
 describe('Tests MyRequests Container', () => {
   const props = {

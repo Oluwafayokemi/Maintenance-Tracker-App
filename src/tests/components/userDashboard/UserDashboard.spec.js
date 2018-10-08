@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import { UserDashboard, mapDispatchToProps, mapStateToProps } from '../../components/userDashboard/UserDashboard';
+import { UserDashboard, mapDispatchToProps, mapStateToProps } from '../../../components/userDashboard/UserDashboard';
 
 describe('Tests AdminDashboard component', () => {
   const props = {

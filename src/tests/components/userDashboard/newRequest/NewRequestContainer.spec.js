@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import { NewRequestContainer, mapDispatchToProps, mapStateToProps } from '../../../components/userDashboard/newRequest/NewRequestContainer';
+import { NewRequestContainer, mapDispatchToProps, mapStateToProps } from '../../../../components/userDashboard/newRequest/NewRequestContainer';
 
 describe('Tests NewRequest container', () => {
   const event = {

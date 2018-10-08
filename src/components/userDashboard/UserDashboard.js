@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavBar from '../../common/NavBar';
-import Search from '../Search';
 import MyRequests from '../userDashboard/myRequests/myRequestsContainer';
 import { fetchUserRequests, editUserRequest } from '../../actions/userRequest.action';
 import history from '../../util/history';

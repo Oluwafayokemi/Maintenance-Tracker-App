@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EditRequest from '../../../components/userDashboard/editRequest/EditRequestContainer';
+import EditRequest from '../../../../components/userDashboard/editRequest/EditRequestContainer';
 
 describe('Tests EditRequest container', () => {
   const event = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DetailsModal from '../../../components/userDashboard/myRequests/DetailsModal';
+import DetailsModal from '../../../../components/userDashboard/myRequests/DetailsModal';
 
 describe('Tests DetailsModal component', () => {
   const props = {

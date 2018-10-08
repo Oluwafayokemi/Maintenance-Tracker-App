@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavBar from '../../common/NavBar';
-import Search from '../Search';
 import MyRequests from '../adminDashboard/MyRequests/MyRequestContainer';
 import { getAdminRequest, editRequestStatus } from '../../actions/adminRequest.action';
 import history from '../../util/history';
@@ -20,10 +19,10 @@ export class AdminDashboard extends Component {
   }
 
   render() {
-    const { adminRequests, editStatus } = this.props;
+    const { adminRequests, editStatus, auth } = this.props;
     return (
       <React.Fragment>
-        <NavBar isUser={false} />
+        <NavBar isUser={false} auth={auth} />
         <div className="admin">
           <div className="header">
             <h1>Logs of All Request</h1>
