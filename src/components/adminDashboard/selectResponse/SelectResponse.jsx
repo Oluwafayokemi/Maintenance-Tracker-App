@@ -15,7 +15,7 @@ const SelectResponse = ({
   <React.Fragment>
     <form onSubmit={handleUpdate}>
       <input type="hidden" value={requestId} onChange={setRequestId} />
-      <select name="select" value={value} onChange={handleChange} className="submitBtn">
+      <select name="select" value={value} onChange={handleChange} className="selectBtn">
         {selectData.map(data => (
           <option
             name={data}
@@ -26,7 +26,7 @@ const SelectResponse = ({
             {data}
           </option>))}
       </select>
-      <button>Submit</button>
+      <button className="submitStatus">Submit</button>
     </form>
   </React.Fragment>
 );

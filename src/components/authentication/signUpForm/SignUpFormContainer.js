@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import history from '../../../util/history';
 import SignUpForm from './SignUpForm';
 
@@ -20,20 +19,20 @@ export default class SignUpFormContainer extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit = (event) => {
-    const { signUpUserRequest } = this.props;
+  handleSubmit = async (event) => {
+    const { signUpUserRequest } = await this.props;
     event.preventDefault();
-    signUpUserRequest(this.state)
-      .then((response) => {
-        if (response.user.isAdmin) {
-          history.push('/admin');
-        } else if (!response.user.isAdmin) {
-          history.push('/user');
-        }
-      })
-      .catch((err) => {
-        err;
-      });
+    const signUpbtn = document.querySelector('#signUp-btn');
+    signUpbtn.textContent = 'loading...';
+    const response = await signUpUserRequest(this.state);
+    try {
+      if (response.user.isAdmin) {
+        return history.push('/admin');
+      }
+      return history.push('/user');
+    } catch (err) {
+      return err;
+    }
   }
 
   render() {
@@ -59,7 +58,3 @@ export default class SignUpFormContainer extends React.Component {
     );
   }
 }
-
-SignUpFormContainer.propTypes = {
-  signUpUserRequest: PropTypes.func.isRequired,
-};

@@ -120,6 +120,7 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
           value="passWordCheck"
         />
         <button
+          id="signUp-btn"
           type="submit"
           value="submit"
         >

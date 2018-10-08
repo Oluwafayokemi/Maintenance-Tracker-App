@@ -81,6 +81,23 @@
         opacity: 0.9;
         text-align: center
     }
+    .selectBtn {
+        background: rgb(48, 21, 146);
+        color: white;
+        padding: 1em;
+        margin-bottom:8px;
+        border: 2px solid goldenrod;
+        cursor: pointer;
+        opacity: 0.9;
+        text-align: center
+    }
+    .submitStatus {
+        background: rgb(48, 21,146);
+        color: #fff;
+        margin-left: .5em;
+        border: 2px solid goldenrod;
+        cursor: pointer;
+    }
     .submitBtn:hover {
         opacity: 1;
     }

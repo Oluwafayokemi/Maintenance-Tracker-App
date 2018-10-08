@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes, { string } from 'prop-types';
 
-const LoginForm = ({handleChange, handleSubmit, value}) => (
+const LoginForm = ({ handleChange, handleSubmit, value }) => (
   <React.Fragment>
     <div className="col-6 flex-container">
       <div className="nav">
@@ -48,5 +49,14 @@ const LoginForm = ({handleChange, handleSubmit, value}) => (
     </div>
   </React.Fragment>
 );
+
+LoginForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  value: PropTypes.shape({
+    email: string,
+    password: string,
+  }).isRequired,
+};
 
 export default LoginForm;

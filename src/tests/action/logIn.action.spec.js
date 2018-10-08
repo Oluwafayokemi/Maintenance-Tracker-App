@@ -1,8 +1,8 @@
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { LOG_IN_USER } from '../../actions/actionTypes';
-import { logInUserRequest } from '../../actions/logIn.action';
+import { LOG_IN_USER, LOG_OUT_USER } from '../../actions/actionTypes';
+import { logInUserRequest, logOutAction } from '../../actions/logIn.action';
 import { userResponse } from '../mock/data';
 
 const middlewares = [thunk];
@@ -33,23 +33,20 @@ describe('Login Action Test', () => {
     done();
   });
 
-  it('creates LOG_IN_USER after failed login', async (done) => {
+  it('creates LOG_OUT_USER after onclick of logOut button', async (done) => {
     moxios.wait(() => {
       const getUserRequest = moxios.requests.mostRecent();
-      getUserRequest.respondWith({
-        status: 201,
-        response: userResponse,
-      });
+      getUserRequest.respondWith({});
     });
 
     const returnedAction = {
-      type: LOG_IN_USER,
-      user: userResponse.user,
+      type: LOG_OUT_USER,
+      user: {},
     };
 
     const store = mockStore({});
 
-    await store.dispatch(logInUserRequest(returnedAction.user));
+    await store.dispatch(logOutAction(returnedAction.user));
     expect(store.getActions()[0]).toEqual(returnedAction);
     done();
   });

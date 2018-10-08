@@ -1,6 +1,6 @@
 
 import authReducer from '../../reducer/authReducer';
-import { SIGN_UP_USER, LOG_IN_USER } from '../../actions/actionTypes';
+import { SIGN_UP_USER, LOG_IN_USER, LOG_OUT_USER } from '../../actions/actionTypes';
 
 describe('Tests AuthReducer', () => {
   const initialState = {
@@ -64,6 +64,20 @@ describe('Tests AuthReducer', () => {
     expect(newState.user.lastName).toEqual('adeyina');
     expect(newState.user.department).toEqual('Water Management');
     expect(newState.user.isAdmin).toEqual(true);
+    done();
+  });
+
+  it('should handle LOG_OUT_USER', (done) => {
+    const auth = {
+      user: {},
+    };
+    const action = {
+      type: LOG_OUT_USER,
+      user: auth.user,
+    };
+
+    const newState = authReducer(initialState, action);
+    expect(newState.user).toEqual({});
     done();
   });
 });

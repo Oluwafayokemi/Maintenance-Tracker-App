@@ -1,5 +1,5 @@
 import toastr from 'toastr';
-import { LOG_IN_USER } from './actionTypes';
+import { LOG_IN_USER, LOG_OUT_USER } from './actionTypes';
 import fetchData from '../util/fetchData';
 import localStorageUtil from '../util/localStorageUtil';
 
@@ -7,6 +7,14 @@ export const logInUserAction = user => ({
   type: LOG_IN_USER,
   user,
 });
+
+export const logOutAction = (user) => {
+  localStorage.clear();
+  return {
+    type: LOG_OUT_USER,
+    user,
+  };
+};
 
 export const logInUserRequest = userDetails => async (dispatch) => {
   try {

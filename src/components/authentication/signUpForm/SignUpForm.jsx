@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes, { string } from 'prop-types';
 
 const SignUpForm = ({ handleChange, handleSubmit, value }) => (
   <React.Fragment>
@@ -89,7 +90,7 @@ const SignUpForm = ({ handleChange, handleSubmit, value }) => (
             onChange={handleChange}
           />
 
-          <button type="submit" value="submit">
+          <button type="submit" value="submit" id="signUp-btn">
             Register
           </button>
         </div>
@@ -98,4 +99,14 @@ const SignUpForm = ({ handleChange, handleSubmit, value }) => (
   </React.Fragment>
 );
 
+SignUpForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  value: PropTypes.shape({
+    firstName: string,
+    lastName: string,
+    department: string,
+    equipment: string,
+  }).isRequired,
+};
 export default SignUpForm;

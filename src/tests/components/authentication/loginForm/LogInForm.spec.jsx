@@ -18,6 +18,7 @@ describe('Tests SignInForm component', () => {
     wrapper.find('[name="email"]').simulate('change', { target: { value: 'test@email.com' } });
     wrapper.find('[name="password"]').simulate('change', { target: { value: 'Password' } });
     wrapper.find('form').simulate('submit', mockEvent);
+    expect(wrapper).toBeTruthy();
     expect(wrapper).toMatchSnapshot();
     done();
   });

@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import SignUpContainer from '../../../../components/authentication/signUpForm/SignUpFormContainer';
 
 describe('Tests SignUpContainer component', () => {
+  window.document.querySelector = jest.fn().mockReturnValue({ textContent: '' });
   const event = {
     preventDefault: jest.fn(),
     target: {
@@ -12,8 +13,12 @@ describe('Tests SignUpContainer component', () => {
   const props = {
     signUpUserRequest: jest.fn().mockResolvedValueOnce({ user: { isAdmin: true } }),
     input: {
+      firstName: 'fayokemi',
+      lastName: 'adeyina',
       email: 'fayoaright@gmail.com',
-      password: 'fayo',
+      department: 'department',
+      password: 'fayokemi',
+      passwordCheck: 'fayokemi',
     },
     history: {
       push: jest.fn(),
@@ -30,8 +35,12 @@ describe('Tests SignUpContainer component', () => {
   const props2 = {
     signUpUserRequest: jest.fn().mockResolvedValueOnce({ user: { isAdmin: false } }),
     input: {
+      firstName: 'fayokemi',
+      lastName: 'adeyina',
       email: 'fayoaright@gmail.com',
-      password: 'fayo',
+      department: 'department',
+      password: 'fayokemi',
+      passwordCheck: 'fayokemi',
     },
     history: {
       push: jest.fn(),
