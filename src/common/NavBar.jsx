@@ -9,7 +9,7 @@ export class NavBar extends React.PureComponent {
   constructor() {
     super();
     this.state = {
-      show: false,
+      show: true,
       screenWidth: window.screen.width > 769,
     };
   }

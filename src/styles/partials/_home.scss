@@ -120,5 +120,12 @@
     }
     .menu {
         padding: 1em;
+        min-width: 270px;
+    }
+    @media only screen and (max-width: 769px) {
+        .text {
+            margin: 1px auto !important;
+            padding: 1px;
+        }
     }
 }
