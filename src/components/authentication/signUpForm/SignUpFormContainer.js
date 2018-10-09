@@ -20,8 +20,8 @@ export default class SignUpFormContainer extends React.Component {
   }
 
   handleSubmit = async (event) => {
-    const { signUpUserRequest } = await this.props;
     event.preventDefault();
+    const { signUpUserRequest } = await this.props;
     const signUpbtn = document.querySelector('#signUp-btn');
     signUpbtn.textContent = 'loading...';
     const response = await signUpUserRequest(this.state);
@@ -31,6 +31,15 @@ export default class SignUpFormContainer extends React.Component {
       }
       return history.push('/user');
     } catch (err) {
+      this.setState({
+        firstName: '',
+        lastName: '',
+        department: '',
+        email: '',
+        password: '',
+        passwordCheck: '',
+      });
+      signUpbtn.textContent = 'Register';
       return err;
     }
   }

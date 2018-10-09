@@ -21,13 +21,15 @@ export default class loginFormContainer extends React.Component {
     const loginbtn = document.querySelector('#login-btn');
     loginbtn.textContent = 'loading...';
     const response = await logInUserRequest(this.state);
+
     try {
       if (response.user.isAdmin) {
         return history.push('/admin');
       }
       return history.push('/user');
     } catch (err) {
-      return err;
+      this.setState({ email: '', password: '' });
+      loginbtn.textContent = 'Login';
     }
   }
 
