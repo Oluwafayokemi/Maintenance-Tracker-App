@@ -24,7 +24,7 @@ class EmailNotification {
 
   static async sendMail(userEmail, emailSubject, emailText) {
     const mailOptions = {
-      from: 'Maintenance Tracker(Facility Department)',
+      from: 'tt.maintenancetracker@gmail.com',
       to: userEmail,
       subject: emailSubject,
       html: `<h3 style="background-color: pink; color: black; padding: .5em; width: 450px; text-align: center;">Maintenance Tracker</h3>
@@ -54,7 +54,7 @@ class EmailNotification {
           } = data.rows[0];
           const emailBody = `<p>Dear Admin ${firstname}</p>, <p>A new request with Equipment type: <strong>${equipment}</strong>, was sent to the maintainance tracker site<\p>. <P><strong>Do attend to the request as soon as possible</strong></p>. 
           <p>Time created:${new Date()}</p>`;
-          this.sendMail(email, 'Notification of a new Request sent to the maintainance tracker app', emailBody);
+          EmailNotification.sendMail(email, 'Notification of a new Request sent to the maintainance tracker app', emailBody);
         })
         .catch(error => error));
   }
@@ -82,7 +82,7 @@ class EmailNotification {
             firstname,
           } = data.rows[0];
           const emailBody = `<p>Dear <strong>${firstname}</strong></p>, <p>The request you created on <strong>${equipment}</strong>, as at <strong>${date}</strong> has been ${status}.</p> <p>Time updated: <strong>${new Date()}</strong>`;
-          this.sendMail(email, `Request ${status}`, emailBody);
+          EmailNotification.sendMail(email, `Request ${status}`, emailBody);
         })
         .catch(error => error));
   }
