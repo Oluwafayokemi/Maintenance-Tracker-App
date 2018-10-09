@@ -1,17 +1,11 @@
 /* eslint-disable class-methods-use-this */
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import db from '../models/index';
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.myEmail,
-    pass: process.env.myPassword,
-  },
-});
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 /**
  * @param {object} request - HTTP Request
@@ -28,7 +22,7 @@ class EmailNotification {
    * @description send email to a recipient
    */
 
-  async sendMail(userEmail, emailSubject, emailText) {
+  static async sendMail(userEmail, emailSubject, emailText) {
     const mailOptions = {
       from: 'Maintenance Tracker(Facility Department)',
       to: userEmail,
@@ -37,14 +31,14 @@ class EmailNotification {
       <div>${emailText}</div>
       <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`,
     };
-    transporter.sendMail(mailOptions);
+    sgMail.send(mailOptions);
   }
   /**
    * @param {string} equipment - HTTP Request
    * @description sends email notification to an admin when a user creates a request
    */
 
-  async createRequest(equipment) {
+  static async createRequest(equipment) {
     const queryString = {
       // give the query a unique name
       name: 'fetch-user',
@@ -69,7 +63,7 @@ class EmailNotification {
    * @param {string} equipment - HTTP Request
    * @description sends email to the user when an action has been made on a request by the admin
    */
-  async requestStatus(requestid) {
+  static async requestStatus(requestid) {
     const query = {
       // give the query a unique name
       name: 'fetch-user',
@@ -94,5 +88,4 @@ class EmailNotification {
   }
 }
 
-const emailNotification = new EmailNotification();
-export default emailNotification;
+export default EmailNotification;
