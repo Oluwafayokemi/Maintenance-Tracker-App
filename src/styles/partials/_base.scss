@@ -129,11 +129,6 @@ table .th {
     background-color: rgb(48, 21, 146);
     color: white;
 }
-@media only screen and  (max-width: 650px) {
-td:nth-child(2), th:nth-child(2){
-    display: none;
-}
-}
 
 .center {
     display: flex;
@@ -269,7 +264,7 @@ li select {
         display: block;
     }
     nav .ul{
-        display: none;
+        display: block;
     }
    nav .rform {
         display: block;

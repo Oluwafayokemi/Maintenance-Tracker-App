@@ -28,7 +28,7 @@ export class AdminDashboard extends Component {
             <h1>Logs of All Request</h1>
           </div>
 
-          <div className="col-12 padding">
+          <div className="col-12 overflow padding">
             <MyRequests
               requests={adminRequests.requests}
               editStatus={editStatus}

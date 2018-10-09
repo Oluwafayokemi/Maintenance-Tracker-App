@@ -27,8 +27,7 @@ export class UserDashboard extends Component {
           <div className="header">
             <h1>Previous Requests</h1>
           </div>
-          <div className="col-12 padding">
-
+          <div className="col-12 overflow padding">
             <MyRequests
               requests={requests.requests}
               editRequest={editRequest}

@@ -91,30 +91,7 @@
         opacity: 0.9;
         text-align: center;
       }
-        @media only screen and (max-width: 650px) {
-        .selectBtn  {
-          background: rgb(48, 21, 146);
-          color: white;
-          padding: 1px;
-          margin-bottom:8px;
-          border: 2px solid goldenrod;
-          cursor: pointer;
-          opacity: 0.9;
-          text-align: center;
-            }
-        }
-        @media only screen and (max-width: 650px) {
-          .submitBtn  {
-            background: rgb(48, 21, 146);
-            color: white;
-            padding: 5px;
-            margin-bottom:8px;
-            border: 2px solid goldenrod;
-            cursor: pointer;
-            opacity: 0.9;
-            text-align: center;
-              }
-          }
+       
     .submitStatus {
         background: rgb(48, 21,146);
         color: #fff;
@@ -198,4 +175,30 @@
         cursor: pointer;
         opacity: 0.9;
     }
+    
+    @media only screen and (max-width: 650px) {
+        .overflow {
+          overflow-x: auto;
+        }
+        .submitBtn  {
+          background: rgb(48, 21, 146);
+          color: white;
+          padding: 5px;
+          margin-bottom:8px;
+          border: 2px solid goldenrod;
+          cursor: pointer;
+          opacity: 0.9;
+          text-align: center;
+            }
+        .selectBtn  {
+          background: rgb(48, 21, 146);
+          color: white;
+          padding: 1px;
+          margin-bottom:8px;
+          border: 2px solid goldenrod;
+          cursor: pointer;
+          opacity: 0.9;
+          text-align: center;
+            }
+        }
 }
