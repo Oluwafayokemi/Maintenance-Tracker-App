@@ -1,5 +1,5 @@
 import initialState from './initialState';
-import { SIGN_UP_USER, LOG_IN_USER } from '../actions/actionTypes';
+import { SIGN_UP_USER, LOG_IN_USER, LOG_OUT_USER } from '../actions/actionTypes';
 
 export default (state = initialState.user, action) => {
   switch (action.type) {
@@ -13,6 +13,12 @@ export default (state = initialState.user, action) => {
       return {
         ...state,
         user: action.user,
+      };
+
+    case LOG_OUT_USER:
+      return {
+        ...state,
+        user: {},
       };
 
     default:

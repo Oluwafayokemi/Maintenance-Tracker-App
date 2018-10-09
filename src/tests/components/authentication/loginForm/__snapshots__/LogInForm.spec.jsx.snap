@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests SignInForm component should render without errors 1`] = `
+<Fragment>
+  <div
+    className="col-6 flex-container"
+  >
+    <div
+      className="nav"
+    >
+      <nav>
+        <ul
+          className="rform"
+        >
+          <form
+            className="one"
+            id="signin-form"
+            onSubmit={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    Object {
+                      "preventDefault": [Function],
+                      "target": Object {},
+                    },
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
+          >
+            <li
+              className="hide2"
+            >
+              Sign In
+            </li>
+            <li>
+              <div
+                className="email"
+              >
+                <label
+                  htmlFor="email"
+                >
+                  <strong>
+                    Email
+                  </strong>
+                </label>
+                <input
+                  name="email"
+                  onChange={
+                    [MockFunction] {
+                      "calls": Array [
+                        Array [
+                          Object {
+                            "target": Object {
+                              "value": "test@email.com",
+                            },
+                          },
+                        ],
+                        Array [
+                          Object {
+                            "target": Object {
+                              "value": "Password",
+                            },
+                          },
+                        ],
+                      ],
+                      "results": Array [
+                        Object {
+                          "isThrow": false,
+                          "value": undefined,
+                        },
+                        Object {
+                          "isThrow": false,
+                          "value": undefined,
+                        },
+                      ],
+                    }
+                  }
+                  placeholder="Enter Email"
+                  required={true}
+                  type="email"
+                  value="email"
+                />
+              </div>
+            </li>
+            <li>
+              <div
+                className="psw"
+              >
+                <label
+                  htmlFor="password"
+                >
+                  <strong>
+                    Password
+                  </strong>
+                </label>
+                <input
+                  name="password"
+                  onChange={
+                    [MockFunction] {
+                      "calls": Array [
+                        Array [
+                          Object {
+                            "target": Object {
+                              "value": "test@email.com",
+                            },
+                          },
+                        ],
+                        Array [
+                          Object {
+                            "target": Object {
+                              "value": "Password",
+                            },
+                          },
+                        ],
+                      ],
+                      "results": Array [
+                        Object {
+                          "isThrow": false,
+                          "value": undefined,
+                        },
+                        Object {
+                          "isThrow": false,
+                          "value": undefined,
+                        },
+                      ],
+                    }
+                  }
+                  placeholder="Enter Password"
+                  required={true}
+                  type="password"
+                  value="password"
+                />
+              </div>
+            </li>
+            <button
+              id="login-btn"
+              type="submit"
+              value="submit"
+            >
+              Login
+            </button>
+          </form>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</Fragment>
+`;

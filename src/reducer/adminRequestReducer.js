@@ -11,10 +11,19 @@ export default (state = initialState.adminRequests, action) => {
     case 'CHANGE_REQUEST_STATUS':
       return {
         ...state,
-        requests: [
-          action.status.request,
-          ...state.requests.filter(request => request.requestid !== action.status.request.requestid),
-        ],
+        requests: state.requests.map((request) => {
+          if (request.requestid === action.status.requestid) {
+            return {
+              ...action.status,
+              firstname: request.firstname,
+              lastname: request.lastname,
+              email: request.email,
+              department: request.department,
+            };
+          }
+          return request;
+        }),
+        status: action.status,
       };
 
     default:

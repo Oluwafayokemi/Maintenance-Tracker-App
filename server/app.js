@@ -20,7 +20,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(userRouter);
 app.use(adminRequestRouter);
 app.use(userRequestRouter);
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 app.get('*', (req, res) => {
   res.status(200).json('Welcome To maintenance Tracker App, Built by Fayokemi Adeyina');
 });
@@ -32,7 +34,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-const port = parseInt(process.env.PORT, 10) || 9000;
+const port = parseInt(process.env.PORT, 10) || 3003;
 app.set('port', port);
 
 app.listen(port, () => {

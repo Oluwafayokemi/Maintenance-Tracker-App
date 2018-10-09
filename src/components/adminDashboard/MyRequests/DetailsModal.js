@@ -1,31 +1,33 @@
 import React from 'react';
-import Modal from '../../../common/modal';
+import PropTypes from 'prop-types';
+import Modal from '../../../common/Modal';
 
 export default class DetailsModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
+      edit: true,
     };
   }
 
-  toggleModal = () => {
-    return () => {
-      this.setState(prevState => ({
-        show: !prevState.show
-      }));
-    }
+  toggleModal = () => () => {
+    this.setState(prevState => ({
+      show: !prevState.show,
+    }));
   }
 
   render() {
-    const { show } = this.state;
-    const { request } = this.props
+    const { show, edit } = this.state;
+    const { request } = this.props;
     return (
       <React.Fragment>
         <Modal
           show={show}
+          edit={!edit}
           toggleModal={this.toggleModal()}
           title="Request Details"
+          styles="black"
         >
           <div className="modal-body">
             <p><strong>Name: </strong> <span>{request.firstname} {request.lastname}</span></p>
@@ -37,10 +39,15 @@ export default class DetailsModal extends React.Component {
         <button
           type="button"
           onClick={this.toggleModal()}
-          className="submitBtn">
+          className="submitBtn"
+        >
           Details
         </button>
       </React.Fragment>
     );
   }
 }
+
+DetailsModal.propTypes = {
+  request: PropTypes.shape({}).isRequired,
+};

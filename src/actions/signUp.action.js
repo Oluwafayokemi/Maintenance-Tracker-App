@@ -1,5 +1,5 @@
 import toastr from 'toastr';
-import { SIGN_UP_USER, IS_LOADING, IS_COMPLETE } from './actionTypes';
+import { SIGN_UP_USER } from './actionTypes';
 import fetchData from '../util/fetchData';
 import localStorageUtil from '../util/localStorageUtil';
 
@@ -9,7 +9,6 @@ export const signUpUserAction = user => ({
 });
 
 export const signUpUserRequest = newUser => async (dispatch) => {
-  dispatch({ type: IS_LOADING });
   try {
     if (newUser.passwordCheck !== newUser.password) {
       return toastr.error('password does not match');
@@ -19,11 +18,17 @@ export const signUpUserRequest = newUser => async (dispatch) => {
       url: 'auth/signup',
       data: newUser,
     });
-    dispatch({ type: IS_COMPLETE });
-    toastr.success(response.data.message);
-    localStorageUtil.setItem('maintenace-tracker', { ...response.data.user, token: response.data.token });
-    return dispatch(signUpUserAction(response.data));
-  } catch ({ response }) {
-    return toastr.error(response.data.message);
+    if (response.data.status === 200) {
+      toastr.success(response.data.message);
+      localStorageUtil.setItem('maintenace-tracker', { ...response.data.user, token: response.data.token });
+      return dispatch(signUpUserAction(response.data));
+    }
+    const error = Object.assign({}, {
+      status: response.data.status,
+      message: response.data.message,
+    });
+    return toastr.error(error.message);
+  } catch (error) {
+    return toastr.error(error.message);
   }
 };

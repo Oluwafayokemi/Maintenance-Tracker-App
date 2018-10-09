@@ -27,8 +27,7 @@ export const getAdminRequest = requestDetails => async (dispatch, getState) => {
       data: requestDetails,
     });
     if (response.data.status === 200) {
-      toastr.success(response.data.message);
-      localStorageUtil.setItem('maintenance-tracker', {
+      localStorageUtil.setItem('userData', {
         ...state.adminRequests, ...response.data,
       });
       return dispatch(getAllAdminRequest(response.data.requests));
@@ -37,9 +36,9 @@ export const getAdminRequest = requestDetails => async (dispatch, getState) => {
       status: response.data.status,
       message: response.data.message,
     });
-    return toastr.error(error);
+    return toastr.error(error.message);
   } catch (error) {
-    return toastr.error('Network error');
+    return toastr.error(error.message);
   }
 };
 
@@ -61,15 +60,16 @@ export const editRequestStatus = status => async (dispatch, getState) => {
       localStorageUtil.setItem('maintenance-tracker', {
         ...state.adminRequests, ...response.data,
       });
-      return dispatch(changeRequestStatus(response.data.updatedRequest));
+      return dispatch(changeRequestStatus(response.data.updatedRequest.request));
     }
+
     const error = Object.assign({}, {
       status: response.data.status,
       message: response.data.message,
     });
-    return toastr.error(error);
+    return toastr.error(error.message);
   } catch (error) {
-    return toastr.error('Network error');
+    return toastr.error(error.message);
   }
 };
 

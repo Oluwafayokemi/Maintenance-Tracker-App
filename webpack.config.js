@@ -7,6 +7,9 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 });
 module.exports = {
   entry: './src/index.js',
+//   output: {
+// publicPath: '/',
+//   },
   module: {
     rules: [
       {

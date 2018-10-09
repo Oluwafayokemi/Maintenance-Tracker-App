@@ -1,5 +1,5 @@
 import toastr from 'toastr';
-import { LOG_IN_USER, IS_LOADING, IS_COMPLETE } from './actionTypes';
+import { LOG_IN_USER, LOG_OUT_USER } from './actionTypes';
 import fetchData from '../util/fetchData';
 import localStorageUtil from '../util/localStorageUtil';
 
@@ -8,8 +8,15 @@ export const logInUserAction = user => ({
   user,
 });
 
+export const logOutAction = (user) => {
+  localStorage.clear();
+  return {
+    type: LOG_OUT_USER,
+    user,
+  };
+};
+
 export const logInUserRequest = userDetails => async (dispatch) => {
-  dispatch({ type: IS_LOADING });
   try {
     const response = await fetchData({
       method: 'post',
@@ -26,8 +33,8 @@ export const logInUserRequest = userDetails => async (dispatch) => {
       status: response.data.status,
       message: response.data.message,
     });
-    return Promise.reject(error);
+    return toastr.error(error.message);
   } catch (error) {
-    return toastr.error(error);
+    return toastr.error(error.message);
   }
 };

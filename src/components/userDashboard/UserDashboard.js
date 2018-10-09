@@ -1,40 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavBar from '../../common/NavBar';
-import Search from '../Search';
 import MyRequests from '../userDashboard/myRequests/myRequestsContainer';
-import { fetchUserRequest } from '../../actions/userRequest.action';
+import { fetchUserRequests, editUserRequest } from '../../actions/userRequest.action';
 import history from '../../util/history';
 
 export class UserDashboard extends Component {
-  async componentDidlMount() {
+  componentWillMount() {
     const { auth } = this.props;
     const authToken = auth.token;
     if (!authToken) {
       history.push('/');
       return null;
     }
-    const { getRequests } = await this.props;
-    return getRequests();
+    const { userRequests } = this.props;
+    return userRequests();
   }
 
   render() {
-    const { getRequests } = this.props;
+    const { requests, editRequest } = this.props;
     return (
       <React.Fragment>
         <NavBar isUser />
         <div className="admin">
-          <div id="display" className="alert col-12">
-            <p id="alert" />
-          </div>
           <div className="header">
             <h1>Previous Requests</h1>
           </div>
-
-          <Search isAdmin />
-          <MyRequests
-            requests={getRequests.requests}
-          />
+          <div className="col-12 overflow padding">
+            <MyRequests
+              requests={requests.requests}
+              editRequest={editRequest}
+            />
+          </div>
 
         </div>
       </React.Fragment>
@@ -42,13 +40,21 @@ export class UserDashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+UserDashboard.propTypes = {
+  auth: PropTypes.shape({}).isRequired,
+  requests: PropTypes.shape([]).isRequired,
+  userRequests: PropTypes.func.isRequired,
+  editRequest: PropTypes.func.isRequired,
+};
+
+export const mapStateToProps = state => ({
   auth: state.auth,
-  userRequests: state.userRequests,
+  requests: state.userRequests,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getRequests: () => dispatch(fetchUserRequest()),
+export const mapDispatchToProps = dispatch => ({
+  userRequests: () => dispatch(fetchUserRequests()),
+  editRequest: request => dispatch(editUserRequest(request)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);

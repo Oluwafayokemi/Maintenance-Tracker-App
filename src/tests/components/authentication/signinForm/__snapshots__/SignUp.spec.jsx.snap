@@ -14,7 +14,7 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
     <form
       className="form menu"
       id="signup-form"
-      onSubmit={[Function]}
+      onSubmit={[MockFunction]}
     >
       <div
         className="container"
@@ -29,11 +29,11 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
         <input
           id="firstName"
           name="firstName"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Enter First Name"
           required={true}
           type="text"
-          value=""
+          value="firsname"
         />
         <label
           htmlFor="lastName"
@@ -45,11 +45,11 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
         <input
           id="lastName"
           name="lastName"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Enter Last Name"
           required={true}
           type="text"
-          value=""
+          value="lastName"
         />
         <label
           htmlFor="department"
@@ -61,11 +61,11 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
         <input
           id="department"
           name="department"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Department"
           required={true}
           type="text"
-          value=""
+          value="department"
         />
         <label
           htmlFor="email"
@@ -77,11 +77,11 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
         <input
           id="email"
           name="email"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Enter email"
           required={true}
           type="email"
-          value=""
+          value="email"
         />
         <label
           htmlFor="password"
@@ -95,11 +95,11 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
           maxLength="20"
           minLength="5"
           name="password"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Enter Password"
           required={true}
           type="password"
-          value=""
+          value="password"
         />
         <label
           htmlFor="passwordCheck"
@@ -113,13 +113,14 @@ exports[`Tests SignUpForm component should render without errors 1`] = `
           maxLength="20"
           minLength="5"
           name="passwordCheck"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Confirm Password"
           required={true}
           type="password"
-          value=""
+          value="passWordCheck"
         />
         <button
+          id="signUp-btn"
           type="submit"
           value="submit"
         >

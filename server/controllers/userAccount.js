@@ -45,6 +45,7 @@ class User {
             success: 'true',
             message: 'sign up was successful',
             user: {
+              userId: user.rows[0].userid,
               firstName: user.rows[0].firstname,
               lastName: user.rows[0].lastname,
               email: user.rows[0].email,
@@ -104,6 +105,7 @@ class User {
             success: 'true',
             message: 'Sign in successful',
             user: {
+              userId: user.rows[0].userid,
               firstName: user.rows[0].firstname,
               lastName: user.rows[0].lastname,
               email: user.rows[0].email,
