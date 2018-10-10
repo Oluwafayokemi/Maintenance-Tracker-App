@@ -18,7 +18,7 @@
     "migrate": "babel-node ./server/models/db.js",
     "email": "babel-node ./server/extension/mail.js",
     "start:js": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode development",
+    "build": "webpack --mode production",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
