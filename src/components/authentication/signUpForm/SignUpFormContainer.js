@@ -27,18 +27,19 @@ export default class SignUpFormContainer extends React.Component {
     const response = await signUpUserRequest(this.state);
     try {
       if (response.user.isAdmin) {
+        this.setState({
+          firstName: '',
+          lastName: '',
+          department: '',
+          email: '',
+          password: '',
+          passwordCheck: '',
+        });
+        signUpbtn.textContent = 'Register';
         return history.push('/admin');
       }
       return history.push('/user');
     } catch (err) {
-      this.setState({
-        firstName: '',
-        lastName: '',
-        department: '',
-        email: '',
-        password: '',
-        passwordCheck: '',
-      });
       signUpbtn.textContent = 'Register';
       return err;
     }
