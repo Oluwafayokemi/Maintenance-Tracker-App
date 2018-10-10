@@ -1,17 +1,11 @@
 /* eslint-disable class-methods-use-this */
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import db from '../models/index';
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.myEmail,
-    pass: process.env.myPassword,
-  },
-});
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 /**
  * @param {object} request - HTTP Request
@@ -28,23 +22,23 @@ class EmailNotification {
    * @description send email to a recipient
    */
 
-  async sendMail(userEmail, emailSubject, emailText) {
+  static async sendMail(userEmail, emailSubject, emailText) {
     const mailOptions = {
-      from: 'Maintenance Tracker(Facility Department)',
+      from: 'tt.maintenancetracker@gmail.com',
       to: userEmail,
       subject: emailSubject,
       html: `<h3 style="background-color: pink; color: black; padding: .5em; width: 450px; text-align: center;">Maintenance Tracker</h3>
       <div>${emailText}</div>
       <p><strong>**Note if you are not subscribed to Maintenance Tracker, please ignore this Email.**<srong></p>`,
     };
-    transporter.sendMail(mailOptions);
+    sgMail.send(mailOptions);
   }
   /**
    * @param {string} equipment - HTTP Request
    * @description sends email notification to an admin when a user creates a request
    */
 
-  async createRequest(equipment) {
+  static async createRequest(equipment) {
     const queryString = {
       // give the query a unique name
       name: 'fetch-user',
@@ -60,7 +54,7 @@ class EmailNotification {
           } = data.rows[0];
           const emailBody = `<p>Dear Admin ${firstname}</p>, <p>A new request with Equipment type: <strong>${equipment}</strong>, was sent to the maintainance tracker site<\p>. <P><strong>Do attend to the request as soon as possible</strong></p>. 
           <p>Time created:${new Date()}</p>`;
-          this.sendMail(email, 'Notification of a new Request sent to the maintainance tracker app', emailBody);
+          EmailNotification.sendMail(email, 'Notification of a new Request sent to the maintainance tracker app', emailBody);
         })
         .catch(error => error));
   }
@@ -69,7 +63,7 @@ class EmailNotification {
    * @param {string} equipment - HTTP Request
    * @description sends email to the user when an action has been made on a request by the admin
    */
-  async requestStatus(requestid) {
+  static async requestStatus(requestid) {
     const query = {
       // give the query a unique name
       name: 'fetch-user',
@@ -88,11 +82,10 @@ class EmailNotification {
             firstname,
           } = data.rows[0];
           const emailBody = `<p>Dear <strong>${firstname}</strong></p>, <p>The request you created on <strong>${equipment}</strong>, as at <strong>${date}</strong> has been ${status}.</p> <p>Time updated: <strong>${new Date()}</strong>`;
-          this.sendMail(email, `Request ${status}`, emailBody);
+          EmailNotification.sendMail(email, `Request ${status}`, emailBody);
         })
         .catch(error => error));
   }
 }
 
-const emailNotification = new EmailNotification();
-export default emailNotification;
+export default EmailNotification;
