@@ -6,7 +6,7 @@ export const loadState = () => {
   const serializedState = localStorage.getItem('state');
   if (serializedState === null) return undefined;
   const state = JSON.parse(serializedState);
-  state.common.loading = false;
+  // state.common.loading = false;
   return state;
 };
 

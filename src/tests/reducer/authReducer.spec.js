@@ -77,7 +77,7 @@ describe('Tests AuthReducer', () => {
     };
 
     const newState = authReducer(initialState, action);
-    expect(newState.user).toEqual({});
+    expect(newState).toEqual({});
     done();
   });
 });

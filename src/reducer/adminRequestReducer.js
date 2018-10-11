@@ -25,7 +25,8 @@ export default (state = initialState.adminRequests, action) => {
         }),
         status: action.status,
       };
-
+    case 'LOG_OUT_USER':
+      return initialState.adminRequests;
     default:
       return {
         ...state,

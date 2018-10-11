@@ -12,6 +12,16 @@ describe('Tests NewRequest container', () => {
   };
   const props = {
     createRequest: jest.fn(),
+    auth: {
+      user: {
+        userId: 1,
+        firstName: 'fayokemi',
+        lastName: 'adeyina',
+        email: 'fayoaright@gmail.com',
+        department: 'Water Management',
+        isAdmin: true,
+      },
+    },
   };
 
   it('should render without errors', (done) => {
@@ -19,6 +29,7 @@ describe('Tests NewRequest container', () => {
     expect(wrapper).toBeTruthy();
     wrapper.instance().handleChange(event);
     wrapper.instance().handleSubmit(event);
+    wrapper.instance().componentDidMount();
     done();
   });
 });

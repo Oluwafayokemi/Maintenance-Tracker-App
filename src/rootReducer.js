@@ -1,8 +1,24 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from './reducer/';
+import throttle from 'lodash/throttle';
 
-export default createStore(reducer, compose(
-  applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f,
-));
+import reducer from './reducer/';
+import { saveState, loadState } from './util/persistState';
+
+
+const persistedState = loadState();
+const store = createStore(
+  reducer,
+  persistedState,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
+  ),
+);
+
+store.subscribe(throttle(() => {
+  saveState(store.getState());
+}, 1000));
+
+
+export default store;

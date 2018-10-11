@@ -20,7 +20,6 @@ export const signUpUserRequest = newUser => async (dispatch) => {
     });
     if (response.data.status === 200) {
       toastr.success(response.data.message);
-      localStorageUtil.setItem('maintenace-tracker', { ...response.data.user, token: response.data.token });
       return dispatch(signUpUserAction(response.data));
     }
     const error = Object.assign({}, {

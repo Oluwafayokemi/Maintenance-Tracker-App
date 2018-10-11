@@ -1,7 +1,6 @@
-import localStorageUtil from '../util/localStorageUtil';
 
 export default {
-  user: localStorageUtil.getItem('maintenace-tracker') || {},
+  user: {},
   adminRequests: {},
   userRequests: {},
   common: {

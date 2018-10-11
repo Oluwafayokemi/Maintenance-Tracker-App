@@ -27,7 +27,7 @@ describe('User Dashboard', () => {
         request: newRequestData,
       };
 
-      const store = mockStore({ auth: { token: 'some token' } });
+      const store = mockStore({ auth: { user: { token: 'some token' } } });
 
       await store.dispatch(createUserRequest(returnedAction.request));
       expect(store.getActions()[0]).toEqual(returnedAction);
@@ -50,7 +50,7 @@ describe('User Dashboard', () => {
         requests: userRequest.requests,
       };
 
-      const store = mockStore({ auth: { token: 'some token' } });
+      const store = mockStore({ auth: { user: { token: 'some token' } } });
       await store.dispatch(fetchUserRequests(returnedAction.requests));
       expect(store.getActions()[0]).toEqual(returnedAction);
       done();
@@ -72,7 +72,7 @@ describe('User Dashboard', () => {
         requests: statusResponse.request,
       };
 
-      const store = mockStore({ auth: { token: 'some token' } });
+      const store = mockStore({ auth: { user: { token: 'some token' } } });
       await store.dispatch(editUserRequest({ requestid: 6 }));
       expect(store.getActions()[0]).toEqual(returnedAction);
       done();

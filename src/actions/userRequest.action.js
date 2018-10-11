@@ -19,7 +19,7 @@ export const editRequests = request => ({
 
 export const fetchUserRequests = () => async (dispatch, getState) => {
   const state = getState();
-  const { token } = state.auth;
+  const { token } = state.auth.user;
   try {
     const response = await fetchData({
       url: 'users/requests',
@@ -46,7 +46,7 @@ export const fetchUserRequests = () => async (dispatch, getState) => {
 
 export const createUserRequest = newRequest => async (dispatch, getState) => {
   const state = getState();
-  const { token } = state.auth;
+  const { token } = state.auth.user;
   try {
     const response = await fetchData({
       method: 'post',
@@ -59,9 +59,6 @@ export const createUserRequest = newRequest => async (dispatch, getState) => {
     });
     if (response.data.status === 201) {
       toastr.success(response.data.message);
-      localStorageUtil.setItem('usersRequest', {
-        ...state.userRequests, ...response.data,
-      });
       history.push('/user');
       return dispatch(addNewRequest(response.data));
     }
@@ -77,7 +74,7 @@ export const createUserRequest = newRequest => async (dispatch, getState) => {
 
 export const editUserRequest = request => async (dispatch, getState) => {
   const state = getState();
-  const { token } = state.auth;
+  const { token } = state.auth.user;
   try {
     const response = await fetchData({
       method: 'put',
@@ -93,9 +90,6 @@ export const editUserRequest = request => async (dispatch, getState) => {
     });
     if (response.data.status === 201) {
       toastr.success(response.data.message);
-      localStorageUtil.setItem('usersRequest', {
-        ...state.userRequests, ...response.data,
-      });
       history.push('/user');
       return dispatch(editRequests(response.data.request));
     }

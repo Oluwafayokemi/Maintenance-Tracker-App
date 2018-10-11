@@ -7,10 +7,10 @@ import { fetchUserRequests, editUserRequest } from '../../actions/userRequest.ac
 import history from '../../util/history';
 
 export class UserDashboard extends Component {
-  componentWillMount() {
+  componentDidMount = () => {
     const { auth } = this.props;
-    const authToken = auth.token;
-    if (!authToken) {
+    const { user } = auth;
+    if (!user) {
       history.push('/');
       return null;
     }
