@@ -8,7 +8,7 @@ import LoginForm from './loginForm/LoginFormContainer';
 
 export class Home extends React.PureComponent {
   render() {
-    const { logIn, signUp } = this.props;
+    const { logIn, signUp, history } = this.props;
     return (
       <React.Fragment>
         <div className="base">
@@ -21,6 +21,7 @@ export class Home extends React.PureComponent {
 
             <LoginForm
               logInUserRequest={logIn}
+              history={history}
             />
 
             <div id="display" className="alert col-12">

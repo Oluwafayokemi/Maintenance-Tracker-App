@@ -15,7 +15,7 @@ export const changeRequestStatus = status => ({
 
 export const getAdminRequest = requestDetails => async (dispatch, getState) => {
   const state = getState();
-  const { token } = state.auth;
+  const { token } = state.auth.user;
   try {
     const response = await fetchData({
       method: 'get',
@@ -27,9 +27,6 @@ export const getAdminRequest = requestDetails => async (dispatch, getState) => {
       data: requestDetails,
     });
     if (response.data.status === 200) {
-      localStorageUtil.setItem('userData', {
-        ...state.adminRequests, ...response.data,
-      });
       return dispatch(getAllAdminRequest(response.data.requests));
     }
     const error = Object.assign({}, {
@@ -44,7 +41,7 @@ export const getAdminRequest = requestDetails => async (dispatch, getState) => {
 
 export const editRequestStatus = status => async (dispatch, getState) => {
   const state = getState();
-  const { token } = state.auth;
+  const { token } = state.auth.user;
   try {
     const response = await fetchData({
       method: 'put',
@@ -57,9 +54,6 @@ export const editRequestStatus = status => async (dispatch, getState) => {
     });
     if (response.data.status === 201) {
       toastr.success(response.data.message);
-      localStorageUtil.setItem('maintenance-tracker', {
-        ...state.adminRequests, ...response.data,
-      });
       return dispatch(changeRequestStatus(response.data.updatedRequest.request));
     }
 

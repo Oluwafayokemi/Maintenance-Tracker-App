@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import history from '../../../util/history';
 import { createUserRequest } from '../../../actions/userRequest.action';
 import NewRequest from './NewRequest';
 
@@ -11,6 +12,17 @@ export class NewRequestContainer extends React.PureComponent {
       equipment: '',
     };
   }
+
+  componentDidMount = () => {
+    const { auth } = this.props;
+    const { user } = auth;
+    if (!user) {
+      history.push('/');
+      return null;
+    }
+    return true;
+  }
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }

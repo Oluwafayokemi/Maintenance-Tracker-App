@@ -26,7 +26,8 @@ export default (state = initialState.userRequests, action) => {
         }),
         request: action.request,
       };
-
+    case 'LOG_OUT_USER':
+      return initialState.userRequests;
     default:
       return {
         ...state,

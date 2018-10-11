@@ -1,7 +1,7 @@
 import toastr from 'toastr';
 import { LOG_IN_USER, LOG_OUT_USER } from './actionTypes';
 import fetchData from '../util/fetchData';
-import localStorageUtil from '../util/localStorageUtil';
+import { clearState } from '../util/persistState';
 
 export const logInUserAction = user => ({
   type: LOG_IN_USER,
@@ -9,7 +9,7 @@ export const logInUserAction = user => ({
 });
 
 export const logOutAction = (user) => {
-  localStorage.clear();
+  clearState();
   return {
     type: LOG_OUT_USER,
     user,
@@ -25,9 +25,10 @@ export const logInUserRequest = userDetails => async (dispatch) => {
       data: userDetails,
     });
     if (response.data.status === 200) {
+      const { user } = response.data;
+      user.token = response.data.token;
       toastr.success(response.data.message);
-      localStorageUtil.setItem('maintenace-tracker', { ...response.data.user, token: response.data.token });
-      return dispatch(logInUserAction(response.data.user));
+      return dispatch(logInUserAction(user));
     }
     const error = Object.assign({}, {
       status: response.data.status,

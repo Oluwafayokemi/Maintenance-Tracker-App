@@ -10,11 +10,10 @@ const selectData = [
 ];
 
 const SelectResponse = ({
-  requestId, handleUpdate, setRequestId, handleChange, value,
+  handleUpdate, handleChange, value,
 }) => (
   <React.Fragment>
     <form onSubmit={handleUpdate}>
-      <input type="hidden" value={requestId} onChange={setRequestId} />
       <select name="select" value={value} onChange={handleChange} className="selectBtn">
         {selectData.map(data => (
           <option
@@ -33,16 +32,12 @@ const SelectResponse = ({
 
 SelectResponse.propTypes = {
   handleUpdate: PropTypes.func,
-  requestId: PropTypes.number,
-  setRequestId: PropTypes.func,
   handleChange: PropTypes.func,
   value: PropTypes.string,
 };
 
 SelectResponse.defaultProps = {
-  requestId: 1,
   handleUpdate: () => {},
-  setRequestId: () => {},
   handleChange: () => {},
   value: '',
 };

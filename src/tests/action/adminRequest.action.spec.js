@@ -22,16 +22,12 @@ describe('Admin Dashboard', () => {
         });
       });
 
-      localStorage.userData = JSON.stringify({
-        token: 'some_token',
-      });
-
       const returnedAction = {
         type: GET_ALL_REQUEST_ADMIN,
         requests: requestResponse.requests,
       };
 
-      const store = mockStore({ auth: { token: 'some token' } });
+      const store = mockStore({ auth: { user: { token: 'some token' } } });
 
       await store.dispatch(getAdminRequest(returnedAction.requests));
       expect(store.getActions()[0]).toEqual(returnedAction);
@@ -56,8 +52,7 @@ describe('Admin Dashboard', () => {
         type: CHANGE_REQUEST_STATUS,
         status: statusResponse.updatedRequest.request,
       };
-
-      const store = mockStore({ auth: { token: 'some token' } });
+      const store = mockStore({ auth: { user: { token: 'some token' } } });
 
       await store.dispatch(editRequestStatus({ requestId: 3, value: 'approved' }));
       expect(store.getActions()[0]).toEqual(returnedAction);

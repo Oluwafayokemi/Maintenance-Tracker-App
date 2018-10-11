@@ -7,10 +7,10 @@ import { getAdminRequest, editRequestStatus } from '../../actions/adminRequest.a
 import history from '../../util/history';
 
 export class AdminDashboard extends Component {
-  componentDidMount() {
+  componentDidMount = () => {
     const { auth } = this.props;
-    const authToken = auth.token;
-    if (!authToken) {
+    const { user } = auth;
+    if (!user) {
       history.push('/');
       return null;
     }

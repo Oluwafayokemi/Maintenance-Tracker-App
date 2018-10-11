@@ -1,5 +1,5 @@
 import React from 'react';
-import history from '../../../util/history';
+// import history from '../../../util/history';
 import LoginForm from './LoginForm';
 
 export default class loginFormContainer extends React.Component {
@@ -17,7 +17,7 @@ export default class loginFormContainer extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { logInUserRequest } = await this.props;
+    const { logInUserRequest, history } = await this.props;
     const loginbtn = document.querySelector('#login-btn');
     loginbtn.textContent = 'loading...';
     const response = await logInUserRequest(this.state);
