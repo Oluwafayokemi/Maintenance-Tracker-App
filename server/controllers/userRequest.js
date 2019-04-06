@@ -50,6 +50,7 @@ class UserRequest {
   }
 
   /**
+   * @function getAll
    * @param {object} request - HTTP UserRequest
    * @param {object} response - HTTP Response
    * @returns {object} Class instance
@@ -158,7 +159,7 @@ class UserRequest {
       return res.status(400).json({
         success: 'false',
         status: 400,
-        message: 'Request id is not a string'
+        message: 'Request id is not a string',
       });
     }
     const {
